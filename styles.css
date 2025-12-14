@@ -676,6 +676,13 @@ ul {
     margin-bottom: var(--spacing-lg);
 }
 
+.about-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1088,7 +1095,7 @@ ul {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-2xl);
 }
 
