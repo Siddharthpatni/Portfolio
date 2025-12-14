@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Siddharth Patni - AI/DevOps Engineer specializing in MLOps, automation, and scalable infrastructure. M.Sc. student with expertise in Python, Docker, Kubernetes, and ML pipelines.">
+    <meta name="keywords" content="AI Engineer, DevOps, MLOps, Machine Learning, Python, Docker, Kubernetes, Portfolio">
+    <meta name="author" content="Siddharth Patni">
+    <title>Siddharth Patni | AI & DevOps Engineer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="expertise.css">
+    <link rel="stylesheet" href="language-styles.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+    <!-- Canvas for particle background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">SP</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <img src="hero-bg.png" alt="Background" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content-container">
+            <div class="hero-text-content">
+                <h1 class="hero-title">Siddharth Patni</h1>
+                <div class="hero-subtitle-wrapper">
+                    <h2 class="hero-subtitle">
+                        <span id="typed-text"></span>
+                        <span class="cursor">|</span>
+                    </h2>
+                </div>
+                <p class="hero-description">
+                    AI/DevOps Engineer pursuing M.Sc. in Digital Technologies. Architecting production-grade intelligent
+                    systems with expertise in MLOps, RAG pipelines, and cloud-native infrastructure.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://linkedin.com/in/siddharth-patni-644857185" target="_blank"
+                        rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor"
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com/Siddharthpatni" target="_blank" rel="noopener noreferrer"
+                        class="social-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor"
+                                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:patnisiddharth1311@gmail.com" class="social-link" aria-label="Email">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor"
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="profile-image-container">
+                    <div class="profile-glow"></div>
+                    <img src="profile-photo.jpg" alt="Siddharth Patni" class="hero-profile-image">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Pillars Section -->
+    <section class="expertise-pillars-section">
+        <div class="container">
+            <div class="expertise-grid">
+                <div class="expertise-pillar glass-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="currentColor"
+                                d="M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z" />
+                        </svg>
+                    </div>
+                    <h3>Full-Stack Development</h3>
+                    <p>React, Next.js, Node.js, FastAPI, PostgreSQL - Building production-grade web applications from
+                        frontend to backend</p>
+                    <div class="pillar-badge">Frontend + Backend + Database</div>
+                </div>
+
+                <div class="expertise-pillar glass-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="currentColor"
+                                d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,17V16H9V14H13V13H10A1,1 0 0,1 9,12V10A1,1 0 0,1 10,9H14V10H16V12H12V13H15A1,1 0 0,1 16,14V16A1,1 0 0,1 15,17H11Z" />
+                        </svg>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>PyTorch, TensorFlow, LangChain, LLMs - Developing intelligent systems and deploying AI models at
+                        scale</p>
+                    <div class="pillar-badge">NLP + Computer Vision + LLMs</div>
+                </div>
+
+                <div class="expertise-pillar glass-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="currentColor"
+                                d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </svg>
+                    </div>
+                    <h3>DevOps & Automation</h3>
+                    <p>Docker, Kubernetes, Jenkins, GitHub Actions - Orchestrating CI/CD pipelines and cloud
+                        infrastructure</p>
+                    <div class="pillar-badge">AWS + Azure + GCP</div>
+                </div>
+
+                <div class="expertise-pillar glass-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="currentColor"
+                                d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z" />
+                        </svg>
+                    </div>
+                    <h3>Software Engineering</h3>
+                    <p>Clean Architecture, System Design, Testing - Crafting maintainable, scalable, and robust software
+                        systems</p>
+                    <div class="pillar-badge">Design + Testing + Optimization</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-content-wrapper">
+                    <div class="about-text glass-card">
+                        <p class="about-intro">
+                            I'm an <strong>AI/DevOps Engineer</strong> and M.Sc. student specializing in transforming
+                            complex technical challenges into elegant, scalable solutions.
+                        </p>
+                        <p>
+                            With a strong foundation in <strong>Python automation</strong>, <strong>MLOps</strong>, and
+                            <strong>CI/CD pipelines</strong>, I've helped organizations improve reliability and reduce
+                            time-to-value through intelligent workflow orchestration and infrastructure optimization.
+                        </p>
+                        <p>
+                            Currently pursuing my Master's in Digital Technologies, I'm focused on building
+                            production-ready
+                            ML infrastructure, implementing RAG pipelines with LangChain, and advancing AI governance
+                            through comprehensive model documentation.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1000</div>
+                                <div class="stat-label">Workflows Orchestrated</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">500</div>
+                                <div class="stat-label">K+ Content Views</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">% Load Time Reduction</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-location glass-card">
+                        <h3>Currently Based In</h3>
+                        <div class="location-info">
+                            <svg viewBox="0 0 24 24" width="32" height="32" class="location-icon">
+                                <path fill="currentColor"
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                            </svg>
+                            <div>
+                                <p class="location-city">Braunschweig, Germany</p>
+                                <p class="location-region">Lower Saxony</p>
+                            </div>
+                        </div>
+                        <div class="language-skills">
+                            <h4>Languages</h4>
+                            <div class="language-item">
+                                <span>English</span>
+                                <span class="language-level">C1 (Advanced)</span>
+                            </div>
+                            <div class="language-item">
+                                <span>German</span>
+                                <span class="language-level">A2-B1 (In Progress)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <!-- Education -->
+                <div class="timeline-item">
+                    <div class="timeline-marker education-marker"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Mar 2025 - Present</span>
+                        <h3>M.Sc. in Digital Technologies</h3>
+                        <h4>TU Clausthal & Ostfalia University</h4>
+                        <p class="timeline-location">Germany</p>
+                        <p class="timeline-description">
+                            Specializing in Information & Communication Technologies with focus on MLOps, AI
+                            infrastructure, and advanced automation systems.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- L&T Technology Services -->
+                <div class="timeline-item">
+                    <div class="timeline-marker work-marker"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Dec 2023 - Apr 2024</span>
+                        <h3>Software Developer Intern</h3>
+                        <h4>L&T Technology Services</h4>
+                        <p class="timeline-location">India</p>
+                        <ul class="timeline-highlights">
+                            <li>Dockerized services and integrated them into Linux-based CI pipelines, reducing
+                                regressions and improving release consistency</li>
+                            <li>Reworked React components and Flask APIs, improving perceived load times by ~30%</li>
+                            <li>Harmonized API-UI contracts and added validation checks to reduce integration defects
+                            </li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Snapfix Ltd -->
+                <div class="timeline-item">
+                    <div class="timeline-marker work-marker"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Jun 2023 - Jul 2023</span>
+                        <h3>Data Analyst Intern</h3>
+                        <h4>Snapfix Ltd.</h4>
+                        <p class="timeline-location">India</p>
+                        <ul class="timeline-highlights">
+                            <li>Built Python/SQL ETL pipelines to standardize datasets, reducing report preparation time
+                                by ~40%</li>
+                            <li>Authored comprehensive handover documentation (data dictionaries, pipeline steps) to
+                                ensure reproducibility</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">ETL</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B.Tech -->
+                <div class="timeline-item">
+                    <div class="timeline-marker education-marker"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Jul 2021 - May 2024</span>
+                        <h3>B.Tech in Computer Engineering</h3>
+                        <h4>Charotar University of Science and Technology</h4>
+                        <p class="timeline-location">India • CGPA: 7.6</p>
+                    </div>
+                </div>
+
+                <!-- Diploma -->
+                <div class="timeline-item">
+                    <div class="timeline-marker education-marker"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Jun 2018 - Jun 2021</span>
+                        <h3>Diploma in Computer Engineering</h3>
+                        <h4>Gujarat Technological University</h4>
+                        <p class="timeline-location">India • CGPA: 8.92</p>
+                        <div class="achievement-badge">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor"
+                                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                            </svg>
+                            <span>High Distinction - 8.92 CGPA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- MLOps Project -->
+                <div class="project-card glass-card" data-tilt>
+                    <div class="project-image">
+                        <img src="project-mlops.png" alt="MLOps Infrastructure">
+                        <div class="project-overlay">
+                            <span class="project-status">Current Focus</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>End-to-End MLOps & LLM Serving Infrastructure</h3>
+                        <p class="project-description">
+                            Production-ready MLOps pipeline for serving, monitoring, and documenting AI models with
+                            comprehensive governance.
+                        </p>
+                        <ul class="project-highlights">
+                            <li>MLflow for experiment tracking and model versioning</li>
+                            <li>RAG pipeline using LangChain and Vector Databases</li>
+                            <li>Containerized inference services with FastAPI</li>
+                            <li>Model Cards for AI governance and documentation</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">MLflow</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">RAG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workflow Engine -->
+                <div class="project-card glass-card" data-tilt>
+                    <div class="project-image">
+                        <img src="project-workflow.png" alt="Workflow Engine">
+                        <div class="project-overlay">
+                            <div class="project-metrics">
+                                <span class="metric">1,000+ workflows</span>
+                                <span class="metric">&lt;100ms latency</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Workflow Engine (Distributed Automation Platform)</h3>
+                        <p class="project-description">
+                            High-concurrency orchestration engine for complex automation workflows with enterprise-grade
+                            reliability.
+                        </p>
+                        <ul class="project-highlights">
+                            <li>Handles 1,000+ concurrent workflows with &lt;100ms task latency</li>
+                            <li>JWT authentication and full CI/CD integration</li>
+                            <li>Comprehensive documentation: architecture, config, SOPs</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Reels Pipeline -->
+                <div class="project-card glass-card" data-tilt>
+                    <div class="project-image">
+                        <img src="project-ai-reels.png" alt="AI Reels Pipeline">
+                        <div class="project-overlay">
+                            <div class="project-metrics">
+                                <span class="metric">6h → 20m</span>
+                                <span class="metric">500K+ views</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI-Driven Reels Pipeline</h3>
+                        <p class="project-description">
+                            Automated video processing pipeline leveraging GPU acceleration for captioning, retrieval,
+                            and rendering.
+                        </p>
+                        <ul class="project-highlights">
+                            <li>Reduced production time from 6 hours to 20 minutes</li>
+                            <li>Scaled to 500K+ views and 5.8K followers</li>
+                            <li>GPU-accelerated processing with comprehensive operator guides</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Hugging Face</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Projects (Condensed) -->
+                <div class="project-card glass-card secondary" data-tilt>
+                    <div class="project-content">
+                        <h3>Dynamic Occupancy Grid Mapping</h3>
+                        <p class="project-description">
+                            Robotics mapping system using LiDAR and IMU with Dempster-Shafer uncertainty modeling for
+                            autonomous navigation.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">ROS2</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LiDAR</span>
+                            <span class="tech-tag">IMU</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card secondary" data-tilt>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Multi-Disease Diagnostic Web App</h3>
+                            <span class="project-type-badge">Full-Stack + AI</span>
+                        </div>
+                        <p class="project-description">
+                            Full-stack ML-powered diagnostic system with Flask backend, achieving ~85% accuracy and
+                            reducing processing time from 30m to 10s through optimized architecture.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">scikit-learn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card secondary" data-tilt>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Vehicle Motor Calculator & Smart Home System</h3>
+                            <span class="project-type-badge">Full-Stack + IoT</span>
+                        </div>
+                        <p class="project-description">
+                            Full-stack React web application for automotive engineering calculations and IoT home
+                            automation platform with Alexa voice integration and Arduino-based control systems.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">Arduino</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+
+            <!-- Interactive Skills Radar Chart -->
+            <div class="skills-radar-container">
+                <canvas id="skills-radar"></canvas>
+                <p class="skills-radar-caption">Interactive Skills Proficiency Map</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Core AI & MLOps -->
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path fill="currentColor"
+                                d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39C21.61 2.39 16.66 .269 11 5.93C8.81 8.12 7.5 10.53 6.65 12.64C6.37 13.39 6.56 14.21 7.11 14.77L9.24 16.89C9.79 17.45 10.61 17.63 11.36 17.35C13.5 16.53 15.88 15.19 18.07 13C23.73 7.34 21.61 2.39 21.61 2.39M14.54 9.46C13.76 8.68 13.76 7.41 14.54 6.63S16.59 5.85 17.37 6.63C18.14 7.41 18.15 8.68 17.37 9.46C16.59 10.24 15.32 10.24 14.54 9.46M8.88 16.53L7.47 15.12L8.88 16.53M6.24 22L9.88 18.36C9.54 18.27 9.21 18.12 8.91 17.91L4.83 22H6.24M2 22H3.41L8.18 17.24L6.76 15.83L2 20.59V22M2 19.17L6.09 15.09C5.88 14.79 5.73 14.47 5.64 14.12L2 17.76V19.17Z" />
+                        </svg>
+                    </div>
+                    <h3>Core AI & MLOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MLflow</span>
+                        <span class="skill-tag">DVC</span>
+                        <span class="skill-tag">Model Cards</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">RAG Pipelines</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Vector DBs</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                    </div>
+                </div>
+
+                <!-- DevOps & Infrastructure -->
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path fill="currentColor"
+                                d="M20.61 19.19A7 7 0 1017.87 8.5a1 1 0 10-1.91-.57A9 9 0 116.5 10.5a9.26 9.26 0 00.1 1.32c.25 2.1 2.45 2.75 5.4 2.75s5.17-.65 5.4-2.75a1 1 0 012 .15c-.32 2.62-2.37 4.18-5.9 4.6V19a1 1 0 11-2 0v-2.43a15.14 15.14 0 01-2.52-.52 7.07 7.07 0 005.48 7.25 1 1 0 01-.55 1.92 9.09 9.09 0 01-7.07-9.16l.15.06a18.49 18.49 0 004.94.76V19a3 3 0 006 0v-2.57c3.65-.44 6.07-2.19 6.39-5.28a3 3 0 10-1.21 7.85z" />
+                        </svg>
+                    </div>
+                    <h3>DevOps & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Helm Charts</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                    </div>
+                </div>
+
+                <!-- Programming & Data -->
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path fill="currentColor"
+                                d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                        </svg>
+                    </div>
+                    <h3>Programming & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">JSON/YAML</span>
+                    </div>
+                </div>
+
+                <!-- Documentation & Ops -->
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path fill="currentColor"
+                                d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6m4 18H6V4h7v5h5v11m-2-8v1H8v-1h8m0 3v1H8v-1h8m-4 3v1H8v-1h4z" />
+                        </svg>
+                    </div>
+                    <h3>Documentation & Operations</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Technical Runbooks</span>
+                        <span class="skill-tag">Service Inventories</span>
+                        <span class="skill-tag">Incident Management</span>
+                        <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">AI Governance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-info glass-card">
+                    <h3>Get In Touch</h3>
+                    <p>
+                        I'm always open to discussing new opportunities, collaborations, or just chatting about AI,
+                        DevOps, and technology.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:patnisiddharth1311@gmail.com"
+                                    class="contact-value">patnisiddharth1311@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+4915510835846" class="contact-value">+49 15510835846</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor"
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                            </svg>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Braunschweig, Germany</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links-large">
+                        <a href="https://linkedin.com/in/siddharth-patni-644857185" target="_blank"
+                            rel="noopener noreferrer" class="social-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor"
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/Siddharthpatni" target="_blank" rel="noopener noreferrer"
+                            class="social-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor"
+                                    d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                            </svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Siddharth Patni. Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="language-switcher.js"></script>
+    <script src="script-enhancements.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+/* ==========================================
+   LANGUAGE TOGGLE STYLES
+   ========================================== */
+.language-toggle {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+    background: rgba(13, 17, 45, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: var(--radius-full);
+    padding: 4px;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(0, 242, 254, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--radius-full);
+}
+
+.lang-btn:hover {
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+}
+
+.lang-btn:hover::before {
+    opacity: 1;
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(0, 242, 254, 0.3));
+    color: var(--color-text-primary);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+}
+
+.lang-btn .flag {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.lang-btn .lang-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   PROFILE PHOTO STYLES - GITHUB STYLE
+   ========================================== */
+.about-photo {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.photo-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(102, 126, 234, 0.3);
+    box-shadow:
+        0 0 0 4px rgba(13, 17, 45, 0.5),
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(102, 126, 234, 0.2);
+    transition: all 0.4s ease;
+}
+
+.photo-container:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 242, 254, 0.5);
+    box-shadow:
+        0 0 0 4px rgba(13, 17, 45, 0.6),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(0, 242, 254, 0.4);
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.photo-container:hover img {
+    transform: scale(1.1);
+}
+
+.photo-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 242, 254, 0.1));
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.photo-container:hover .photo-decoration {
+    opacity: 1;
+}
+
+/* GitHub-style About Layout */
+.about-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+}
+
+.about-photo {
+    position: sticky;
+    top: 120px;
+}
+
+.about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.about-text {
+    padding: var(--spacing-2xl);
+}
+
+.about-text p {
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.7;
+}
+
+.about-text p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Stats Grid - GitHub style */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.stat-number {
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Location Card - Compact */
+.about-location {
+    padding: var(--spacing-xl);
+}
+
+.about-location h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-primary);
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.location-icon {
+    color: #667eea;
+    flex-shrink: 0;
+}
+
+.location-city {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.location-region {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.language-skills {
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.language-skills h4 {
+    font-size: var(--text-md);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+}
+
+.language-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    font-size: var(--text-sm);
+}
+
+.language-level {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .about-content {
+        grid-template-columns: 250px 1fr;
+        gap: var(--spacing-2xl);
+    }
+
+    .photo-container {
+        width: 230px;
+        height: 230px;
+    }
+}
+
+@media (max-width: 968px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .about-photo {
+        position: relative;
+        top: 0;
+        margin: 0 auto var(--spacing-xl);
+    }
+
+    .photo-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .photo-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .language-toggle {
+        margin-left: 0;
+        margin-top: var(--spacing-md);
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: var(--text-xs);
+    }
+
+    .lang-btn .flag {
+        font-size: 16px;
+    }
+}
