@@ -187,6 +187,8 @@ class SmoothScroll {
         this.navbar = document.getElementById('navbar');
         this.navLinks = document.querySelectorAll('.nav-link');
         this.sections = document.querySelectorAll('.section');
+        this.mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        this.navMenu = document.getElementById('nav-menu');
 
         this.init();
     }
@@ -195,6 +197,7 @@ class SmoothScroll {
         this.setupScrollSpy();
         this.setupNavbarScroll();
         this.setupSmoothLinks();
+        this.setupMobileMenu();
     }
 
     setupScrollSpy() {
@@ -235,6 +238,9 @@ class SmoothScroll {
                 e.preventDefault();
                 const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
+                    // Close mobile menu if open
+                    this.closeMobileMenu();
+
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -242,6 +248,66 @@ class SmoothScroll {
                 }
             });
         });
+    }
+
+    setupMobileMenu() {
+        if (!this.mobileMenuToggle || !this.navMenu) return;
+
+        // Toggle menu on hamburger click
+        this.mobileMenuToggle.addEventListener('click', () => {
+            this.toggleMobileMenu();
+        });
+
+        // Close menu on link click
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                this.closeMobileMenu();
+            });
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (this.navMenu.classList.contains('active') &&
+                !this.navMenu.contains(e.target) &&
+                !this.mobileMenuToggle.contains(e.target)) {
+                this.closeMobileMenu();
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.navMenu.classList.contains('active')) {
+                this.closeMobileMenu();
+            }
+        });
+    }
+
+    toggleMobileMenu() {
+        const isActive = this.navMenu.classList.contains('active');
+
+        if (isActive) {
+            this.closeMobileMenu();
+        } else {
+            this.openMobileMenu();
+        }
+    }
+
+    openMobileMenu() {
+        this.navMenu.classList.add('active');
+        this.mobileMenuToggle.classList.add('active');
+        document.body.classList.add('menu-open');
+
+        // Set ARIA attributes for accessibility
+        this.mobileMenuToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    closeMobileMenu() {
+        this.navMenu.classList.remove('active');
+        this.mobileMenuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+
+        // Set ARIA attributes for accessibility
+        this.mobileMenuToggle.setAttribute('aria-expanded', 'false');
     }
 }
 

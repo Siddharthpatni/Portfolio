@@ -307,13 +307,14 @@
 
 
 @media (max-width: 768px) {
+
+    /* Hide language toggle on mobile - it floats over content unprofessionally */
     .language-toggle {
-        margin-left: 0;
-        margin-top: var(--spacing-md);
+        display: none !important;
     }
 
     .nav-container {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
     }
 
