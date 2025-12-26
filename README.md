@@ -1,37 +1,54 @@
-# Siddharth Patni - Portfolio Website
+# Siddharth Patni - Portfolio
 
-Modern, responsive portfolio website showcasing AI/DevOps engineering expertise.
+A modern, responsive portfolio website showcasing my skills in AI/ML, Full-Stack Development, and DevOps.
 
-## 🚀 Features
+🌐 **Live Demo:** [siddharth-patni.vercel.app](https://siddharth-patni.vercel.app)
 
-- Responsive design that works on all devices
-- Modern glassmorphism UI
-- Animated components
-- SEO optimized
-- Fast loading performance
+## ✨ Features
 
-## 🛠️ Technologies
+- **Dark/Light Mode** - Toggle between themes with localStorage persistence
+- **3D Flip Card** - Interactive hero section with Python logo and profile photo
+- **Responsive Design** - Optimized for desktop, tablet, and mobile
+- **Real GitHub Projects** - Showcasing actual work from my repositories
+- **Smooth Animations** - CSS animations and transitions throughout
 
-- HTML5
-- CSS3 (Custom Properties, Grid, Flexbox)
-- Vanilla JavaScript
-- Google Fonts
+## 🛠️ Tech Stack
 
-## 📦 Deployment
+- HTML5, CSS3, JavaScript
+- Vercel (Deployment)
+- Custom CSS Design System (Apple-inspired aesthetics)
 
-This site is optimized for deployment on:
-- **Vercel** (Recommended - Zero config needed)
-- **Netlify**
-- **GitHub Pages**
-- Any static hosting service
+## 📁 Project Structure
 
-## 👤 Author
+```
+├── index.html          # Main HTML file
+├── styles.css          # Core styles and dark mode
+├── expertise.css       # Expertise section styles
+├── script.js           # JavaScript functionality
+├── profile-photo.jpg   # Profile image
+└── README.md           # This file
+```
 
-**Siddharth Patni**
-- GitHub: [@Siddharthpatni](https://github.com/Siddharthpatni)
-- LinkedIn: [siddharth-patni-644857185](https://linkedin.com/in/siddharth-patni-644857185)
-- Email: patnisiddharth1311@gmail.com
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Siddharthpatni/Portfolio.git
+   ```
+
+2. Open `index.html` in your browser or use a local server
+
+3. For development, use VS Code Live Server or:
+   ```bash
+   python -m http.server 8000
+   ```
+
+## 📫 Contact
+
+- **Email:** patnisiddharth1311@gmail.com
+- **LinkedIn:** [siddharth-divyang-patni](https://www.linkedin.com/in/siddharth-divyang-patni-644857185/)
+- **GitHub:** [Siddharthpatni](https://github.com/Siddharthpatni)
 
 ## 📄 License
 
-© 2024 Siddharth Patni. All rights reserved.
+MIT License - Feel free to use this as a template for your own portfolio!
