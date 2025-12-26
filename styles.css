@@ -283,6 +283,17 @@
     color: #818CF8;
 }
 
+/* Dark mode - Project cards */
+[data-theme="dark"] .project-card {
+    background: rgba(22, 27, 34, 0.9);
+    border-color: rgba(240, 246, 252, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .project-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     display: flex;
@@ -1825,8 +1836,20 @@ ul {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-card {
@@ -1834,6 +1857,9 @@ ul {
     transition: all var(--transition-base);
     cursor: pointer;
     animation: fadeInUp 0.8s ease-out;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .project-card.secondary {
