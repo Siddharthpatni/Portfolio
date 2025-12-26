@@ -393,7 +393,7 @@
 .profile-photo {
     width: 240px;
     height: 240px;
-    border-radius: 50%;
+    border-radius: var(--radius-2xl);
     object-fit: cover;
     border: 5px solid white;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
