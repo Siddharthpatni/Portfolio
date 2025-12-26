@@ -111,63 +111,65 @@
                 </div>
             </div>
             <div class="hero-image-wrapper">
-                <div class="hero-symbol-container">
-                    <svg class="hero-symbol" viewBox="0 0 200 200" width="300" height="300">
-                        <!-- Circuit/Maze Background -->
-                        <defs>
-                            <linearGradient id="mazeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:var(--color-primary);stop-opacity:0.1" />
-                                <stop offset="100%" style="stop-color:var(--color-secondary);stop-opacity:0.2" />
-                            </linearGradient>
-                            <linearGradient id="pythonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#3776AB" />
-                                <stop offset="100%" style="stop-color:#FFD43B" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Maze/Circuit Pattern -->
-                        <rect x="10" y="10" width="180" height="180" rx="20" fill="url(#mazeGrad)"
-                            stroke="var(--color-primary)" stroke-width="1" opacity="0.5" />
-                        <!-- Circuit Lines -->
-                        <path d="M30 50 H80 V80 H50 V110 H80" stroke="var(--color-primary)" stroke-width="2" fill="none"
-                            opacity="0.3" />
-                        <path d="M170 50 H120 V80 H150 V110 H120" stroke="var(--color-primary)" stroke-width="2"
-                            fill="none" opacity="0.3" />
-                        <path d="M30 150 H80 V120" stroke="var(--color-primary)" stroke-width="2" fill="none"
-                            opacity="0.3" />
-                        <path d="M170 150 H120 V120" stroke="var(--color-primary)" stroke-width="2" fill="none"
-                            opacity="0.3" />
-                        <!-- Connection Nodes -->
-                        <circle cx="30" cy="50" r="4" fill="var(--color-primary)" opacity="0.5" />
-                        <circle cx="170" cy="50" r="4" fill="var(--color-primary)" opacity="0.5" />
-                        <circle cx="30" cy="150" r="4" fill="var(--color-primary)" opacity="0.5" />
-                        <circle cx="170" cy="150" r="4" fill="var(--color-primary)" opacity="0.5" />
-                        <!-- Python Logo (Stylized) -->
-                        <g transform="translate(60, 55)">
-                            <!-- Python Blue Part -->
-                            <path
-                                d="M40 0C25 0 25 10 25 20V35H45V40H15C5 40 0 50 0 65C0 80 5 90 15 90H25V75C25 65 30 55 45 55H65C75 55 80 50 80 40V20C80 10 75 0 60 0H40Z"
-                                fill="#3776AB" />
-                            <circle cx="35" cy="15" r="5" fill="white" />
-                            <!-- Python Yellow Part -->
-                            <path
-                                d="M40 90C55 90 55 80 55 70V55H35V50H65C75 50 80 40 80 25C80 10 75 0 65 0H55V15C55 25 50 35 35 35H15C5 35 0 40 0 50V70C0 80 5 90 20 90H40Z"
-                                fill="#FFD43B" transform="rotate(180 40 45)" />
-                            <circle cx="45" cy="75" r="5" fill="white" />
-                        </g>
-                        <!-- AI/Neural Network Dots -->
-                        <circle cx="25" cy="100" r="3" fill="var(--color-secondary)" opacity="0.6">
-                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
-                        </circle>
-                        <circle cx="175" cy="100" r="3" fill="var(--color-secondary)" opacity="0.6">
-                            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite" />
-                        </circle>
-                        <circle cx="100" cy="25" r="3" fill="var(--color-secondary)" opacity="0.6">
-                            <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.5s" repeatCount="indefinite" />
-                        </circle>
-                        <circle cx="100" cy="175" r="3" fill="var(--color-secondary)" opacity="0.6">
-                            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="1.5s" repeatCount="indefinite" />
-                        </circle>
-                    </svg>
+                <div class="flip-card" id="hero-flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- Front: Python/Circuit Logo -->
+                        <div class="flip-card-front">
+                            <svg class="hero-symbol" viewBox="0 0 200 200" width="300" height="300">
+                                <!-- Circuit/Maze Background -->
+                                <defs>
+                                    <linearGradient id="mazeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--color-primary);stop-opacity:0.1" />
+                                        <stop offset="100%"
+                                            style="stop-color:var(--color-secondary);stop-opacity:0.2" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Maze/Circuit Pattern -->
+                                <rect x="10" y="10" width="180" height="180" rx="20" fill="url(#mazeGrad)"
+                                    stroke="var(--color-primary)" stroke-width="1" opacity="0.5" />
+                                <!-- Circuit Lines -->
+                                <path d="M30 50 H80 V80 H50 V110 H80" stroke="var(--color-primary)" stroke-width="2"
+                                    fill="none" opacity="0.3" />
+                                <path d="M170 50 H120 V80 H150 V110 H120" stroke="var(--color-primary)" stroke-width="2"
+                                    fill="none" opacity="0.3" />
+                                <path d="M30 150 H80 V120" stroke="var(--color-primary)" stroke-width="2" fill="none"
+                                    opacity="0.3" />
+                                <path d="M170 150 H120 V120" stroke="var(--color-primary)" stroke-width="2" fill="none"
+                                    opacity="0.3" />
+                                <!-- Connection Nodes -->
+                                <circle cx="30" cy="50" r="4" fill="var(--color-primary)" opacity="0.5" />
+                                <circle cx="170" cy="50" r="4" fill="var(--color-primary)" opacity="0.5" />
+                                <circle cx="30" cy="150" r="4" fill="var(--color-primary)" opacity="0.5" />
+                                <circle cx="170" cy="150" r="4" fill="var(--color-primary)" opacity="0.5" />
+                                <!-- Python Logo (Stylized) -->
+                                <g transform="translate(60, 55)">
+                                    <path
+                                        d="M40 0C25 0 25 10 25 20V35H45V40H15C5 40 0 50 0 65C0 80 5 90 15 90H25V75C25 65 30 55 45 55H65C75 55 80 50 80 40V20C80 10 75 0 60 0H40Z"
+                                        fill="#3776AB" />
+                                    <circle cx="35" cy="15" r="5" fill="white" />
+                                    <path
+                                        d="M40 90C55 90 55 80 55 70V55H35V50H65C75 50 80 40 80 25C80 10 75 0 65 0H55V15C55 25 50 35 35 35H15C5 35 0 40 0 50V70C0 80 5 90 20 90H40Z"
+                                        fill="#FFD43B" transform="rotate(180 40 45)" />
+                                    <circle cx="45" cy="75" r="5" fill="white" />
+                                </g>
+                                <!-- Animated Dots -->
+                                <circle cx="25" cy="100" r="3" fill="var(--color-secondary)" opacity="0.6">
+                                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="175" cy="100" r="3" fill="var(--color-secondary)" opacity="0.6">
+                                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                            <p class="flip-hint">Click to see me</p>
+                        </div>
+                        <!-- Back: Profile Photo -->
+                        <div class="flip-card-back">
+                            <img src="profile-photo.jpg" alt="Siddharth Patni" class="profile-photo">
+                            <p class="flip-hint">Click to flip back</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
