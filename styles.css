@@ -130,6 +130,95 @@
 }
 
 /* ==========================================
+   DARK MODE VARIABLES
+   ========================================== */
+[data-theme="dark"] {
+    --color-bg-primary: #0D1117;
+    --color-bg-secondary: #161B22;
+    --color-bg-tertiary: #21262D;
+    --color-bg-elevated: #1C2128;
+
+    --gradient-hero: linear-gradient(180deg, #161B22 0%, #0D1117 100%);
+
+    --color-text-primary: #F0F6FC;
+    --color-text-secondary: #8B949E;
+    --color-text-tertiary: #6E7681;
+    --color-text-muted: #484F58;
+
+    --glass-bg: rgba(22, 27, 34, 0.8);
+    --glass-border: rgba(240, 246, 252, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.5);
+    --shadow-card-hover: 0 12px 40px rgba(0, 113, 227, 0.2);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    color: var(--color-text-primary);
+    border: 1px solid var(--glass-border);
+}
+
+.theme-toggle:hover {
+    background: var(--color-bg-tertiary);
+    transform: scale(1.05);
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: block;
+}
+
+/* Hero Symbol Container */
+.hero-symbol-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInRight 0.8s ease-out 0.4s backwards;
+}
+
+.hero-symbol {
+    filter: drop-shadow(0 4px 20px rgba(0, 113, 227, 0.15));
+    transition: all var(--transition-smooth);
+}
+
+.hero-symbol:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 8px 30px rgba(0, 113, 227, 0.25));
+}
+
+@media (max-width: 768px) {
+    .hero-symbol {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* ==========================================
    RESET & BASE STYLES
    ========================================== */
 * {

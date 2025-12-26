@@ -566,7 +566,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize performance optimizations
     new PerformanceOptimizer();
+
+    // Initialize theme toggle
+    new ThemeToggle();
 });
+
+// ==========================================
+// THEME TOGGLE
+// ==========================================
+class ThemeToggle {
+    constructor() {
+        this.toggleButton = document.getElementById('theme-toggle');
+        this.init();
+    }
+
+    init() {
+        if (!this.toggleButton) return;
+
+        // Check for saved theme preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // Toggle theme on button click
+        this.toggleButton.addEventListener('click', () => this.toggleTheme());
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+
+    toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Remove theme from localStorage if it matches system preference
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if ((newTheme === 'dark' && systemPrefersDark) || (newTheme === 'light' && !systemPrefersDark)) {
+            // Keep explicit preference
+        }
+    }
+}
 
 // ==========================================
 // STATS COUNTER ANIMATION
