@@ -1,57 +1,37 @@
 /* ==========================================
-   EXPERTISE PILLARS SECTION
+   EXPERTISE PILLARS SECTION - IMPROVED
    ========================================== */
 .expertise-pillars-section {
-    padding: var(--spacing-3xl) 0;
-    background: var(--color-bg-primary);
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--color-bg-secondary);
     position: relative;
-    overflow: hidden;
 }
 
 .expertise-pillars-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(102, 126, 234, 0.5) 50%,
-            transparent 100%);
+    display: none;
+    /* Remove the gradient line */
 }
 
 .expertise-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, 32px);
     margin-top: var(--spacing-2xl);
 }
 
 .expertise-pillar {
-    padding: var(--spacing-xl);
+    padding: clamp(24px, 4vw, 32px);
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
 }
 
 .expertise-pillar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(102, 126, 234, 0.1) 50%,
-            transparent 100%);
-    transition: left 0.6s ease;
-}
-
-.expertise-pillar:hover::before {
-    left: 100%;
+    display: none;
+    /* Remove swipe effect */
 }
 
 .expertise-pillar:hover {
@@ -60,42 +40,35 @@
 }
 
 .pillar-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto var(--spacing-lg);
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--spacing-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-xl);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--glass-border);
     transition: all 0.3s ease;
-    position: relative;
 }
 
 .pillar-icon::after {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #667eea, #00f2fe);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-    filter: blur(10px);
+    display: none;
+    /* Remove glow effect */
 }
 
 .expertise-pillar:hover .pillar-icon {
-    transform: scale(1.1) rotate(5deg);
-    border-color: rgba(0, 242, 254, 0.6);
+    transform: scale(1.05);
+    background: var(--color-primary);
 }
 
-.expertise-pillar:hover .pillar-icon::after {
-    opacity: 0.5;
+.expertise-pillar:hover .pillar-icon svg {
+    color: white;
 }
 
 .pillar-icon svg {
     color: var(--color-primary);
+    transition: color 0.3s ease;
 }
 
 .expertise-pillar h3 {
@@ -109,44 +82,42 @@
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .pillar-badge {
     display: inline-block;
-    padding: 6px 16px;
-    background: rgba(102, 126, 234, 0.15);
-    border: 1px solid rgba(102, 126, 234, 0.3);
+    padding: 6px 14px;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
-    font-weight: 600;
-    color: #667eea;
+    font-weight: 500;
+    color: var(--color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
 }
 
 .expertise-pillar:hover .pillar-badge {
-    background: rgba(0, 242, 254, 0.15);
-    border-color: rgba(0, 242, 254, 0.5);
-    color: #00f2fe;
-    transform: scale(1.05);
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 767px) {
     .expertise-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        gap: 16px;
+    }
+
+    .expertise-pillar {
+        padding: 24px;
     }
 
     .pillar-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .pillar-icon svg {
-        width: 30px;
-        height: 30px;
+        width: 48px;
+        height: 48px;
     }
 }
