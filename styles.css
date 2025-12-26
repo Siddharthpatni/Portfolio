@@ -1,4 +1,12 @@
 /* ==========================================
+   HIDE FLOATING PARTICLES
+   ========================================== */
+#particles-canvas {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ==========================================
    CSS CUSTOM PROPERTIES - DESIGN SYSTEM
    ========================================== */
 :root {
@@ -1392,6 +1400,24 @@ ul {
 .project-header h3 {
     flex: 1;
     margin-bottom: 0;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
 }
 
 .project-type-badge {
