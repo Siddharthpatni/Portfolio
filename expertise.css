@@ -55,23 +55,21 @@
 }
 
 .expertise-pillar:hover {
-    transform: translateY(-8px);
-    box-shadow:
-        0 12px 40px rgba(102, 126, 234, 0.3),
-        0 0 0 1px rgba(102, 126, 234, 0.5);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
 .pillar-icon {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     margin: 0 auto var(--spacing-lg);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(0, 242, 254, 0.2));
-    border-radius: 50%;
-    border: 2px solid rgba(102, 126, 234, 0.3);
-    transition: all 0.4s ease;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
     position: relative;
 }
 
@@ -97,19 +95,14 @@
 }
 
 .pillar-icon svg {
-    color: #00f2fe;
-    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5));
+    color: var(--color-primary);
 }
 
 .expertise-pillar h3 {
-    font-size: var(--text-xl);
-    font-weight: 700;
+    font-size: var(--text-lg);
+    font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-md);
-    background: linear-gradient(135deg, #667eea, #00f2fe);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: var(--spacing-sm);
 }
 
 .expertise-pillar p {
