@@ -436,6 +436,9 @@ body::after {
     /* optical adjustment: italic letters lean right, nudge left to compensate */
     transform: translateX(-0.04em);
     transition: transform 0.6s var(--ease, ease);
+    /* prevent clipping of slanted italic "P" */
+    padding-right: 0.15em !important;
+    margin-right: -0.11em !important;
 }
 .hero-logo-wrapper:hover .sdp-mark { transform: translateX(-0.04em) scale(1.03); }
 
@@ -994,6 +997,18 @@ body::after {
 .projects-section .project-highlights {
     flex-grow: 0 !important;
     margin-bottom: 24px !important;
+}
+/* Resolve double bullet marker overlap issue on project card highlights */
+.projects-section .project-highlights li::before {
+    content: "→" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0.18em !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    color: var(--accent, #4F46E5) !important;
+    font-weight: 600 !important;
 }
 .projects-section .tech-tags {
     margin-top: 0 !important;
