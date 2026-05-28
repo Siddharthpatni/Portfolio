@@ -1162,13 +1162,33 @@ body::after {
     margin-left: 0 !important;
     margin-right: auto !important;
 }
+/* Ensure the italic serif words do not overlap previous words and align on the baseline */
 .section-title em,
 .section-header h2 em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-variation-settings: "SOFT" 80, "opsz" 144;
-    color: var(--accent, #4F46E5);
+    font-family: var(--font-serif) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-variation-settings: "SOFT" 80, "opsz" 144 !important;
+    color: var(--accent, #4F46E5) !important;
+    display: inline-block !important;
+    vertical-align: baseline !important;
+    margin-left: 0.22em !important;
+}
+
+/* Left-align project filter chips and give vertical breathing room to prevent subtitle overlaps */
+.projects-section .project-filters {
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 2.5rem !important;
+    width: fit-content !important;
+}
+
+/* Hide redundant skill icons to resolve grid mismatch squishing the skill-tags */
+.skills-section .skill-icon {
+    display: none !important;
 }
 
 /* Section kicker — sharper */
