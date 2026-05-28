@@ -982,13 +982,21 @@ body::after {
     display: flex;
     flex-direction: column;
 }
-/* Prevent the project description from stretching and creating massive gaps in tall cards like Sentinel */
+/* Prevent the project description and highlights from stretching and creating massive gaps in Sentinel */
+.projects-section .project-content {
+    justify-content: flex-start !important;
+    height: 100% !important;
+}
 .projects-section .project-description {
     flex-grow: 0 !important;
+    margin-bottom: 16px !important;
 }
-/* Lock highlights to the top, pushing the flex-grow empty space to sit cleanly below the highlights and above the tags */
 .projects-section .project-highlights {
-    margin-bottom: auto !important;
+    flex-grow: 0 !important;
+    margin-bottom: 24px !important;
+}
+.projects-section .tech-tags {
+    margin-top: 0 !important;
 }
 .projects-section .project-card:first-child {
     grid-column: span 4;
@@ -1235,7 +1243,7 @@ body::after {
     background: var(--surface, #FFFFFF) !important;
     border: 1px solid var(--line, rgba(15,15,20,0.10)) !important;
     border-radius: 16px !important;
-    padding: 1.75rem !important;
+    padding: 0 !important;
     position: relative;
     overflow: hidden;
 }
