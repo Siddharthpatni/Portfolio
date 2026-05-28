@@ -982,6 +982,10 @@ body::after {
     display: flex;
     flex-direction: column;
 }
+/* Prevent the project description from stretching and creating massive gaps in tall cards like Sentinel */
+.projects-section .project-description {
+    flex-grow: 0 !important;
+}
 .projects-section .project-card:first-child {
     grid-column: span 4;
     grid-row: span 2;
@@ -1277,6 +1281,9 @@ body::after {
     font-weight: 500 !important;
     font-size: 1.4rem !important;
     letter-spacing: -0.02em !important;
+    display: inline-block !important;
+    padding-right: 0.15em !important;
+    overflow: visible !important;
 }
 
 /* --------------------------------------------------------------------------
