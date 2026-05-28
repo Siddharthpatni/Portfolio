@@ -682,6 +682,412 @@ body::after {
     }
 }
 
+/* ==========================================================================
+   SECTION-SPECIFIC LAYOUTS — each section reads differently
+   ========================================================================== */
+
+/* ---------- ABOUT — editorial split, no glass card ---------- */
+.about-section .glass-card,
+.about-section .about-text {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+}
+.about-section .about-content-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+}
+.about-section .about-intro {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 2.2vw, 2rem) !important;
+    line-height: 1.4 !important;
+    color: var(--ink, #0A0A0F) !important;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem !important;
+    border-left: 2px solid var(--sec-about, #B45309);
+    padding-left: 1.2rem;
+}
+.about-section .about-intro strong { font-weight: 500; color: var(--sec-about, #B45309); }
+.about-section .about-text p {
+    font-size: 1.02rem !important;
+    line-height: 1.75 !important;
+    color: var(--muted, #5F6168) !important;
+    margin-bottom: 1.15rem !important;
+}
+.about-section .about-text strong { color: var(--ink) !important; font-weight: 600; }
+
+/* Stats: horizontal strip with hairline rules between */
+.about-section .about-stats {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 !important;
+    margin-top: 2.5rem !important;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 0 !important;
+}
+.about-section .stat-item {
+    text-align: left;
+    padding: 0 1rem;
+    border-right: 1px solid var(--line);
+    background: transparent !important;
+}
+.about-section .stat-item:last-child { border-right: none; }
+.about-section .stat-number {
+    font-family: var(--font-serif) !important;
+    font-style: italic;
+    font-weight: 400 !important;
+    font-size: clamp(2.2rem, 3.5vw, 3rem) !important;
+    line-height: 1 !important;
+    color: var(--ink) !important;
+    margin-bottom: 0.4rem !important;
+}
+.about-section .stat-label {
+    font-family: var(--font-mono) !important;
+    font-size: 0.68rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted) !important;
+}
+
+/* Location panel: simple, no card */
+.about-section .about-location {
+    background: transparent !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 14px !important;
+    padding: 1.5rem !important;
+    box-shadow: none !important;
+}
+.about-section .about-location h3 {
+    font-family: var(--font-mono) !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted) !important;
+    margin-bottom: 1rem !important;
+    font-weight: 500 !important;
+}
+
+@media (max-width: 880px) {
+    .about-section .about-content-wrapper { grid-template-columns: 1fr; }
+    .about-section .about-stats { grid-template-columns: repeat(2, 1fr); }
+    .about-section .stat-item:nth-child(2) { border-right: none; }
+}
+
+/* ---------- EXPERIENCE / EDUCATION TIMELINE — left rail year ---------- */
+.work-experience-section .timeline,
+.education-section .timeline {
+    position: relative;
+    margin-top: 2rem;
+}
+.work-experience-section .timeline-item,
+.education-section .timeline-item {
+    display: grid !important;
+    grid-template-columns: 180px 1fr !important;
+    gap: clamp(24px, 4vw, 64px);
+    padding: 2rem 0 !important;
+    border-top: 1px solid var(--line);
+    position: relative;
+}
+.work-experience-section .timeline-item:last-child,
+.education-section .timeline-item:last-child {
+    border-bottom: 1px solid var(--line);
+}
+.work-experience-section .timeline-item::before,
+.education-section .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 2.4rem;
+    width: 0; height: 0;
+    border: none;
+}
+.work-experience-section .timeline-marker,
+.education-section .timeline-marker { display: none !important; }
+
+/* Year/date on the left as big mono label */
+.work-experience-section .timeline-date,
+.education-section .timeline-date {
+    grid-column: 1;
+    font-family: var(--font-mono) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    align-self: start;
+    position: sticky;
+    top: 100px;
+}
+
+/* Content right side: strip card chrome */
+.work-experience-section .timeline-content,
+.education-section .timeline-content {
+    grid-column: 2;
+    grid-row: 1 / span 99;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+.work-experience-section .timeline-content h3,
+.education-section .timeline-content h3 {
+    font-family: var(--font-sans) !important;
+    font-size: clamp(1.25rem, 2vw, 1.6rem) !important;
+    font-weight: 600 !important;
+    color: var(--ink) !important;
+    margin: 0 0 0.4rem !important;
+    letter-spacing: -0.02em;
+}
+.work-experience-section .timeline-content h4,
+.education-section .timeline-content h4 {
+    font-family: var(--font-mono) !important;
+    font-size: 0.85rem !important;
+    color: var(--sec-exp, #1D4ED8) !important;
+    font-weight: 500 !important;
+    margin: 0 0 0.8rem !important;
+    letter-spacing: 0;
+}
+.education-section .timeline-content h4 { color: var(--sec-edu, #0F766E) !important; }
+.work-experience-section .timeline-location,
+.education-section .timeline-location {
+    font-size: 0.85rem !important;
+    color: var(--muted) !important;
+    margin-bottom: 1rem !important;
+}
+.work-experience-section .timeline-pill,
+.education-section .timeline-pill {
+    display: inline-block;
+    font-family: var(--font-mono) !important;
+    font-size: 0.65rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.7rem !important;
+    background: rgba(15,15,20,0.04) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 999px !important;
+    color: var(--muted) !important;
+    margin-bottom: 0.8rem !important;
+}
+.work-experience-section .timeline-highlights,
+.education-section .timeline-highlights {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 1rem 0 0 !important;
+}
+.work-experience-section .timeline-highlights li,
+.education-section .timeline-highlights li {
+    position: relative;
+    padding-left: 1.3rem !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: var(--muted) !important;
+}
+.work-experience-section .timeline-highlights li::before,
+.education-section .timeline-highlights li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--sec-exp, #1D4ED8);
+    font-weight: 500;
+}
+.education-section .timeline-highlights li::before { color: var(--sec-edu, #0F766E); }
+
+@media (max-width: 880px) {
+    .work-experience-section .timeline-item,
+    .education-section .timeline-item {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem;
+    }
+    .work-experience-section .timeline-date,
+    .education-section .timeline-date {
+        position: static !important;
+        margin-bottom: 0.8rem;
+    }
+    .work-experience-section .timeline-content,
+    .education-section .timeline-content {
+        grid-row: auto;
+        grid-column: 1;
+    }
+}
+
+/* ---------- PROJECTS — bento grid (featured spans 2) ---------- */
+.projects-section .projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: clamp(14px, 1.6vw, 22px) !important;
+}
+.projects-section .project-card {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+}
+.projects-section .project-card:first-child {
+    grid-column: span 4;
+    grid-row: span 2;
+}
+.projects-section .project-card:nth-child(4) {
+    grid-column: span 3;
+}
+.projects-section .project-card:nth-child(5) {
+    grid-column: span 3;
+}
+.projects-section .project-card:first-child .project-title,
+.projects-section .project-card:first-child h3 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem) !important;
+    letter-spacing: -0.02em;
+}
+.projects-section .project-card:first-child .project-description,
+.projects-section .project-card:first-child p {
+    font-size: 1rem !important;
+}
+.projects-section .project-card:first-child::after {
+    width: 40px; height: 40px;
+    background: var(--ink, #0A0A0F) !important;
+    color: #FFFFFF !important;
+    opacity: 1;
+    transform: none;
+}
+
+@media (max-width: 1100px) {
+    .projects-section .projects-grid { grid-template-columns: repeat(4, 1fr) !important; }
+    .projects-section .project-card { grid-column: span 2; }
+    .projects-section .project-card:first-child { grid-column: span 4; grid-row: auto; }
+    .projects-section .project-card:nth-child(4),
+    .projects-section .project-card:nth-child(5) { grid-column: span 2; }
+}
+@media (max-width: 700px) {
+    .projects-section .projects-grid { grid-template-columns: 1fr !important; }
+    .projects-section .project-card,
+    .projects-section .project-card:first-child,
+    .projects-section .project-card:nth-child(4),
+    .projects-section .project-card:nth-child(5) { grid-column: 1 / -1; grid-row: auto; }
+}
+
+/* ---------- SKILLS — categorized inline list, no cards ---------- */
+.skills-section .skills-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0 !important;
+    border-top: 1px solid var(--line);
+}
+.skills-section .skill-category {
+    display: grid !important;
+    grid-template-columns: minmax(180px, 0.4fr) 1fr;
+    gap: clamp(20px, 3vw, 48px);
+    padding: 1.75rem 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--line) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    align-items: start;
+}
+.skills-section .skill-category h3 {
+    font-family: var(--font-mono) !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted) !important;
+    font-weight: 500 !important;
+    margin: 0.3rem 0 0 !important;
+    padding: 0 !important;
+}
+.skills-section .skill-category h3::before {
+    content: "—";
+    margin-right: 0.5rem;
+    color: var(--sec-skill, #6D28D9);
+}
+.skills-section .skills-list,
+.skills-section .skill-tags {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+}
+.skills-section .skill-tag,
+.skills-section .skill-item,
+.skills-section .skills-list li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem !important;
+    background: var(--surface, #FFFFFF) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 999px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.78rem !important;
+    color: var(--ink) !important;
+    transition: all 0.25s var(--ease, ease) !important;
+}
+.skills-section .skill-tag:hover,
+.skills-section .skill-item:hover,
+.skills-section .skills-list li:hover {
+    border-color: var(--sec-skill, #6D28D9) !important;
+    color: var(--sec-skill, #6D28D9) !important;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+    .skills-section .skill-category {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+}
+
+/* ---------- EXPERTISE PILLARS — strip cards, inline grid ---------- */
+.expertise-pillars-section .expertise-grid {
+    gap: clamp(16px, 2vw, 28px) !important;
+}
+.expertise-pillars-section .expertise-pillar,
+.expertise-pillars-section .glass-card {
+    background: var(--surface, #FFFFFF) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s var(--ease, ease) !important;
+}
+.expertise-pillars-section .expertise-pillar:hover {
+    border-color: var(--line-2) !important;
+    box-shadow: var(--sh-2) !important;
+}
+.expertise-pillars-section .pillar-icon {
+    color: var(--accent, #4F46E5) !important;
+    margin-bottom: 1rem !important;
+}
+.expertise-pillars-section h3 {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin: 0 0 0.5rem !important;
+    letter-spacing: -0.01em;
+}
+.expertise-pillars-section .pillar-badge {
+    font-family: var(--font-mono) !important;
+    font-size: 0.65rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted) !important;
+    background: transparent !important;
+    border-top: 1px solid var(--line) !important;
+    padding: 0.8rem 0 0 !important;
+    margin-top: 1rem !important;
+    border-radius: 0 !important;
+}
+
 /* --------------------------------------------------------------------------
    7. SECTION HEADERS — serif accent on titles
    -------------------------------------------------------------------------- */
