@@ -1147,6 +1147,21 @@ body::after {
     font-family: var(--font-sans) !important;
     font-weight: 600 !important;
     letter-spacing: -0.035em !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    padding-bottom: 0 !important;
+}
+/* Hide the conflicting centered bottom rule */
+.section-title::after,
+.section-header h2::after {
+    display: none !important;
+}
+/* Left-align subtitles */
+.section-subtitle {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 .section-title em,
 .section-header h2 em {
