@@ -15,13 +15,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="expertise.css">
     <link rel="stylesheet" href="language-styles.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="refined-styles.css">
+    <link rel="stylesheet" href="polish.css">
 
     <!-- Vercel Web Analytics -->
     <script>
@@ -82,14 +83,19 @@
     <section id="home" class="hero">
         <div class="hero-background">
             <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-aurora hero-aurora--a" aria-hidden="true"></div>
+            <div class="hero-aurora hero-aurora--b" aria-hidden="true"></div>
+            <div class="hero-aurora hero-aurora--c" aria-hidden="true"></div>
             <div class="hero-glow hero-glow--a" aria-hidden="true"></div>
             <div class="hero-glow hero-glow--b" aria-hidden="true"></div>
+            <div class="hero-noise" aria-hidden="true"></div>
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content-container">
             <div class="hero-text-content">
                 <span class="hero-status"><span class="status-dot"></span>Available for new opportunities</span>
-                <h1 class="hero-title">Siddharth Patni</h1>
+                <p class="hero-eyebrow"><em>Portfolio</em> <span>— 2026</span></p>
+                <h1 class="hero-title">Siddharth <em class="serif-em">Patni</em></h1>
                 <div class="hero-subtitle-wrapper">
                     <h2 class="hero-subtitle">
                         <span id="typed-text"></span>
@@ -1039,6 +1045,10 @@
     <script src="language-switcher.js"></script>
     <script src="script-enhancements.js"></script>
     <script src="script-cinematic.js"></script>
+    <script src="polish.js"></script>
+
+    <!-- Custom cursor blob -->
+    <div class="cursor-blob" id="cursor-blob" aria-hidden="true"></div>
 </body>
 
 </html>
