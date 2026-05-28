@@ -19,6 +19,11 @@
     const revealTargets = $$('.section .glass-card, .section .section-title, .section .section-kicker, .section .section-subtitle, .expertise-pillar, .project-card, .timeline-item, .education-card, .skill-category');
     revealTargets.forEach(el => el.classList.add('reveal'));
 
+    // FAIL-SAFE: force reveal of everything after 1.2s no matter what
+    setTimeout(() => {
+        revealTargets.forEach(el => el.classList.add('is-visible'));
+    }, 1200);
+
     // ---------- Reveal observer ----------
     if (!prefersReduced && 'IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
@@ -28,11 +33,21 @@
                     io.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
         revealTargets.forEach(el => io.observe(el));
     } else {
         revealTargets.forEach(el => el.classList.add('is-visible'));
     }
+
+    // Also reveal anything that's already on-screen on load (initial paint)
+    requestAnimationFrame(() => {
+        revealTargets.forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) {
+                el.classList.add('is-visible');
+            }
+        });
+    });
 
     // ---------- Scroll progress bar ----------
     const progress = $('#scroll-progress');

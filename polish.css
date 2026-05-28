@@ -9,6 +9,16 @@
 }
 
 /* --------------------------------------------------------------------------
+   00. SAFETY NET — content must be visible even if JS fails
+   -------------------------------------------------------------------------- */
+/* If reveal observer never flips .is-visible within 1.5s, show everything */
+@keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
+.reveal { animation: reveal-failsafe 0.01s linear 1.5s forwards; }
+.reveal.is-visible { animation: none; opacity: 1; transform: none; }
+/* Belt-and-suspenders: if JS removed entirely (noscript / blocked) */
+.no-js .reveal { opacity: 1 !important; transform: none !important; }
+
+/* --------------------------------------------------------------------------
    0. LAYOUT GUARDS — kill horizontal overflow + consistent gutters
    -------------------------------------------------------------------------- */
 html, body {
