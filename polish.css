@@ -529,6 +529,95 @@ body::after {
     letter-spacing: -0.02em !important;
 }
 
+/* --------------------------------------------------------------------------
+   9b. LANGUAGE SWITCHER + THEME TOGGLE — minimal pill chrome
+   -------------------------------------------------------------------------- */
+.language-switcher {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    border-radius: 999px !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3px !important;
+    box-shadow: none !important;
+    gap: 2px !important;
+}
+.lang-btn {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 999px !important;
+    padding: 5px 10px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.7rem !important;
+    color: rgba(255,255,255,0.65) !important;
+    box-shadow: none !important;
+    transition: all 0.25s var(--ease, ease) !important;
+}
+.lang-btn:hover {
+    background: rgba(255,255,255,0.06) !important;
+    color: #FFFFFF !important;
+}
+.lang-btn.active {
+    background: rgba(255,255,255,0.92) !important;
+    color: #0A0A0F !important;
+}
+.lang-btn .flag { font-size: 0.85rem !important; }
+.lang-btn .lang-text { font-weight: 500 !important; letter-spacing: 0.06em; }
+
+/* Navbar light state — language switcher inverts */
+.navbar.scrolled .language-switcher {
+    background: rgba(15,15,20,0.04) !important;
+    border-color: rgba(15,15,20,0.08) !important;
+}
+.navbar.scrolled .lang-btn { color: rgba(15,15,20,0.55) !important; }
+.navbar.scrolled .lang-btn:hover { background: rgba(15,15,20,0.04) !important; color: #0A0A0F !important; }
+.navbar.scrolled .lang-btn.active { background: #0A0A0F !important; color: #FFFFFF !important; }
+
+/* Theme toggle — minimal circular */
+.theme-toggle {
+    width: 34px !important; height: 34px !important;
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    border-radius: 50% !important;
+    color: rgba(255,255,255,0.75) !important;
+    box-shadow: none !important;
+    transition: all 0.25s var(--ease, ease) !important;
+    display: inline-flex !important; align-items: center; justify-content: center;
+}
+.theme-toggle:hover {
+    background: rgba(255,255,255,0.10) !important;
+    color: #FFFFFF !important;
+    transform: none !important;
+}
+.theme-toggle svg { width: 16px !important; height: 16px !important; }
+.navbar.scrolled .theme-toggle {
+    background: rgba(15,15,20,0.04) !important;
+    border-color: rgba(15,15,20,0.08) !important;
+    color: var(--ink, #0A0A0F) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9c. KILL LEGACY CLUTTER on the hero
+   -------------------------------------------------------------------------- */
+/* Hide the floating particle canvas — auroras carry the atmosphere now */
+#particles-canvas { display: none !important; }
+
+/* Hide any floating shapes / decorative diamonds from legacy script */
+.floating-shape, .floating-shapes, .shape, .geometric-shape,
+.hero-shapes, .hero-decoration, .decoration-shape,
+.hero-shape-1, .hero-shape-2, .hero-shape-3, .hero-shape-4 { display: none !important; }
+
+/* Floating "download resume" doc icon at bottom-right — kept but refined */
+.floating-doc, .floating-resume, .resume-download-float,
+.print-resume-btn, .download-resume-float {
+    background: rgba(255,255,255,0.92) !important;
+    color: #0A0A0F !important;
+    border: 1px solid var(--line, rgba(15,15,20,0.10)) !important;
+    box-shadow: var(--sh-2, 0 4px 20px rgba(0,0,0,0.10)) !important;
+    width: 44px !important; height: 44px !important;
+    border-radius: 50% !important;
+}
+
 .nav-link {
     font-family: var(--font-sans) !important;
     font-size: 0.88rem !important;

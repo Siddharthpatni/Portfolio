@@ -256,7 +256,7 @@ class LanguageSwitcher {
         // Navigation
         const navLinks = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
         navLinks.forEach(link => {
-            const element = document.querySelector(`a[href="#${link}"]`);
+            const element = document.querySelector(`.nav-link[href="#${link}"]`);
             if (element && t.nav[link]) {
                 element.textContent = t.nav[link];
             }
