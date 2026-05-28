@@ -986,6 +986,10 @@ body::after {
 .projects-section .project-description {
     flex-grow: 0 !important;
 }
+/* Lock highlights to the top, pushing the flex-grow empty space to sit cleanly below the highlights and above the tags */
+.projects-section .project-highlights {
+    margin-bottom: auto !important;
+}
 .projects-section .project-card:first-child {
     grid-column: span 4;
     grid-row: span 2;
@@ -1282,7 +1286,8 @@ body::after {
     font-size: 1.4rem !important;
     letter-spacing: -0.02em !important;
     display: inline-block !important;
-    padding-right: 0.15em !important;
+    padding-right: 8px !important;
+    margin-right: 2px !important;
     overflow: visible !important;
 }
 
