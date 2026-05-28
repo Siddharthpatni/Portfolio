@@ -283,7 +283,15 @@ class LanguageSwitcher {
 
         Object.entries(sections).forEach(([selector, text]) => {
             const element = document.querySelector(selector);
-            if (element) element.textContent = text;
+            if (element) {
+                const words = text.trim().split(/\s+/);
+                if (words.length >= 2) {
+                    const last = words.pop();
+                    element.innerHTML = `${words.join(' ')} <em>${last}</em>`;
+                } else {
+                    element.textContent = text;
+                }
+            }
         });
 
         // Expertise Pillars

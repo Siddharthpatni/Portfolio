@@ -807,13 +807,22 @@ body::after {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    /* Reset legacy padding & vertical line from styles.css / refined-styles.css */
+    padding-left: 0 !important;
 }
+/* Kill the legacy vertical line */
+.work-experience-section .timeline::before,
+.education-section .timeline::before {
+    display: none !important;
+}
+/* Grid items with left date rail */
 .work-experience-section .timeline-item,
 .education-section .timeline-item {
     display: grid !important;
     grid-template-columns: 180px 1fr !important;
-    gap: clamp(24px, 4vw, 64px);
-    padding: 2rem 0 !important;
+    gap: clamp(14px, 2vw, 32px);
+    padding: 1.1rem 0 !important;
+    margin-bottom: 0 !important; /* Reset refined-styles.css margin-bottom: 28px */
     border-top: 1px solid var(--line);
     position: relative;
 }
@@ -823,45 +832,63 @@ body::after {
 }
 .work-experience-section .timeline-item::before,
 .education-section .timeline-item::before {
-    content: "";
+    content: "" !important;
     position: absolute;
     left: 0; top: 2.4rem;
-    width: 0; height: 0;
-    border: none;
+    width: 0 !important; height: 0 !important;
+    border: none !important;
+    background: none !important;
 }
 .work-experience-section .timeline-marker,
 .education-section .timeline-marker { display: none !important; }
 
-/* Year/date on the left as big mono label */
-.work-experience-section .timeline-item,
-.education-section .timeline-item {
-    display: grid !important;
-    grid-template-columns: 180px 1fr !important;
-    gap: clamp(14px, 2vw, 32px); /* tighter gap */
-    padding: 1.1rem 0 !important; /* less vertical padding */
-    border-top: 1px solid var(--line);
-    position: relative;
-}
+/* Year/date on the left as mono label — fully reset legacy pill styling */
 .work-experience-section .timeline-date,
 .education-section .timeline-date {
     padding: 0 !important;
     border: none !important;
+    background: transparent !important;
+    color: var(--sec-accent, var(--muted)) !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    line-height: 1.4 !important;
+    border-radius: 0 !important;
     align-self: start;
     position: sticky;
     top: 100px;
 }
 
-/* Content right side: strip card chrome */
+/* Content right side: strip card chrome + reset legacy margin-left/border-left */
 .work-experience-section .timeline-content,
 .education-section .timeline-content {
     grid-column: 2;
     grid-row: 1 / span 99;
     background: transparent !important;
     border: none !important;
+    border-left: none !important;
     border-radius: 0 !important;
     padding: 0 !important;
+    margin-left: 0 !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
+}
+/* Kill hover border-left color from styles.css */
+.work-experience-section .timeline-content:hover,
+.education-section .timeline-content:hover {
+    border-left-color: transparent !important;
+    border: none !important;
+}
+/* Reset featured-timeline card chrome from refined-styles.css */
+.work-experience-section .featured-timeline,
+.education-section .featured-timeline {
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 .work-experience-section .timeline-content h3,
 .education-section .timeline-content h3 {
