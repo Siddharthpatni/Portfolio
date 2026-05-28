@@ -1,0 +1,145 @@
+/* ==========================================
+   REFINED UI — Project filters, ribbons,
+   research marker, section subtitle, etc.
+   Loaded AFTER styles.css to override.
+   ========================================== */
+
+/* Section subtitle */
+.section-subtitle {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    max-width: 640px;
+    margin: calc(-1 * var(--spacing-xl)) auto var(--spacing-2xl);
+    line-height: 1.6;
+}
+
+/* ---------- Project filter chips ---------- */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.filter-chip {
+    appearance: none;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    color: var(--color-text-secondary);
+    padding: 8px 18px;
+    border-radius: var(--radius-full, 999px);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.filter-chip:hover {
+    color: var(--color-text-primary);
+    border-color: rgba(0, 113, 227, 0.35);
+    transform: translateY(-1px);
+}
+
+.filter-chip.active {
+    color: #fff;
+    background: var(--gradient-premium);
+    border-color: transparent;
+    box-shadow: var(--shadow-premium);
+}
+
+[data-theme="dark"] .filter-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .filter-chip:hover {
+    color: #fff;
+}
+
+/* ---------- Project card filter animation ---------- */
+.project-card {
+    transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.project-card.is-hidden {
+    display: none !important;
+}
+
+/* ---------- Featured ribbon + featured card ---------- */
+.featured-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-ribbon {
+    position: absolute;
+    top: 14px;
+    right: -36px;
+    transform: rotate(35deg);
+    background: var(--gradient-premium);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 40px;
+    z-index: 3;
+    box-shadow: 0 4px 10px rgba(0, 113, 227, 0.25);
+}
+
+/* Make sure ribbon stays in front of project-card::before bar */
+.project-card .featured-ribbon { z-index: 4; }
+
+/* ---------- Project type badge variants ---------- */
+.project-type-badge.agentic-badge {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.18), rgba(79, 70, 229, 0.18));
+    border-color: rgba(236, 72, 153, 0.4);
+    color: #ec4899;
+}
+
+/* ---------- Project links group ---------- */
+.project-links {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
+}
+
+/* ---------- Research timeline marker + pill ---------- */
+.timeline-marker.research-marker {
+    background: var(--gradient-secondary, linear-gradient(135deg, #EC4899, #F472B6));
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+}
+
+.featured-timeline {
+    border: 1px solid rgba(236, 72, 153, 0.25);
+    box-shadow: 0 8px 28px rgba(236, 72, 153, 0.08);
+}
+
+.timeline-pill {
+    display: inline-block;
+    margin-left: var(--spacing-sm);
+    padding: 3px 10px;
+    border-radius: var(--radius-full, 999px);
+    background: rgba(236, 72, 153, 0.12);
+    color: #ec4899;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* ---------- Subtle scroll reveal for chips ---------- */
+@media (max-width: 640px) {
+    .project-filters { gap: 6px; }
+    .filter-chip { padding: 6px 14px; font-size: 13px; }
+    .featured-ribbon { right: -42px; font-size: 9px; padding: 3px 42px; }
+}

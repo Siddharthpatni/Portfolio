@@ -418,4 +418,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize floating elements
     new FloatingElements();
+
+    // ---------- Project filter chips ----------
+    const filterChips = document.querySelectorAll('.project-filters .filter-chip');
+    const projectCards = document.querySelectorAll('.projects-grid .project-card');
+    if (filterChips.length && projectCards.length) {
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const filter = chip.dataset.filter || 'all';
+                filterChips.forEach(c => {
+                    c.classList.toggle('active', c === chip);
+                    c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
+                });
+                projectCards.forEach(card => {
+                    const cats = (card.dataset.categories || '').split(/\s+/);
+                    const match = filter === 'all' || cats.includes(filter);
+                    card.classList.toggle('is-hidden', !match);
+                });
+            });
+        });
+    }
 });

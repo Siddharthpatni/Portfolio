@@ -15,59 +15,58 @@ const translations = {
         // Hero Section
         hero: {
             titles: [
-                'Full-Stack Engineer',
-                'AI/ML Specialist',
-                'DevOps Architect',
-                'Building End-to-End Intelligent Systems',
-                'Architecting Scalable Applications',
-                'Automating Workflows with AI',
-                'Engineering Robust Software Solutions'
+                'AI & Autonomous Systems Engineer',
+                'MLOps Specialist',
+                'LLM Pipeline Architect',
+                'Computer Vision Developer',
+                'Building Intelligent Systems',
+                'Deploying AI at Scale'
             ],
-            description: 'Designing and deploying production-grade intelligent systems across the full stack. Specialized in scalable architectures, AI-driven automation, and robust software engineering practices.',
+            description: 'AI & Autonomous Systems Engineer pursuing M.Sc. in Digital Technologies. Building intelligent systems with LLM pipelines, computer vision, and production-grade MLOps infrastructure.',
             viewWork: 'View My Work',
             getInTouch: 'Get In Touch'
         },
         // Expertise Pillars
         expertise: {
             fullStack: {
-                title: 'Full-Stack Development',
-                description: 'React, Next.js, Node.js, FastAPI, PostgreSQL - Building production-grade web applications from frontend to backend',
-                badge: 'Frontend + Backend + Database'
+                title: 'AI & Autonomous Systems',
+                description: 'LLMs, RAG Pipelines, Computer Vision, LangChain \u2014 Designing and deploying intelligent autonomous systems at production scale',
+                badge: 'LLM + Vision + Autonomous AI'
             },
             ai: {
-                title: 'AI & Machine Learning',
-                description: 'PyTorch, TensorFlow, LangChain, LLMs - Developing intelligent systems and deploying AI models at scale',
-                badge: 'NLP + Computer Vision + LLMs'
+                title: 'MLOps & Model Deployment',
+                description: 'MLflow, DVC, Docker, Kubernetes \u2014 Building reproducible ML pipelines and deploying models with CI/CD automation',
+                badge: 'Training + Deployment + Monitoring'
             },
             devops: {
-                title: 'DevOps & Automation',
-                description: 'Docker, Kubernetes, Jenkins, GitHub Actions - Orchestrating CI/CD pipelines and cloud infrastructure',
-                badge: 'AWS + Azure + GCP'
+                title: 'Full-Stack Development',
+                description: 'React, FastAPI, Node.js, PostgreSQL \u2014 Building production-grade web applications from frontend to backend',
+                badge: 'Frontend + Backend + Database'
             },
             softwareEng: {
-                title: 'Software Engineering',
-                description: 'Clean Architecture, System Design, Testing - Crafting maintainable, scalable, and robust software systems',
-                badge: 'Design + Testing + Optimization'
+                title: 'DevOps & Cloud Infrastructure',
+                description: 'Docker, Kubernetes, Jenkins, GitHub Actions \u2014 Orchestrating CI/CD pipelines and cloud infrastructure',
+                badge: 'AWS + Azure + GCP'
             }
         },
         // About Section
         about: {
             title: 'About Me',
-            intro: "I'm an AI/DevOps Engineer and M.Sc. student specializing in transforming complex technical challenges into elegant, scalable solutions.",
-            p1: 'With a strong foundation in Python automation, MLOps, and CI/CD pipelines, I\'ve helped organizations improve reliability and reduce time-to-value through intelligent workflow orchestration and infrastructure optimization.',
-            p2: 'Currently pursuing my Master\'s in Digital Technologies, I\'m focused on building production-ready ML infrastructure, implementing RAG pipelines with LangChain, and advancing AI governance through comprehensive model documentation.',
+            intro: "I'm an <strong>AI & Autonomous Systems Engineer</strong> focused on building production-grade intelligent systems \u2014 from <strong>LLM-powered applications</strong> and <strong>RAG pipelines</strong> to <strong>computer vision systems</strong> for real-world autonomous decision-making.",
+            p1: 'Currently pursuing my M.Sc. in Digital Technologies at TU Clausthal & Ostfalia University, I combine deep ML knowledge with applied engineering. My projects span AI-driven safety systems, intelligent chatbots, and automated content pipelines \u2014 each built with proper MLOps practices, containerization, and CI/CD.',
+            p2: "I don't just train models \u2014 I architect end-to-end AI solutions, from data ingestion to production deployment, with a strong focus on reproducibility, scalability, and real-world impact.",
             currentlyBasedIn: 'Currently Based In',
             languages: 'Languages',
             stats: {
-                years: 'Years Experience',
-                workflows: 'Workflows Orchestrated',
-                views: 'K+ Content Views',
-                performance: '% Load Time Reduction'
+                years: 'Year Professional Experience',
+                workflows: 'GitHub Projects',
+                views: 'Technologies',
+                performance: 'Cloud Platforms'
             }
         },
         // Experience Section
         experience: {
-            title: 'Professional Experience',
+            title: 'Work Experience',
             education: 'Education',
             work: 'Work Experience'
         },
@@ -85,7 +84,7 @@ const translations = {
         contact: {
             title: "Let's Connect",
             subtitle: 'Get In Touch',
-            description: "I'm always open to discussing new opportunities, collaborations, or just chatting about AI, DevOps, and technology.",
+            description: "I'm always open to discussing new opportunities, collaborations, or just chatting about AI, autonomous systems, and technology.",
             email: 'Email',
             phone: 'Phone',
             location: 'Location'
@@ -108,54 +107,53 @@ const translations = {
         // Hero Section
         hero: {
             titles: [
-                'Full-Stack Entwickler',
-                'KI/ML Spezialist',
-                'DevOps Architekt',
-                'End-to-End intelligente Systeme entwickeln',
-                'Skalierbare Anwendungen entwerfen',
-                'Workflows mit KI automatisieren',
-                'Robuste Software-Lösungen entwickeln'
+                'KI & Autonome Systeme Ingenieur',
+                'MLOps Spezialist',
+                'LLM Pipeline Architekt',
+                'Computer Vision Entwickler',
+                'Intelligente Systeme entwickeln',
+                'KI im großen Maßstab bereitstellen'
             ],
-            description: 'Entwicklung und Bereitstellung produktionsreifer intelligenter Systeme im gesamten Stack. Spezialisiert auf skalierbare Architekturen, KI-gesteuerte Automatisierung und robuste Software-Engineering-Praktiken.',
+            description: 'KI & Autonome Systeme Ingenieur, M.Sc.-Studium in Digital Technologies. Entwicklung intelligenter Systeme mit LLM-Pipelines, Computer Vision und produktionsreifer MLOps-Infrastruktur.',
             viewWork: 'Meine Projekte',
             getInTouch: 'Kontakt aufnehmen'
         },
         // Expertise Pillars
         expertise: {
             fullStack: {
-                title: 'Full-Stack Entwicklung',
-                description: 'React, Next.js, Node.js, FastAPI, PostgreSQL - Entwicklung produktionsreifer Webanwendungen von Frontend bis Backend',
-                badge: 'Frontend + Backend + Datenbank'
+                title: 'KI & Autonome Systeme',
+                description: 'LLMs, RAG-Pipelines, Computer Vision, LangChain \u2014 Entwurf und Bereitstellung intelligenter autonomer Systeme',
+                badge: 'LLM + Vision + Autonome KI'
             },
             ai: {
-                title: 'KI & Machine Learning',
-                description: 'PyTorch, TensorFlow, LangChain, LLMs - Entwicklung intelligenter Systeme und Bereitstellung von KI-Modellen im großen Maßstab',
-                badge: 'NLP + Computer Vision + LLMs'
+                title: 'MLOps & Modell-Deployment',
+                description: 'MLflow, DVC, Docker, Kubernetes \u2014 Aufbau reproduzierbarer ML-Pipelines mit CI/CD-Automatisierung',
+                badge: 'Training + Deployment + Monitoring'
             },
             devops: {
-                title: 'DevOps & Automatisierung',
-                description: 'Docker, Kubernetes, Jenkins, GitHub Actions - Orchestrierung von CI/CD-Pipelines und Cloud-Infrastruktur',
-                badge: 'AWS + Azure + GCP'
+                title: 'Full-Stack Entwicklung',
+                description: 'React, FastAPI, Node.js, PostgreSQL \u2014 Entwicklung produktionsreifer Webanwendungen',
+                badge: 'Frontend + Backend + Datenbank'
             },
             softwareEng: {
-                title: 'Software Engineering',
-                description: 'Clean Architecture, Systemdesign, Testing - Entwicklung wartbarer, skalierbarer und robuster Softwaresysteme',
-                badge: 'Design + Testing + Optimierung'
+                title: 'DevOps & Cloud-Infrastruktur',
+                description: 'Docker, Kubernetes, Jenkins, GitHub Actions \u2014 Orchestrierung von CI/CD-Pipelines und Cloud-Infrastruktur',
+                badge: 'AWS + Azure + GCP'
             }
         },
         // About Section
         about: {
             title: 'Über mich',
-            intro: 'Ich bin KI/DevOps-Ingenieur und M.Sc.-Student, spezialisiert darauf, komplexe technische Herausforderungen in elegante, skalierbare Lösungen zu verwandeln.',
-            p1: 'Mit einer soliden Grundlage in Python-Automatisierung, MLOps und CI/CD-Pipelines habe ich Organisationen dabei geholfen, die Zuverlässigkeit zu verbessern und die Time-to-Value durch intelligente Workflow-Orchestrierung und Infrastrukturoptimierung zu reduzieren.',
-            p2: 'Während meines Masterstudiums in Digital Technologies konzentriere ich mich auf den Aufbau produktionsreifer ML-Infrastruktur, die Implementierung von RAG-Pipelines mit LangChain und die Weiterentwicklung der KI-Governance durch umfassende Modelldokumentation.',
+            intro: 'Ich bin <strong>KI & Autonome Systeme Ingenieur</strong> mit Fokus auf die Entwicklung produktionsreifer intelligenter Systeme \u2014 von <strong>LLM-gestützten Anwendungen</strong> und <strong>RAG-Pipelines</strong> bis hin zu <strong>Computer Vision Systemen</strong>.',
+            p1: 'Während meines M.Sc.-Studiums in Digital Technologies an der TU Clausthal & Ostfalia verbinde ich tiefes ML-Wissen mit angewandtem Engineering. Meine Projekte umfassen KI-gestützte Sicherheitssysteme, intelligente Chatbots und automatisierte Content-Pipelines.',
+            p2: 'Ich trainiere nicht nur Modelle \u2014 ich entwerfe End-to-End-KI-Lösungen von der Datenaufnahme bis zum Produktions-Deployment.',
             currentlyBasedIn: 'Aktueller Standort',
             languages: 'Sprachen',
             stats: {
-                years: 'Jahre Erfahrung',
-                workflows: 'Orchestrierte Workflows',
-                views: 'K+ Inhaltsaufrufe',
-                performance: '% Ladezeitverbesserung'
+                years: 'Jahr Berufserfahrung',
+                workflows: 'GitHub-Projekte',
+                views: 'Technologien',
+                performance: 'Cloud-Plattformen'
             }
         },
         // Experience Section
@@ -178,7 +176,7 @@ const translations = {
         contact: {
             title: 'Kontakt aufnehmen',
             subtitle: 'Schreiben Sie mir',
-            description: 'Ich bin immer offen für Diskussionen über neue Möglichkeiten, Zusammenarbeit oder einfach nur über KI, DevOps und Technologie zu plaudern.',
+            description: 'Ich bin immer offen für neue Möglichkeiten, Zusammenarbeit oder Gespräche über KI, autonome Systeme und Technologie.',
             email: 'E-Mail',
             phone: 'Telefon',
             location: 'Standort'
@@ -344,7 +342,7 @@ class LanguageSwitcher {
         // Footer
         const footerText = document.querySelector('.footer p');
         if (footerText) {
-            footerText.innerHTML = `&copy; 2024 Siddharth Patni. ${t.footer.copyright}`;
+            footerText.innerHTML = `&copy; 2025 Siddharth Patni. ${t.footer.copyright}`;
         }
     }
 }

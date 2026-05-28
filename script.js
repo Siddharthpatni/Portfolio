@@ -534,13 +534,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize typing animation
     const titles = [
-        'Full-Stack Engineer',
-        'AI/ML Specialist',
-        'DevOps Architect',
-        'Building End-to-End Intelligent Systems',
-        'Architecting Scalable Applications',
-        'Automating Workflows with AI',
-        'Engineering Robust Software Solutions'
+        'Agentic AI & Full-Stack Engineer',
+        'LLM Pipeline Architect',
+        'Autonomous Systems Builder',
+        'Open-Source AI Tooling',
+        'FastAPI + Playwright + LangGraph',
+        'Shipping AI to Production'
     ];
     window.typewriterInstance = new TypeWriter('typed-text', titles);
 
@@ -569,6 +568,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize theme toggle
     new ThemeToggle();
+
+    // Initialize document modal
+    new DocumentModal();
 });
 
 // ==========================================
@@ -656,3 +658,282 @@ document.addEventListener('DOMContentLoaded', () => {
         statsObserver.observe(aboutSection);
     }
 });
+
+// ==========================================
+// FLOATING DOCUMENT MODAL
+// ==========================================
+class DocumentModal {
+    constructor() {
+        this.fab = document.getElementById('floating-doc-btn');
+        this.overlay = document.getElementById('doc-modal-overlay');
+        this.closeBtn = document.getElementById('doc-modal-close');
+        this.downloadBtns = document.querySelectorAll('.doc-download-btn');
+        this.init();
+    }
+
+    init() {
+        if (!this.fab || !this.overlay) return;
+
+        this.fab.addEventListener('click', () => this.open());
+        this.closeBtn.addEventListener('click', () => this.close());
+        this.overlay.addEventListener('click', (e) => {
+            if (e.target === this.overlay) this.close();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.overlay.classList.contains('active')) {
+                this.close();
+            }
+        });
+
+        this.downloadBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const docType = btn.dataset.doc;
+                this.downloadDocument(docType);
+            });
+        });
+    }
+
+    open() {
+        this.overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    downloadDocument(type) {
+        const content = type === 'resume' ? this.getResumeHTML() : this.getCoverLetterHTML();
+        const filename = type === 'resume' ? 'Siddharth_Patni_Resume.html' : 'Siddharth_Patni_Cover_Letter.html';
+
+        const blob = new Blob([content], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    getResumeHTML() {
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth Patni - Resume</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Calibri', 'Helvetica Neue', Arial, sans-serif; color: #222; line-height: 1.45; max-width: 800px; margin: 0 auto; padding: 32px 44px; background: #fff; font-size: 11pt; }
+        h1 { font-size: 22pt; font-weight: 700; color: #111; text-align: center; margin-bottom: 2px; letter-spacing: 0.5px; }
+        .subtitle { font-size: 11pt; color: #333; text-align: center; font-weight: 400; margin-bottom: 6px; }
+        .contact-row { text-align: center; font-size: 9.5pt; color: #444; margin-bottom: 16px; line-height: 1.6; }
+        .contact-row a { color: #0056b3; text-decoration: none; }
+        .divider { border: none; border-top: 1.5px solid #111; margin: 0 0 14px 0; }
+        h2 { font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #111; border-bottom: 1px solid #999; padding-bottom: 3px; margin: 14px 0 8px 0; }
+        .summary { font-size: 10pt; color: #333; margin-bottom: 12px; line-height: 1.5; }
+        .entry { margin-bottom: 10px; }
+        .entry-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+        .entry-title { font-size: 10.5pt; font-weight: 700; color: #111; }
+        .entry-org { font-size: 10pt; font-style: italic; color: #333; }
+        .entry-date { font-size: 9pt; color: #555; white-space: nowrap; }
+        .entry-loc { font-size: 9pt; color: #555; }
+        ul { padding-left: 16px; margin: 3px 0 0 0; }
+        li { font-size: 10pt; color: #222; margin-bottom: 2px; line-height: 1.45; }
+        .skills-table { width: 100%; font-size: 10pt; line-height: 1.5; }
+        .skills-table td { padding: 1px 0; vertical-align: top; }
+        .skills-table .label { font-weight: 700; color: #111; width: 120px; padding-right: 8px; }
+        .project-title { font-size: 10.5pt; font-weight: 700; color: #111; }
+        .project-tech { font-size: 9.5pt; font-weight: 400; color: #555; }
+        @media print { body { padding: 18px 28px; font-size: 10pt; } h1 { font-size: 20pt; } }
+    </style>
+</head>
+<body>
+    <h1>SIDDHARTH PATNI</h1>
+    <div class="subtitle">AI & Autonomous Systems Engineer | MLOps | LLM Pipelines | Computer Vision</div>
+    <div class="contact-row">
+        Braunschweig, Germany &nbsp;|&nbsp;
+        <a href="mailto:patnisiddharth1311@gmail.com">patnisiddharth1311@gmail.com</a> &nbsp;|&nbsp;
+        +49 155 1083 5846 &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/siddharth-divyang-patni-644857185">linkedin.com/in/siddharth-divyang-patni</a> &nbsp;|&nbsp;
+        <a href="https://github.com/Siddharthpatni">github.com/Siddharthpatni</a>
+    </div>
+    <hr class="divider">
+
+    <h2>Professional Summary</h2>
+    <p class="summary">Results-driven AI & Autonomous Systems Engineer with professional experience in ML pipelines, computer vision, and full-stack development. Pursuing M.Sc. in Digital Technologies (TU Clausthal). Skilled in building production-grade intelligent systems using LLMs, RAG architectures, and MLOps best practices. Demonstrated ability to reduce processing times by 90%+, improve application performance by 30%, and deliver end-to-end AI solutions from prototype to deployment.</p>
+
+    <h2>Technical Skills</h2>
+    <table class="skills-table">
+        <tr><td class="label">AI / ML:</td><td>PyTorch, TensorFlow, LangChain, LangGraph, HuggingFace Transformers, RAG, OpenCV, YOLO, CNNs, NLP</td></tr>
+        <tr><td class="label">MLOps:</td><td>MLflow, DVC, Model Cards, Weights & Biases, experiment tracking, model versioning, CI/CD for ML</td></tr>
+        <tr><td class="label">Languages:</td><td>Python, JavaScript/TypeScript, SQL, Bash, HTML/CSS</td></tr>
+        <tr><td class="label">Backend:</td><td>FastAPI, Flask, Node.js, Express.js, REST APIs, WebSocket, JWT authentication</td></tr>
+        <tr><td class="label">Frontend:</td><td>React, Next.js, responsive design, state management</td></tr>
+        <tr><td class="label">DevOps:</td><td>Docker, Kubernetes, GitHub Actions, Jenkins, Terraform, Prometheus, Grafana</td></tr>
+        <tr><td class="label">Cloud:</td><td>AWS (EC2, S3, Lambda), Azure, Google Cloud Platform</td></tr>
+        <tr><td class="label">Data:</td><td>PostgreSQL, MongoDB, Redis, ChromaDB (vector DB), Pandas, NumPy</td></tr>
+    </table>
+
+    <h2>Professional Experience</h2>
+    <div class="entry">
+        <div class="entry-row">
+            <div><span class="entry-title">Software Developer Intern</span> &mdash; <span class="entry-org">L&T Technology Services</span></div>
+            <span class="entry-date">Dec 2023 &ndash; Apr 2024</span>
+        </div>
+        <div class="entry-loc">Vadodara, India</div>
+        <ul>
+            <li>Containerized 5+ microservices with Docker and integrated into Linux-based CI/CD pipelines, reducing deployment regressions by 40% and improving release consistency across environments</li>
+            <li>Optimized React frontend components and Flask REST API endpoints, improving perceived page load times by approximately 30% through lazy loading and response caching</li>
+            <li>Standardized API-UI contracts with OpenAPI specifications and implemented request/response validation, reducing integration defects by 25%</li>
+            <li>Collaborated with cross-functional teams of 8+ engineers using Agile/Scrum methodology with Jira for sprint planning</li>
+        </ul>
+    </div>
+    <div class="entry">
+        <div class="entry-row">
+            <div><span class="entry-title">Data Analyst Intern</span> &mdash; <span class="entry-org">Snapfix Ltd.</span></div>
+            <span class="entry-date">Jun 2023 &ndash; Jul 2023</span>
+        </div>
+        <div class="entry-loc">Remote, India</div>
+        <ul>
+            <li>Designed and implemented Python/SQL ETL pipelines to standardize and transform 10+ heterogeneous datasets, reducing weekly report preparation time by approximately 40%</li>
+            <li>Created automated data quality checks with validation rules, improving data accuracy across analytical reports</li>
+            <li>Authored comprehensive technical documentation and handover guides ensuring reproducibility for future teams</li>
+        </ul>
+    </div>
+
+    <h2>Key Projects</h2>
+    <div class="entry">
+        <div><span class="project-title">AI Driver Safety System</span> <span class="project-tech">&mdash; Python, YOLO, CNN, OpenCV, TensorFlow, Keras</span></div>
+        <ul>
+            <li>Engineered a real-time AI-powered driver safety system incorporating traffic sign recognition (98% accuracy), pedestrian detection, and driver drowsiness monitoring</li>
+            <li>Implemented custom CNN architecture for traffic sign classification on GTSRB dataset and YOLO v5 for pedestrian detection with 30 FPS inference speed</li>
+            <li>Built modular pipeline with OpenCV for video stream processing, enabling real-time alerts and safety event logging</li>
+        </ul>
+    </div>
+    <div class="entry">
+        <div><span class="project-title">LLM-Powered Conversational Chatbot</span> <span class="project-tech">&mdash; Python, Flask, React, HuggingFace Transformers, WebSocket</span></div>
+        <ul>
+            <li>Developed a production-ready chatbot with real-time message streaming, context-aware multi-turn conversations, and conversation history management</li>
+            <li>Designed RESTful + WebSocket API backend with Flask, implementing token-based streaming for sub-second response latency</li>
+            <li>Built modern React frontend with dark mode, markdown rendering, and responsive design for mobile and desktop</li>
+        </ul>
+    </div>
+    <div class="entry">
+        <div><span class="project-title">Workflow Automation Engine</span> <span class="project-tech">&mdash; Node.js, React, Python, Docker, PostgreSQL, Redis</span></div>
+        <ul>
+            <li>Architected a distributed workflow orchestration platform handling 1000+ task executions with retry logic, parallel execution, and dependency graph resolution</li>
+            <li>Implemented JWT authentication, role-based access control, and full CI/CD pipeline with GitHub Actions and Docker</li>
+        </ul>
+    </div>
+    <div class="entry">
+        <div><span class="project-title">Multi-Disease Diagnostic Application</span> <span class="project-tech">&mdash; Python, Flask, OpenCV, scikit-learn, Pandas</span></div>
+        <ul>
+            <li>Built end-to-end ML-powered diagnostic system reducing medical image processing time from ~30 minutes to under 10 seconds (95%+ reduction)</li>
+            <li>Trained and deployed classification models with scikit-learn achieving 92%+ accuracy on test datasets</li>
+        </ul>
+    </div>
+
+    <h2>Education</h2>
+    <div class="entry">
+        <div class="entry-row">
+            <div><span class="entry-title">M.Sc. Digital Technologies</span> &mdash; <span class="entry-org">TU Clausthal & Ostfalia University</span></div>
+            <span class="entry-date">Mar 2025 &ndash; Present</span>
+        </div>
+        <div class="entry-loc">Braunschweig, Germany</div>
+        <ul><li>Specialization: Information & Communication Technologies &mdash; Focus on MLOps, AI infrastructure, autonomous systems, and software safety</li></ul>
+    </div>
+    <div class="entry">
+        <div class="entry-row">
+            <div><span class="entry-title">B.Tech Computer Engineering</span> &mdash; <span class="entry-org">Charotar University of Science & Technology (CGPA: 7.6/10)</span></div>
+            <span class="entry-date">Jul 2021 &ndash; May 2024</span>
+        </div>
+        <div class="entry-loc">Gujarat, India</div>
+    </div>
+    <div class="entry">
+        <div class="entry-row">
+            <div><span class="entry-title">Diploma in Computer Engineering</span> &mdash; <span class="entry-org">Gujarat Technological University (CGPA: 8.92/10 &mdash; High Distinction)</span></div>
+            <span class="entry-date">Jun 2018 &ndash; Jun 2021</span>
+        </div>
+        <div class="entry-loc">Gujarat, India</div>
+    </div>
+
+    <h2>Languages</h2>
+    <p style="font-size:10pt;color:#222;">English (C1 Advanced) &nbsp;&bull;&nbsp; German (A2&ndash;B1, actively learning) &nbsp;&bull;&nbsp; Hindi (Native)</p>
+</body>
+</html>`;
+    }
+
+    getCoverLetterHTML() {
+        return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth Patni - Cover Letter</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Calibri', 'Helvetica Neue', Arial, sans-serif; color: #222; line-height: 1.65; max-width: 700px; margin: 0 auto; padding: 44px 56px; background: #fff; font-size: 11pt; }
+        .header { margin-bottom: 28px; border-bottom: 1.5px solid #111; padding-bottom: 14px; }
+        .header h1 { font-size: 18pt; font-weight: 700; color: #111; margin-bottom: 4px; }
+        .header-contact { font-size: 9.5pt; color: #444; line-height: 1.6; }
+        .header-contact a { color: #0056b3; text-decoration: none; }
+        .date { font-size: 10pt; color: #555; margin-bottom: 20px; }
+        .recipient { margin-bottom: 20px; font-size: 10pt; color: #333; line-height: 1.5; }
+        .subject { font-size: 11pt; font-weight: 700; color: #111; margin-bottom: 18px; }
+        .body-text p { font-size: 10.5pt; color: #222; margin-bottom: 12px; }
+        .closing { margin-top: 24px; }
+        .closing p { font-size: 10.5pt; color: #222; }
+        .signature { margin-top: 20px; font-weight: 700; color: #111; font-size: 11pt; }
+        @media print { body { padding: 28px 40px; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Siddharth Patni</h1>
+        <div class="header-contact">
+            Braunschweig, Germany &nbsp;|&nbsp;
+            <a href="mailto:patnisiddharth1311@gmail.com">patnisiddharth1311@gmail.com</a> &nbsp;|&nbsp;
+            +49 155 1083 5846 &nbsp;|&nbsp;
+            <a href="https://www.linkedin.com/in/siddharth-divyang-patni-644857185">linkedin.com/in/siddharth-divyang-patni</a>
+        </div>
+    </div>
+
+    <div class="date">${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</div>
+
+    <div class="recipient">
+        <p>[Hiring Manager Name]</p>
+        <p>[Company Name]</p>
+        <p>[Company Address]</p>
+    </div>
+
+    <div class="subject">Re: Application for [Position Title]</div>
+
+    <div class="body-text">
+        <p>Dear Hiring Manager,</p>
+
+        <p>I am writing to express my interest in the [Position Title] role at [Company Name]. As an AI & Autonomous Systems Engineer pursuing my M.Sc. in Digital Technologies at TU Clausthal, I bring hands-on experience building production-grade AI systems combined with strong full-stack and DevOps skills.</p>
+
+        <p>During my internship at L&T Technology Services, I containerized 5+ microservices with Docker, optimized React/Flask applications to achieve 30% faster load times, and reduced integration defects by 25% through OpenAPI contract standardization. These experiences reinforced my focus on engineering discipline and production readiness — principles I apply consistently to my AI work.</p>
+
+        <p>My project portfolio reflects my ability to deliver end-to-end intelligent systems. I engineered an AI Driver Safety System achieving 98% traffic sign recognition accuracy at 30 FPS using YOLO and custom CNNs. I built an LLM-powered chatbot with real-time streaming and context-aware multi-turn conversations using HuggingFace Transformers. I also architected a distributed Workflow Automation Engine handling 1,000+ task executions with retry logic and dependency graph resolution.</p>
+
+        <p>What differentiates me is my commitment to production-grade ML engineering. I apply MLOps best practices (MLflow, DVC, Docker, Kubernetes), implement comprehensive CI/CD pipelines, and design systems for scalability, reproducibility, and maintainability from day one.</p>
+
+        <p>I am excited about the opportunity to contribute my AI/ML, full-stack, and DevOps expertise to [Company Name]. I am confident that my technical depth and results-driven approach would make me a strong addition to your team.</p>
+
+        <p>Thank you for your consideration. I look forward to the opportunity to discuss how I can contribute to your team's goals.</p>
+    </div>
+
+    <div class="closing">
+        <p>Sincerely,</p>
+        <div class="signature">Siddharth Patni</div>
+    </div>
+</body>
+</html>`;
+    }
+}
