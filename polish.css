@@ -795,6 +795,10 @@ body::after {
 .education-section .timeline {
     position: relative;
     margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 .work-experience-section .timeline-item,
 .education-section .timeline-item {
