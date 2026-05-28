@@ -135,55 +135,29 @@
             </div>
             <div class="hero-logo-wrapper">
                 <div class="sdp-logo" aria-label="SDP monogram">
-                    <svg viewBox="0 0 320 320" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="sdpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%"   stop-color="#FFFFFF"/>
-                                <stop offset="55%"  stop-color="#C7D2FE"/>
-                                <stop offset="100%" stop-color="#67E8F9"/>
-                            </linearGradient>
-                            <linearGradient id="sdpRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%"   stop-color="rgba(255,255,255,0.45)"/>
-                                <stop offset="55%"  stop-color="rgba(255,255,255,0.08)"/>
-                                <stop offset="100%" stop-color="rgba(255,255,255,0.30)"/>
-                            </linearGradient>
-                            <radialGradient id="sdpCore" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%"  stop-color="rgba(99,102,241,0.32)"/>
-                                <stop offset="70%" stop-color="rgba(99,102,241,0.04)"/>
-                                <stop offset="100%" stop-color="rgba(99,102,241,0)"/>
-                            </radialGradient>
-                            <!-- arc for the rotating wordmark, sits just inside the outer ring -->
-                            <path id="sdpArc" d="M 160,160 m -132,0 a 132,132 0 1,1 264,0 a 132,132 0 1,1 -264,0"/>
-                        </defs>
-
-                        <!-- single ambient core -->
-                        <circle cx="160" cy="160" r="120" fill="url(#sdpCore)"/>
-
-                        <!-- the only ring: one perfect hairline -->
-                        <circle cx="160" cy="160" r="146" fill="none" stroke="url(#sdpRing)" stroke-width="1"/>
-
-                        <!-- rotating wordmark — the only decorative text -->
-                        <g class="sdp-orbit">
-                            <text font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.42)" letter-spacing="6">
-                                <textPath href="#sdpArc" startOffset="0%">BUILDING&#160;AGENTIC&#160;SYSTEMS&#160;&#8212;&#160;FROM&#160;PROMPT&#160;TO&#160;PRODUCTION&#160;&#8212;&#160;</textPath>
+                    <!-- Orbiting wordmark on the outer ring -->
+                    <div class="sdp-orbit" aria-hidden="true">
+                        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <path id="sdpArcPath" d="M 180,180 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0"/>
+                            </defs>
+                            <text font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.45)" letter-spacing="6.5">
+                                <textPath href="#sdpArcPath" startOffset="0%">BUILDING&#160;AGENTIC&#160;SYSTEMS&#160;&#8212;&#160;FROM&#160;PROMPT&#160;TO&#160;PRODUCTION&#160;&#8212;&#160;</textPath>
                             </text>
-                        </g>
+                        </svg>
+                    </div>
 
-                        <!-- the monogram — confident, centered, breathing room -->
-                        <g class="sdp-mark">
-                            <text x="160" y="160" text-anchor="middle" dominant-baseline="central"
-                                  font-family="Fraunces, serif"
-                                  font-style="italic" font-weight="300"
-                                  font-size="120" letter-spacing="-6"
-                                  fill="url(#sdpGrad)">SDP</text>
-                        </g>
+                    <!-- The mark itself: pure HTML/CSS, perfectly centered with flexbox -->
+                    <div class="sdp-disc">
+                        <div class="sdp-glow" aria-hidden="true"></div>
+                        <span class="sdp-mark">SDP</span>
+                    </div>
 
-                        <!-- terminal prompt below — real, not decorative -->
-                        <g transform="translate(160, 232)">
-                            <circle cx="-50" cy="0" r="2.4" fill="#22C55E"/>
-                            <text x="-42" y="3" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.55)" letter-spacing="1.5">@siddharthpatni&#160;&#183;&#160;online</text>
-                        </g>
-                    </svg>
+                    <!-- Status line below -->
+                    <div class="sdp-status">
+                        <span class="sdp-status__dot"></span>
+                        <span class="sdp-status__text">@siddharthpatni&nbsp;&middot;&nbsp;online</span>
+                    </div>
                 </div>
             </div>
         </div>
