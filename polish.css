@@ -821,15 +821,15 @@ body::after {
 .education-section .timeline-marker { display: none !important; }
 
 /* Year/date on the left as big mono label */
-.work-experience-section .timeline-date,
-.education-section .timeline-date {
-    grid-column: 1;
-    font-family: var(--font-mono) !important;
-    font-size: 0.78rem !important;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted) !important;
-    background: transparent !important;
+.work-experience-section .timeline-item,
+.education-section .timeline-item {
+    display: grid !important;
+    grid-template-columns: 180px 1fr !important;
+    gap: clamp(14px, 2vw, 32px); /* tighter gap */
+    padding: 1.1rem 0 !important; /* less vertical padding */
+    border-top: 1px solid var(--line);
+    position: relative;
+}
     padding: 0 !important;
     border: none !important;
     align-self: start;
