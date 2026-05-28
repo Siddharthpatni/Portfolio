@@ -366,8 +366,8 @@ body::after {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 420px;
-    margin-left: auto;
+    max-width: 460px;
+    margin: 0 auto;
 }
 .hero-logo-wrapper::before {
     content: "";
@@ -392,14 +392,16 @@ body::after {
 
 /* Only thing that rotates: the wordmark orbit */
 .sdp-logo .sdp-orbit {
-    transform-origin: 160px 160px;
+    transform-box: view-box;
+    transform-origin: 50% 50%;
     animation: sdp-spin 60s linear infinite;
 }
 
 /* Subtle hover on the monogram */
 .sdp-logo .sdp-mark {
-    transition: transform 0.6s var(--ease, ease);
+    transform-box: view-box;
     transform-origin: 50% 50%;
+    transition: transform 0.6s var(--ease, ease);
 }
 .hero-logo-wrapper:hover .sdp-mark { transform: scale(1.025); }
 
