@@ -398,7 +398,7 @@ const originalDOMContentLoaded = document.addEventListener;
 document.addEventListener('DOMContentLoaded', () => {
     // Add styles
     const style = document.createElement('style');
-    style.textContent = progressStyles + floatingStyles;
+    style.textContent = floatingStyles; // Removed progressStyles to prevent duplicates
     document.head.appendChild(style);
 
     // Initialize skills radar chart
@@ -407,14 +407,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize parallax effect
     new ParallaxEffect();
 
-    // Initialize magnetic buttons
-    new MagneticButtons();
+    // Initialize magnetic buttons - Disabled to prevent clashing with polish.js
+    // new MagneticButtons();
 
-    // Initialize text reveal
-    new TextReveal();
+    // Initialize text reveal - Disabled to prevent clashing with serif styling in polish.js
+    // new TextReveal();
 
-    // Initialize scroll progress bar
-    new ScrollProgress();
+    // Initialize scroll progress bar - Disabled to prevent clashing with scroll-progress in script-cinematic.js
+    // new ScrollProgress();
 
     // Initialize floating elements
     new FloatingElements();

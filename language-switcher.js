@@ -342,7 +342,7 @@ class LanguageSwitcher {
         // Footer
         const footerText = document.querySelector('.footer p');
         if (footerText) {
-            footerText.innerHTML = `&copy; 2025 Siddharth Patni. ${t.footer.copyright}`;
+            footerText.innerHTML = `&copy; 2026 Siddharth Patni. ${t.footer.copyright}`;
         }
     }
 }

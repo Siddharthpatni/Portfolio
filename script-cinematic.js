@@ -107,12 +107,13 @@
     });
 
     // ---------- Mobile menu toggle ----------
-    const menuToggle = $('#mobile-menu-toggle');
-    const navMenu    = $('#nav-menu');
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
-    }
+    // Disabled duplicate mobile menu toggle listener to prevent conflicts with script.js (SmoothScroll)
+    // const menuToggle = $('#mobile-menu-toggle');
+    // const navMenu    = $('#nav-menu');
+    // if (menuToggle && navMenu) {
+    //     menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+    //     navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+    // }
 
     // ---------- Project card spotlight ----------
     $$('.project-card').forEach(card => {

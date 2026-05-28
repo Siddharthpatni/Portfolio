@@ -293,7 +293,7 @@ class SmoothScroll {
     }
 
     openMobileMenu() {
-        this.navMenu.classList.add('active');
+        this.navMenu.classList.add('active', 'open');
         this.mobileMenuToggle.classList.add('active');
         document.body.classList.add('menu-open');
 
@@ -302,7 +302,7 @@ class SmoothScroll {
     }
 
     closeMobileMenu() {
-        this.navMenu.classList.remove('active');
+        this.navMenu.classList.remove('active', 'open');
         this.mobileMenuToggle.classList.remove('active');
         document.body.classList.remove('menu-open');
 
@@ -551,11 +551,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize smooth scroll and navigation
     new SmoothScroll();
 
-    // Initialize 3D tilt effect
-    new TiltEffect();
+    // Initialize 3D tilt effect - Disabled to prevent clashing with smooth tilt in polish.js
+    // new TiltEffect();
 
-    // Initialize scroll animations
-    new ScrollAnimations();
+    // Initialize scroll animations - Disabled to prevent clashing with refined observer in script-cinematic.js
+    // new ScrollAnimations();
 
     // Initialize custom cursor (optional - uncomment if desired)
     // const style = document.createElement('style');
@@ -652,12 +652,13 @@ const statsObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const aboutSection = document.querySelector('.about-section');
-    if (aboutSection) {
-        statsObserver.observe(aboutSection);
-    }
-});
+// Disabled legacy statsObserver to prevent clashing with refined counter animation in script-cinematic.js
+// document.addEventListener('DOMContentLoaded', () => {
+//     const aboutSection = document.querySelector('.about-section');
+//     if (aboutSection) {
+//         statsObserver.observe(aboutSection);
+//     }
+// });
 
 // ==========================================
 // FLOATING DOCUMENT MODAL
