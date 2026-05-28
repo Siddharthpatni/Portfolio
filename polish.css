@@ -1010,8 +1010,8 @@ body::after {
     color: var(--accent, #4F46E5) !important;
     font-weight: 600 !important;
 }
-.projects-section .tech-tags {
-    margin-top: 0 !important;
+.tech-tags {
+    margin-top: 16px !important;
 }
 .projects-section .project-card:first-child {
     grid-column: span 4;
