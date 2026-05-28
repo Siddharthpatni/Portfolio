@@ -842,6 +842,8 @@ body::after {
     border-top: 1px solid var(--line);
     position: relative;
 }
+.work-experience-section .timeline-date,
+.education-section .timeline-date {
     padding: 0 !important;
     border: none !important;
     align-self: start;

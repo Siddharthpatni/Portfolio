@@ -66,9 +66,9 @@ const translations = {
         },
         // Experience Section
         experience: {
-            title: 'Work Experience',
+            title: 'Research & Work Experience',
             education: 'Education',
-            work: 'Work Experience'
+            work: 'Research & Work Experience'
         },
         // Projects Section  
         projects: {
@@ -158,9 +158,9 @@ const translations = {
         },
         // Experience Section
         experience: {
-            title: 'Berufserfahrung',
+            title: 'Forschungs- & Berufserfahrung',
             education: 'Ausbildung',
-            work: 'Berufserfahrung'
+            work: 'Forschungs- & Berufserfahrung'
         },
         // Projects Section
         projects: {
@@ -275,7 +275,7 @@ class LanguageSwitcher {
         // Section Titles
         const sections = {
             '.about-section .section-title': t.about.title,
-            '.experience-section .section-title': t.experience.title,
+            '.work-experience-section .section-title': t.experience.title,
             '.projects-section .section-title': t.projects.title,
             '.skills-section .section-title': t.skills.title,
             '.contact-section .section-title': t.contact.title
