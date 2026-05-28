@@ -34,6 +34,18 @@
     <!-- Canvas for particle background -->
     <canvas id="particles-canvas"></canvas>
 
+    <!-- Cinematic UI: scroll progress + section dot nav -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <nav class="section-dots" id="section-dots" aria-label="Section navigation">
+        <button class="section-dot" data-target="home"        data-label="Home"></button>
+        <button class="section-dot" data-target="about"       data-label="About"></button>
+        <button class="section-dot" data-target="education"   data-label="Education"></button>
+        <button class="section-dot" data-target="experience"  data-label="Experience"></button>
+        <button class="section-dot" data-target="projects"    data-label="Projects"></button>
+        <button class="section-dot" data-target="skills"      data-label="Skills"></button>
+        <button class="section-dot" data-target="contact"     data-label="Contact"></button>
+    </nav>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -179,6 +191,48 @@
         <div class="scroll-indicator">
             <div class="mouse">
                 <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Marquee -->
+    <section class="tech-marquee" aria-label="Core technologies">
+        <div class="tech-marquee__track" id="tech-marquee-track">
+            <div class="tech-marquee__group">
+                <span class="tech-marquee__item">Python</span>
+                <span class="tech-marquee__item">FastAPI</span>
+                <span class="tech-marquee__item">LangGraph</span>
+                <span class="tech-marquee__item">Playwright</span>
+                <span class="tech-marquee__item">OpenAI</span>
+                <span class="tech-marquee__item">Anthropic</span>
+                <span class="tech-marquee__item">PyTorch</span>
+                <span class="tech-marquee__item">Docker</span>
+                <span class="tech-marquee__item">Kubernetes</span>
+                <span class="tech-marquee__item">PostgreSQL</span>
+                <span class="tech-marquee__item">Redis</span>
+                <span class="tech-marquee__item">Next.js</span>
+                <span class="tech-marquee__item">TypeScript</span>
+                <span class="tech-marquee__item">React</span>
+                <span class="tech-marquee__item">Hugging Face</span>
+                <span class="tech-marquee__item">OpenRouter</span>
+            </div>
+            <div class="tech-marquee__group" aria-hidden="true">
+                <span class="tech-marquee__item">Python</span>
+                <span class="tech-marquee__item">FastAPI</span>
+                <span class="tech-marquee__item">LangGraph</span>
+                <span class="tech-marquee__item">Playwright</span>
+                <span class="tech-marquee__item">OpenAI</span>
+                <span class="tech-marquee__item">Anthropic</span>
+                <span class="tech-marquee__item">PyTorch</span>
+                <span class="tech-marquee__item">Docker</span>
+                <span class="tech-marquee__item">Kubernetes</span>
+                <span class="tech-marquee__item">PostgreSQL</span>
+                <span class="tech-marquee__item">Redis</span>
+                <span class="tech-marquee__item">Next.js</span>
+                <span class="tech-marquee__item">TypeScript</span>
+                <span class="tech-marquee__item">React</span>
+                <span class="tech-marquee__item">Hugging Face</span>
+                <span class="tech-marquee__item">OpenRouter</span>
             </div>
         </div>
     </section>
@@ -984,6 +1038,7 @@
     <script src="script.js"></script>
     <script src="language-switcher.js"></script>
     <script src="script-enhancements.js"></script>
+    <script src="script-cinematic.js"></script>
 </body>
 
 </html>
