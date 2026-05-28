@@ -791,6 +791,14 @@ body::after {
 }
 
 /* ---------- EXPERIENCE / EDUCATION TIMELINE — left rail year ---------- */
+.work-experience-section .container,
+.education-section .container {
+    max-width: 100vw !important;
+    width: 100% !important;
+    padding-left: clamp(16px, 6vw, 48px) !important;
+    padding-right: clamp(16px, 6vw, 48px) !important;
+    box-sizing: border-box;
+}
 .work-experience-section .timeline,
 .education-section .timeline {
     position: relative;
