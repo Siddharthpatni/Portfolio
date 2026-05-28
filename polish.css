@@ -493,6 +493,195 @@ body::after {
     .sdp-logo { width: min(100%, 320px); }
 }
 
+/* ==========================================================================
+   RESPONSIVE SYSTEM — compact, fluid, 13" MBP → mobile
+   ========================================================================== */
+
+/* ---------- HERO LAYOUT: proper grid with controlled ratio ---------- */
+.hero-content-container {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important;
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px) !important;
+    max-width: 1180px !important;
+    padding-left: clamp(20px, 4vw, 48px) !important;
+    padding-right: clamp(20px, 4vw, 48px) !important;
+}
+
+.hero-text-content {
+    min-width: 0;
+}
+
+.hero-text-content .hero-description {
+    max-width: 52ch;
+}
+
+/* ---------- COMPACT HERO TYPE ON MID SCREENS (13" MBP) ---------- */
+@media (max-width: 1440px) {
+    .hero-content-container {
+        padding-top: clamp(88px, 11vh, 116px) !important;
+        padding-bottom: clamp(48px, 8vh, 88px) !important;
+        gap: clamp(28px, 4vw, 56px) !important;
+    }
+    .hero-title { font-size: clamp(2.8rem, 7.5vw, 5.2rem) !important; }
+    .hero-description { font-size: 1rem !important; line-height: 1.65 !important; }
+    .sdp-logo { width: min(100%, 380px); }
+    .section { padding: clamp(64px, 9vw, 110px) 0 !important; }
+}
+
+/* ---------- TABLET / 11" LAPTOPS ---------- */
+@media (max-width: 1100px) {
+    .hero-content-container {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) !important;
+        gap: 32px !important;
+    }
+    .sdp-logo { width: min(100%, 320px); }
+    .hero-title { font-size: clamp(2.6rem, 7vw, 4.4rem) !important; }
+    .section-title, .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem) !important; }
+}
+
+/* ---------- COLLAPSE TO SINGLE COLUMN ---------- */
+@media (max-width: 880px) {
+    .hero-content-container {
+        grid-template-columns: 1fr !important;
+        text-align: left;
+        padding-top: clamp(96px, 14vh, 128px) !important;
+        padding-bottom: 48px !important;
+        gap: 40px !important;
+    }
+    .hero-text-content { order: 1; }
+    .hero-logo-wrapper { order: 2; max-width: 320px; margin: 0; }
+    .sdp-logo { width: 100%; max-width: 300px; }
+    .hero-title { font-size: clamp(2.4rem, 10vw, 3.8rem) !important; }
+    .hero-description { font-size: 0.98rem !important; }
+    .hero-cta { flex-wrap: wrap; }
+
+    /* hide chrome that crowds mobile */
+    .section-dots { display: none !important; }
+    .cursor-blob { display: none !important; }
+    .floating-doc, .floating-resume, .resume-download-float,
+    .print-resume-btn, .download-resume-float { display: none !important; }
+
+    /* nav menu becomes a slide-down panel */
+    .nav-menu {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding: 16px clamp(20px, 4vw, 32px) 24px;
+        background: rgba(10,10,15,0.92);
+        backdrop-filter: saturate(180%) blur(18px);
+        -webkit-backdrop-filter: saturate(180%) blur(18px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s var(--ease, ease), transform 0.3s var(--ease, ease);
+    }
+    .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .nav-menu .nav-item { width: 100%; }
+    .nav-menu .nav-link {
+        display: block !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.85) !important;
+    }
+    .mobile-menu-toggle { display: inline-flex !important; }
+
+    /* section spacing tightens */
+    .section { padding: 56px 0 !important; }
+}
+
+/* ---------- PHONES ---------- */
+@media (max-width: 560px) {
+    :root { --gutter: 16px; }
+    .container, .nav-container, .hero-content-container,
+    .section-content, .section-header, .about-content,
+    .education-grid, .experience-grid, .timeline,
+    .projects-grid, .skills-grid, .contact-content,
+    .footer-content, .expertise-grid {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .hero-content-container {
+        padding-top: 96px !important;
+        padding-bottom: 32px !important;
+        gap: 28px !important;
+    }
+    .hero-title { font-size: clamp(2rem, 11vw, 2.8rem) !important; line-height: 1.05 !important; }
+    .hero-eyebrow { font-size: 0.65rem !important; margin: 1rem 0 0.4rem !important; }
+    .hero-eyebrow em { font-size: 0.9rem; }
+    .hero-status { font-size: 0.65rem !important; padding: 0.35rem 0.7rem !important; }
+    .hero-description { font-size: 0.95rem !important; max-width: 100%; }
+    .hero-cta { gap: 0.5rem !important; }
+    .hero-cta .btn { padding: 0.8rem 1.2rem !important; font-size: 0.88rem !important; flex: 1; text-align: center; }
+    .hero-social { margin-top: 1.6rem !important; }
+
+    /* grids collapse */
+    .projects-grid, .skills-grid, .education-grid,
+    .experience-grid, .expertise-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    .project-card { padding: 1.25rem !important; }
+
+    /* sections tighter */
+    .section { padding: 44px 0 !important; }
+    .section-kicker { font-size: 0.65rem !important; margin-bottom: 0.6rem !important; }
+    .section-title, .section-header h2 { font-size: clamp(1.6rem, 6vw, 2.1rem) !important; }
+
+    /* tech marquee item spacing */
+    .tech-marquee { padding: 1rem 0 !important; }
+    .tech-marquee__item { font-size: 0.78rem !important; padding: 0 1rem !important; }
+
+    /* navbar logo + actions tighter */
+    .nav-container { padding: 10px 16px !important; gap: 12px !important; }
+    .language-switcher { padding: 2px !important; }
+    .lang-btn { padding: 4px 7px !important; font-size: 0.62rem !important; }
+    .lang-btn .flag { font-size: 0.75rem !important; }
+    .theme-toggle { width: 30px !important; height: 30px !important; }
+    .theme-toggle svg { width: 14px !important; height: 14px !important; }
+
+    /* contact page tighter */
+    .contact-content { gap: 1.5rem !important; }
+
+    /* scroll progress thinner */
+    .scroll-progress { height: 2px !important; }
+
+    /* logo */
+    .sdp-logo { max-width: 260px; }
+    .sdp-mark { font-size: clamp(3.2rem, 18vw, 4.8rem) !important; }
+}
+
+/* ---------- VERY NARROW ---------- */
+@media (max-width: 380px) {
+    .hero-cta { flex-direction: column; }
+    .hero-cta .btn { width: 100%; }
+    .hero-title { font-size: clamp(1.8rem, 11vw, 2.4rem) !important; }
+    .sdp-logo { max-width: 220px; }
+}
+
+/* ---------- TOUCH DEVICES — disable hover-only effects ---------- */
+@media (hover: none) {
+    .cursor-blob { display: none !important; }
+    .project-card:hover { transform: none !important; }
+    .btn-primary:hover, .btn-secondary:hover { transform: none !important; }
+}
+
+/* ---------- LARGE DESKTOPS — bigger container ---------- */
+@media (min-width: 1600px) {
+    .container, .nav-container, .hero-content-container,
+    .section-content, .section-header {
+        max-width: 1280px !important;
+    }
+}
+
 /* --------------------------------------------------------------------------
    7. SECTION HEADERS — serif accent on titles
    -------------------------------------------------------------------------- */
