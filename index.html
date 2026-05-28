@@ -69,11 +69,14 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background">
-            <img src="hero-bg.png" alt="Background" class="hero-bg-image">
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--a" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--b" aria-hidden="true"></div>
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content-container">
             <div class="hero-text-content">
+                <span class="hero-status"><span class="status-dot"></span>Available for new opportunities</span>
                 <h1 class="hero-title">Siddharth Patni</h1>
                 <div class="hero-subtitle-wrapper">
                     <h2 class="hero-subtitle">
@@ -240,8 +243,9 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section about-section" data-section="about">
         <div class="container">
+            <span class="section-kicker">01 — Profile</span>
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-content-wrapper">
@@ -316,8 +320,9 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="section education-section">
+    <section id="education" class="section education-section" data-section="education">
         <div class="container">
+            <span class="section-kicker">02 — Education</span>
             <h2 class="section-title">Education</h2>
             <div class="education-grid">
                 <!-- M.Sc. -->
@@ -396,8 +401,9 @@
     </section>
 
     <!-- Work Experience Section -->
-    <section id="experience" class="section work-experience-section">
+    <section id="experience" class="section work-experience-section" data-section="experience">
         <div class="container">
+            <span class="section-kicker">03 — Experience</span>
             <h2 class="section-title">Research & Work Experience</h2>
             <div class="timeline">
                 <!-- CORE Research Group -->
@@ -481,8 +487,9 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
+    <section id="projects" class="section projects-section" data-section="projects">
         <div class="container">
+            <span class="section-kicker">04 — Selected Work</span>
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">Selected work across agentic AI, LLM infrastructure and full-stack systems.</p>
 
@@ -735,8 +742,9 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
+    <section id="skills" class="section skills-section" data-section="skills">
         <div class="container">
+            <span class="section-kicker">05 — Toolbox</span>
             <h2 class="section-title">Technical Skills</h2>
 
             <!-- Interactive Skills Radar Chart -->
@@ -835,8 +843,9 @@
 
 
 
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section" data-section="contact">
         <div class="container">
+            <span class="section-kicker">06 — Contact</span>
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-content">
                 <div class="contact-info glass-card">

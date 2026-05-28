@@ -541,3 +541,343 @@ body {
     .filter-chip { white-space: nowrap; padding: 7px 12px; font-size: 12.5px; }
     .section-subtitle { padding: 0 16px; }
 }
+
+/* ==========================================
+   v2 — Developer-grade refinements
+   Hero pattern, section palettes, kickers,
+   status pill, contact inversion.
+   ========================================== */
+
+/* ---------- Section palette tokens ----------
+   Each section gets a distinct, restrained tint
+   and a single accent line, like Linear/Vercel docs. */
+:root {
+    --pal-about-surface: #FBF8F2;     /* warm ivory */
+    --pal-about-accent:  #B45309;     /* amber-700 */
+
+    --pal-edu-surface:   #F1F7F4;     /* mint paper */
+    --pal-edu-accent:    #0F766E;     /* teal-700 */
+
+    --pal-exp-surface:   #F2F5FB;     /* cool slate */
+    --pal-exp-accent:    #1D4ED8;     /* blue-700 */
+
+    --pal-prj-surface:   #FAFAFB;     /* neutral */
+    --pal-prj-accent:    #111111;     /* ink */
+
+    --pal-skill-surface: #F6F3FB;     /* lilac paper */
+    --pal-skill-accent:  #6D28D9;     /* violet-700 */
+
+    --pal-contact-surface: #0B0B0F;   /* dark finale */
+    --pal-contact-fg:      #F2F2F5;
+    --pal-contact-accent:  #4DA3FF;
+}
+
+[data-theme="dark"] {
+    --pal-about-surface: #14110C;
+    --pal-edu-surface:   #0E1714;
+    --pal-exp-surface:   #0E1320;
+    --pal-prj-surface:   #0F0F12;
+    --pal-skill-surface: #15101E;
+    --pal-contact-surface: #050507;
+}
+
+/* ---------- Apply palette to sections ---------- */
+.about-section            { background: var(--pal-about-surface); }
+.education-section        { background: var(--pal-edu-surface); }
+.work-experience-section  { background: var(--pal-exp-surface); }
+.projects-section         { background: var(--pal-prj-surface) !important; }
+.skills-section           { background: var(--pal-skill-surface); }
+
+/* Hairline accent strip at the top of each tinted section */
+[data-section]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.9;
+}
+.about-section            { color: var(--pal-about-accent); }
+.education-section        { color: var(--pal-edu-accent); }
+.work-experience-section  { color: var(--pal-exp-accent); }
+.projects-section         { color: var(--pal-prj-accent); }
+.skills-section           { color: var(--pal-skill-accent); }
+.contact-section          { color: var(--pal-contact-accent); }
+
+/* Reset child text color back to ink (the parent color: is only used by the strip & kicker) */
+.section .container,
+.section .container * {
+    /* No-op: most child text already sets its own color via existing rules */
+}
+
+/* ---------- Section kicker label ---------- */
+.section-kicker {
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px;
+    font: 600 11px/1 var(--font-mono, ui-monospace, monospace);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: currentColor;
+}
+
+/* Re-color the section title divider with the accent for each section */
+.section[data-section] .section-title::after {
+    background: currentColor !important;
+    opacity: 0.55;
+    width: 28px !important;
+}
+
+/* Force body text inside sections to stay readable (override the color cascade) */
+.section[data-section] .container > *:not(.section-kicker):not(.section-title) {
+    color: var(--ink);
+}
+
+/* ---------- Hero: dot grid + glow ---------- */
+.hero {
+    background: linear-gradient(180deg, #0A0A0F 0%, #0F1117 60%, #14161E 100%);
+    color: #F2F2F5;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg-image { display: none !important; }
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0;
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 40%, transparent 75%);
+}
+
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hero-glow--a {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, #2563EB 0%, transparent 60%);
+    top: -120px; left: -120px;
+}
+
+.hero-glow--b {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, #7C3AED 0%, transparent 60%);
+    bottom: -140px; right: -140px;
+    opacity: 0.4;
+}
+
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+        rgba(10,10,15,0.55) 0%,
+        rgba(10,10,15,0.7) 60%,
+        rgba(10,10,15,0.92) 100%) !important;
+}
+
+/* Hero text: force light on dark hero regardless of theme */
+.hero .hero-title {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.hero .hero-subtitle {
+    color: rgba(242,242,245,0.78) !important;
+}
+
+.hero .hero-description {
+    color: rgba(242,242,245,0.65) !important;
+}
+
+.hero .social-link {
+    color: rgba(242,242,245,0.7);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.hero .social-link:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.06);
+}
+
+/* Hero buttons over dark background */
+.hero .btn-primary {
+    background: #FFFFFF !important;
+    color: #0A0A0F !important;
+    border-color: #FFFFFF !important;
+}
+
+.hero .btn-primary:hover {
+    background: #E6E6EA !important;
+    box-shadow: 0 8px 22px rgba(255,255,255,0.18) !important;
+}
+
+.hero .btn-secondary {
+    color: #FFFFFF !important;
+    border-color: rgba(255,255,255,0.25) !important;
+}
+
+.hero .btn-secondary:hover {
+    background: rgba(255,255,255,0.06) !important;
+    border-color: #FFFFFF !important;
+}
+
+/* ---------- Status pill in hero ---------- */
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding: 6px 12px 6px 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    color: rgba(242,242,245,0.85);
+    font: 500 12px/1 var(--font-mono, ui-monospace, monospace);
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.hero-status .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15); }
+    50%      { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.05); }
+}
+
+/* ---------- Expertise pillars: tighten on top of hero/section-2 ---------- */
+.expertise-pillars-section {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+/* ---------- Contact section: dark finale ---------- */
+.contact-section {
+    background: var(--pal-contact-surface) !important;
+    color: var(--pal-contact-fg);
+}
+
+.contact-section .section-title {
+    color: var(--pal-contact-fg) !important;
+}
+
+.contact-section .section-kicker {
+    color: var(--pal-contact-accent);
+}
+
+.contact-section .container > *:not(.section-kicker):not(.section-title) {
+    color: var(--pal-contact-fg);
+}
+
+.contact-section .glass-card {
+    background: rgba(255,255,255,0.03) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+}
+
+.contact-section .glass-card:hover {
+    border-color: rgba(255,255,255,0.18) !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35) !important;
+}
+
+.contact-section .contact-info h3,
+.contact-section .contact-info p,
+.contact-section .contact-label,
+.contact-section .contact-value {
+    color: rgba(242,242,245,0.85) !important;
+}
+
+.contact-section .contact-value:hover { color: #fff !important; }
+
+.contact-section .social-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.contact-section .social-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* ---------- Navbar over the dark hero ---------- */
+.navbar {
+    background: rgba(10,10,15,0.6) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.navbar .nav-logo {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.navbar .nav-link {
+    color: rgba(255,255,255,0.65) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #fff !important;
+}
+
+/* When scrolled past hero, the navbar should adapt to light sections */
+.navbar.scrolled {
+    background: rgba(255,255,255,0.85) !important;
+    border-bottom: 1px solid var(--line) !important;
+}
+
+.navbar.scrolled .nav-logo,
+.navbar.scrolled .nav-link.active,
+.navbar.scrolled .nav-link:hover {
+    color: var(--ink) !important;
+    -webkit-text-fill-color: var(--ink) !important;
+}
+
+.navbar.scrolled .nav-link {
+    color: var(--muted) !important;
+}
+
+/* ---------- Project card subtle accent on top edge ---------- */
+.projects-section .project-card {
+    background: #FFFFFF !important;
+}
+
+.projects-section .featured-card {
+    box-shadow: 0 1px 0 var(--pal-prj-accent) inset, 0 0 0 1px var(--line) !important;
+}
+
+/* ---------- Scroll indicator: white over dark hero ---------- */
+.hero .scroll-indicator { color: rgba(255,255,255,0.6); }
+.hero .scroll-indicator .mouse { border-color: rgba(255,255,255,0.5); }
+.hero .scroll-indicator .wheel { background: rgba(255,255,255,0.6); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .hero-glow--a, .hero-glow--b { width: 320px; height: 320px; filter: blur(60px); }
+    .section-kicker { font-size: 10.5px; letter-spacing: 0.18em; }
+}
