@@ -298,6 +298,23 @@
 
 /* ===== PROJECTS SECTION ===== */
 
+/* FIX: Remove Sentinel row-span that causes a large empty void at card bottom.
+   Sentinel was spanning 2 grid rows but only has ~1 row of content. */
+.projects-section .project-card:first-child {
+    grid-row: span 1 !important;
+}
+
+/* Rebalance bento grid to 3 clean rows of 6 cols each:
+   Row 1: Sentinel(4) + CereForge(2) = 6
+   Row 2: Workflow(2) + ShopMate(2) + AI Video(2) = 6
+   Row 3: AI Driver(2) + Multi-Disease(2) + LLM(2) = 6  */
+.projects-section .project-card:nth-child(4) {
+    grid-column: span 2 !important;
+}
+.projects-section .project-card:nth-child(5) {
+    grid-column: span 2 !important;
+}
+
 /* Project card inner content */
 .project-content {
     padding: 22px !important;
