@@ -714,3 +714,209 @@
         gap: 12px;
     }
 }
+
+/* ============================================================================
+   PRO FINAL v2 — Professionalism polish pass
+   ============================================================================ */
+
+/* ----- ABOUT: kill the gradient underline that made <strong> read as broken
+   hyperlinks. Replace with clean, confident emphasis. ----- */
+.about-text strong::after,
+.about-intro strong::after {
+    content: none !important;
+    display: none !important;
+}
+
+.about-section .about-intro strong {
+    color: var(--sec-about, #B45309) !important;
+    -webkit-text-fill-color: var(--sec-about, #B45309) !important;
+    background: none !important;
+    font-weight: 500 !important;
+    font-style: italic;
+    text-decoration: none !important;
+}
+
+.about-section .about-text p strong {
+    color: var(--ink, #0A0A0F) !important;
+    -webkit-text-fill-color: var(--ink, #0A0A0F) !important;
+    background: none !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+[data-theme="dark"] .about-section .about-text p strong {
+    color: var(--ink, #F4F4F7) !important;
+    -webkit-text-fill-color: var(--ink, #F4F4F7) !important;
+}
+
+/* ----- SKILLS RADAR: drop the off-palette cyan glow; give the canvas a calm,
+   on-brand container that reads cleanly in both themes. ----- */
+#skills-radar {
+    filter: none !important;
+    display: block;
+    margin: 0 auto 6px !important;
+}
+
+.skills-radar-container {
+    max-width: 460px !important;
+    margin: 0 auto 48px !important;
+    background: var(--surface, #FFFFFF) !important;
+    border: 1px solid var(--line, rgba(15, 15, 20, 0.10)) !important;
+    border-radius: 18px !important;
+    padding: 20px 20px 16px !important;
+    box-shadow: 0 1px 3px rgba(10, 10, 15, 0.04) !important;
+    backdrop-filter: none !important;
+}
+
+[data-theme="dark"] .skills-radar-container {
+    background: rgba(20, 16, 30, 0.6) !important;
+    border-color: rgba(167, 139, 250, 0.14) !important;
+    box-shadow: none !important;
+}
+
+.skills-radar-caption {
+    font-family: var(--font-mono, monospace) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    color: var(--sec-skill, #6D28D9) !important;
+    margin-top: 4px !important;
+}
+
+[data-theme="dark"] .skills-radar-caption {
+    color: #A78BFA !important;
+}
+
+/* ============================================================================
+   PRO FINAL v3 — Recruiter-grade layout pass
+   Fixes: orphaned pillar grid, projects bento voids, hero résumé CTA.
+   ============================================================================ */
+
+/* ----- EXPERTISE PILLARS: force a balanced 4-up row (was 3 + 1 orphan) ----- */
+.expertise-pillars-section .expertise-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: clamp(14px, 1.6vw, 22px) !important;
+    border: none !important;
+}
+.expertise-pillars-section .expertise-pillar {
+    padding: 26px 22px !important;
+}
+@media (max-width: 960px) {
+    .expertise-pillars-section .expertise-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+@media (max-width: 560px) {
+    .expertise-pillars-section .expertise-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ----- PROJECTS: two equal featured cards on top (kills Sentinel's dead space),
+   then clean 3-up rows. 3+3 / 2+2+2 / 2+2+2 on a 6-col grid. ----- */
+.projects-section .project-card:first-child {
+    grid-column: span 3 !important;
+    grid-row: span 1 !important;
+}
+.projects-section .project-card:nth-child(2) {
+    grid-column: span 3 !important;
+}
+.projects-section .project-card:nth-child(3),
+.projects-section .project-card:nth-child(4),
+.projects-section .project-card:nth-child(5),
+.projects-section .project-card:nth-child(6),
+.projects-section .project-card:nth-child(7),
+.projects-section .project-card:nth-child(8) {
+    grid-column: span 2 !important;
+}
+/* Both featured cards get the larger title treatment, content top-aligned */
+.projects-section .project-card.featured-card .project-content { justify-content: flex-start !important; }
+.projects-section .project-card.featured-card h3 {
+    font-size: clamp(1.3rem, 2vw, 1.7rem) !important;
+    letter-spacing: -0.02em !important;
+}
+.projects-section .project-card.featured-card .project-description {
+    font-size: 0.98rem !important;
+}
+
+@media (max-width: 1100px) {
+    .projects-section .project-card:first-child,
+    .projects-section .project-card:nth-child(2) { grid-column: span 2 !important; }
+    .projects-section .project-card:nth-child(3),
+    .projects-section .project-card:nth-child(4),
+    .projects-section .project-card:nth-child(5),
+    .projects-section .project-card:nth-child(6),
+    .projects-section .project-card:nth-child(7),
+    .projects-section .project-card:nth-child(8) { grid-column: span 2 !important; }
+}
+@media (max-width: 680px) {
+    .projects-section .projects-grid { grid-template-columns: 1fr !important; }
+    .projects-section .project-card,
+    .projects-section .project-card:first-child,
+    .projects-section .project-card:nth-child(n) { grid-column: 1 / -1 !important; }
+}
+
+/* ----- HERO: résumé CTA + ghost tertiary button ----- */
+.hero-cta .btn-resume {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    cursor: pointer;
+    background: transparent !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+}
+.hero-cta .btn-resume::after { display: none !important; }
+.hero-cta .btn-resume:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.55) !important;
+    transform: translateY(-2px) !important;
+}
+.hero-cta .btn-resume svg { margin-top: -1px; flex-shrink: 0; }
+.hero-cta .btn-ghost {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    color: rgba(255, 255, 255, 0.66) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.66) !important;
+    padding: 0.85rem 1rem !important;
+    box-shadow: none !important;
+    transition: color 0.2s ease !important;
+}
+.hero-cta .btn-ghost::after { display: none !important; }
+.hero-cta .btn-ghost:hover {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    background: transparent !important;
+    transform: none !important;
+}
+
+/* ----- CONTACT: prominent primary "Email Me" CTA ----- */
+.contact-cta-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 8px 0 16px;
+    padding: 15px 24px;
+    border-radius: 12px;
+    background: var(--sec-contact, #4DA3FF);
+    color: #06121F;
+    font: 600 15px/1 var(--font-sans, sans-serif);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 24px rgba(77, 163, 255, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.contact-cta-primary svg { color: #06121F; }
+.contact-cta-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 12px 32px rgba(77, 163, 255, 0.32);
+}

@@ -502,26 +502,6 @@ class PerformanceOptimizer {
         });
 
         images.forEach(img => imageObserver.observe(img));
-
-        // Preload critical assets
-        this.preloadCriticalAssets();
-    }
-
-    preloadCriticalAssets() {
-        const criticalImages = [
-            'hero-bg.png',
-            'project-mlops.png',
-            'project-workflow.png',
-            'project-ai-reels.png'
-        ];
-
-        criticalImages.forEach(src => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = src;
-            document.head.appendChild(link);
-        });
     }
 }
 
@@ -690,9 +670,18 @@ class DocumentModal {
         this.downloadBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const docType = btn.dataset.doc;
-                this.downloadDocument(docType);
+                this.openDocument(docType);
             });
         });
+
+        // Hero "Résumé" CTA — open the résumé directly for recruiters
+        const heroResumeBtn = document.getElementById('hero-resume-btn');
+        if (heroResumeBtn) {
+            heroResumeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openDocument('resume');
+            });
+        }
     }
 
     open() {
@@ -705,10 +694,25 @@ class DocumentModal {
         document.body.style.overflow = '';
     }
 
-    downloadDocument(type) {
+    openDocument(type) {
         const content = type === 'resume' ? this.getResumeHTML() : this.getCoverLetterHTML();
-        const filename = type === 'resume' ? 'Siddharth_Patni_Resume.html' : 'Siddharth_Patni_Cover_Letter.html';
+        // Open in a new tab so the recruiter can read it and one-click "Save as PDF".
+        const win = window.open('', '_blank');
+        if (win) {
+            win.document.open();
+            win.document.write(content);
+            win.document.close();
+        } else {
+            // Popup blocked — fall back to a file download.
+            this.downloadAsFile(type, content);
+        }
+        this.close();
+    }
 
+    downloadAsFile(type, content) {
+        const filename = type === 'resume'
+            ? 'Siddharth_Patni_Resume.html'
+            : 'Siddharth_Patni_Cover_Letter.html';
         const blob = new Blob([content], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -727,43 +731,89 @@ class DocumentModal {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siddharth Patni - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Calibri', 'Helvetica Neue', Arial, sans-serif; color: #222; line-height: 1.45; max-width: 800px; margin: 0 auto; padding: 32px 44px; background: #fff; font-size: 11pt; }
-        h1 { font-size: 22pt; font-weight: 700; color: #111; text-align: center; margin-bottom: 2px; letter-spacing: 0.5px; }
-        .subtitle { font-size: 11pt; color: #333; text-align: center; font-weight: 400; margin-bottom: 6px; }
-        .contact-row { text-align: center; font-size: 9.5pt; color: #444; margin-bottom: 16px; line-height: 1.6; }
-        .contact-row a { color: #0056b3; text-decoration: none; }
-        .divider { border: none; border-top: 1.5px solid #111; margin: 0 0 14px 0; }
-        h2 { font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #111; border-bottom: 1px solid #999; padding-bottom: 3px; margin: 14px 0 8px 0; }
-        .summary { font-size: 10pt; color: #333; margin-bottom: 12px; line-height: 1.5; }
-        .entry { margin-bottom: 10px; }
-        .entry-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
-        .entry-title { font-size: 10.5pt; font-weight: 700; color: #111; }
-        .entry-org { font-size: 10pt; font-style: italic; color: #333; }
-        .entry-date { font-size: 9pt; color: #555; white-space: nowrap; }
-        .entry-loc { font-size: 9pt; color: #555; }
-        ul { padding-left: 16px; margin: 3px 0 0 0; }
-        li { font-size: 10pt; color: #222; margin-bottom: 2px; line-height: 1.45; }
-        .skills-table { width: 100%; font-size: 10pt; line-height: 1.5; }
-        .skills-table td { padding: 1px 0; vertical-align: top; }
-        .skills-table .label { font-weight: 700; color: #111; width: 120px; padding-right: 8px; }
-        .project-title { font-size: 10.5pt; font-weight: 700; color: #111; }
-        .project-tech { font-size: 9.5pt; font-weight: 400; color: #555; }
-        @media print { body { padding: 18px 28px; font-size: 10pt; } h1 { font-size: 20pt; } }
+        :root { --accent: #4F46E5; --ink: #15151C; --muted: #4B4D57; --soft: #6B6D78; --line: #E2E2E8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        html { background: #EDEEF2; }
+        body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; color: var(--ink); line-height: 1.46; font-size: 10.2pt;
+               max-width: 8.5in; margin: 28px auto; padding: 0.62in 0.66in; background: #fff;
+               box-shadow: 0 8px 40px rgba(20,20,40,0.14); border-radius: 2px; }
+
+        /* Floating toolbar (screen only) */
+        .toolbar { position: fixed; top: 16px; right: 16px; display: flex; align-items: center; gap: 14px; z-index: 50;
+                   background: rgba(18,18,26,0.92); backdrop-filter: blur(8px); padding: 9px 9px 9px 16px; border-radius: 12px;
+                   box-shadow: 0 8px 28px rgba(0,0,0,0.28); }
+        .toolbar-hint { font-size: 11px; color: rgba(255,255,255,0.62); letter-spacing: 0.01em; }
+        .toolbar button { font-family: inherit; font-size: 12.5px; font-weight: 600; color: #fff; background: var(--accent);
+                          border: none; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+                          transition: transform .15s ease, background .15s ease; }
+        .toolbar button:hover { background: #4338CA; transform: translateY(-1px); }
+
+        /* Header */
+        .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+        .head-left h1 { font-size: 25pt; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+        .subtitle { font-size: 10.5pt; color: var(--accent); font-weight: 600; letter-spacing: 0.005em; }
+        .contact-row { text-align: right; font-size: 9pt; color: var(--muted); line-height: 1.7; white-space: nowrap; }
+        .contact-row a { color: var(--muted); text-decoration: none; }
+        .contact-row .sep { color: var(--line); }
+
+        /* Sections */
+        h2 { font-size: 9.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);
+             margin: 15px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+        .summary { font-size: 10pt; color: var(--muted); margin-bottom: 2px; line-height: 1.52; }
+
+        .entry { margin-bottom: 9px; }
+        .entry-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+        .entry-title { font-size: 10.5pt; font-weight: 700; color: var(--ink); }
+        .entry-org { font-size: 10pt; font-weight: 600; color: var(--accent); }
+        .entry-date { font-size: 8.6pt; font-weight: 600; color: var(--soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+        .entry-loc { font-size: 8.8pt; color: var(--soft); margin-top: 1px; }
+        ul { padding-left: 15px; margin: 4px 0 0; }
+        li { font-size: 9.6pt; color: var(--muted); margin-bottom: 2.5px; line-height: 1.46; padding-left: 2px; }
+        li::marker { color: var(--accent); }
+
+        .skills-table { width: 100%; font-size: 9.6pt; line-height: 1.55; border-collapse: collapse; }
+        .skills-table td { padding: 2px 0; vertical-align: top; color: var(--muted); }
+        .skills-table .label { font-weight: 700; color: var(--ink); width: 96px; padding-right: 10px; white-space: nowrap; }
+
+        .project-title { font-size: 10.2pt; font-weight: 700; color: var(--ink); }
+        .project-tech { font-size: 9pt; font-weight: 500; color: var(--soft); }
+
+        @media print {
+            @page { size: Letter; margin: 0.5in; }
+            html, body { background: #fff; }
+            body { box-shadow: none; margin: 0; padding: 0; max-width: 100%; font-size: 10pt; }
+            .no-print { display: none !important; }
+            h2 { margin-top: 13px; break-after: avoid; }
+            .entry, .skills-table tr, .head { break-inside: avoid; }
+        }
     </style>
 </head>
 <body>
-    <h1>SIDDHARTH PATNI</h1>
-    <div class="subtitle">AI & Autonomous Systems Engineer | MLOps | LLM Pipelines | Computer Vision</div>
-    <div class="contact-row">
-        Braunschweig, Germany &nbsp;|&nbsp;
-        <a href="mailto:patnisiddharth1311@gmail.com">patnisiddharth1311@gmail.com</a> &nbsp;|&nbsp;
-        +49 155 1083 5846 &nbsp;|&nbsp;
-        <a href="https://www.linkedin.com/in/siddharth-divyang-patni-644857185">linkedin.com/in/siddharth-divyang-patni</a> &nbsp;|&nbsp;
-        <a href="https://github.com/Siddharthpatni">github.com/Siddharthpatni</a>
+    <div class="toolbar no-print">
+        <span class="toolbar-hint">Choose “Save as PDF” as the destination</span>
+        <button onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6v-8Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Save as PDF
+        </button>
     </div>
-    <hr class="divider">
+
+    <div class="head">
+        <div class="head-left">
+            <h1>Siddharth Patni</h1>
+            <div class="subtitle">AI &amp; Autonomous Systems Engineer &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; LLM Pipelines</div>
+        </div>
+        <div class="contact-row">
+            Braunschweig, Germany<br>
+            <a href="mailto:patnisiddharth1311@gmail.com">patnisiddharth1311@gmail.com</a><br>
+            +49 155 1083 5846<br>
+            <a href="https://www.linkedin.com/in/siddharth-divyang-patni-644857185">linkedin.com/in/siddharth-divyang-patni</a><br>
+            <a href="https://github.com/Siddharthpatni">github.com/Siddharthpatni</a>
+        </div>
+    </div>
 
     <h2>Professional Summary</h2>
     <p class="summary">Results-driven AI & Autonomous Systems Engineer with professional experience in ML pipelines, computer vision, and full-stack development. Pursuing M.Sc. in Digital Technologies (TU Clausthal). Skilled in building production-grade intelligent systems using LLMs, RAG architectures, and MLOps best practices. Demonstrated ability to reduce processing times by 90%+, improve application performance by 30%, and deliver end-to-end AI solutions from prototype to deployment.</p>
@@ -876,24 +926,54 @@ class DocumentModal {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siddharth Patni - Cover Letter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Calibri', 'Helvetica Neue', Arial, sans-serif; color: #222; line-height: 1.65; max-width: 700px; margin: 0 auto; padding: 44px 56px; background: #fff; font-size: 11pt; }
-        .header { margin-bottom: 28px; border-bottom: 1.5px solid #111; padding-bottom: 14px; }
-        .header h1 { font-size: 18pt; font-weight: 700; color: #111; margin-bottom: 4px; }
-        .header-contact { font-size: 9.5pt; color: #444; line-height: 1.6; }
-        .header-contact a { color: #0056b3; text-decoration: none; }
-        .date { font-size: 10pt; color: #555; margin-bottom: 20px; }
-        .recipient { margin-bottom: 20px; font-size: 10pt; color: #333; line-height: 1.5; }
-        .subject { font-size: 11pt; font-weight: 700; color: #111; margin-bottom: 18px; }
-        .body-text p { font-size: 10.5pt; color: #222; margin-bottom: 12px; }
-        .closing { margin-top: 24px; }
-        .closing p { font-size: 10.5pt; color: #222; }
-        .signature { margin-top: 20px; font-weight: 700; color: #111; font-size: 11pt; }
-        @media print { body { padding: 28px 40px; } }
+        :root { --accent: #4F46E5; --ink: #15151C; --muted: #3A3C46; --soft: #6B6D78; --line: #E2E2E8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        html { background: #EDEEF2; }
+        body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; color: var(--ink); line-height: 1.62; font-size: 10.5pt;
+               max-width: 8.5in; margin: 28px auto; padding: 0.7in 0.78in; background: #fff;
+               box-shadow: 0 8px 40px rgba(20,20,40,0.14); border-radius: 2px; }
+
+        .toolbar { position: fixed; top: 16px; right: 16px; display: flex; align-items: center; gap: 14px; z-index: 50;
+                   background: rgba(18,18,26,0.92); backdrop-filter: blur(8px); padding: 9px 9px 9px 16px; border-radius: 12px;
+                   box-shadow: 0 8px 28px rgba(0,0,0,0.28); }
+        .toolbar-hint { font-size: 11px; color: rgba(255,255,255,0.62); }
+        .toolbar button { font-family: inherit; font-size: 12.5px; font-weight: 600; color: #fff; background: var(--accent);
+                          border: none; padding: 9px 16px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+                          transition: transform .15s ease, background .15s ease; }
+        .toolbar button:hover { background: #4338CA; transform: translateY(-1px); }
+
+        .header { margin-bottom: 26px; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+        .header h1 { font-size: 19pt; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 5px; }
+        .header-contact { font-size: 9pt; color: var(--soft); line-height: 1.65; }
+        .header-contact a { color: var(--accent); text-decoration: none; }
+        .header-contact .sep { color: var(--line); }
+        .date { font-size: 9.5pt; color: var(--soft); margin-bottom: 22px; }
+        .recipient { margin-bottom: 22px; font-size: 10pt; color: var(--soft); line-height: 1.5; }
+        .subject { font-size: 11pt; font-weight: 700; color: var(--ink); margin-bottom: 18px; }
+        .body-text p { font-size: 10.4pt; color: var(--muted); margin-bottom: 12px; }
+        .closing { margin-top: 22px; }
+        .closing p { font-size: 10.4pt; color: var(--muted); }
+        .signature { margin-top: 18px; font-weight: 700; color: var(--ink); font-size: 11pt; }
+        @media print {
+            @page { size: Letter; margin: 0.6in; }
+            html, body { background: #fff; }
+            body { box-shadow: none; margin: 0; padding: 0; max-width: 100%; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
 <body>
+    <div class="toolbar no-print">
+        <span class="toolbar-hint">Choose “Save as PDF” as the destination</span>
+        <button onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6v-8Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Save as PDF
+        </button>
+    </div>
     <div class="header">
         <h1>Siddharth Patni</h1>
         <div class="header-contact">

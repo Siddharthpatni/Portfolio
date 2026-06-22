@@ -24,6 +24,7 @@ const translations = {
             ],
             description: 'AI & Autonomous Systems Engineer pursuing M.Sc. in Digital Technologies. Building intelligent systems with LLM pipelines, computer vision, and production-grade MLOps infrastructure.',
             viewWork: 'View My Work',
+            resume: 'Résumé',
             getInTouch: 'Get In Touch'
         },
         // Expertise Pillars
@@ -78,7 +79,7 @@ const translations = {
         // Skills Section
         skills: {
             title: 'Technical Skills',
-            radarCaption: 'Interactive Skills Proficiency Map'
+            radarCaption: 'Core Engineering Focus Areas'
         },
         // Contact Section
         contact: {
@@ -116,6 +117,7 @@ const translations = {
             ],
             description: 'KI & Autonome Systeme Ingenieur, M.Sc.-Studium in Digital Technologies. Entwicklung intelligenter Systeme mit LLM-Pipelines, Computer Vision und produktionsreifer MLOps-Infrastruktur.',
             viewWork: 'Meine Projekte',
+            resume: 'Lebenslauf',
             getInTouch: 'Kontakt aufnehmen'
         },
         // Expertise Pillars
@@ -170,7 +172,7 @@ const translations = {
         // Skills Section
         skills: {
             title: 'Technische Fähigkeiten',
-            radarCaption: 'Interaktive Kompetenzübersicht'
+            radarCaption: 'Technische Schwerpunkte'
         },
         // Contact Section
         contact: {
@@ -266,10 +268,14 @@ class LanguageSwitcher {
         const heroDesc = document.querySelector('.hero-description');
         if (heroDesc) heroDesc.textContent = t.hero.description;
 
-        const viewWorkBtn = document.querySelector('.btn-primary');
+        const viewWorkBtn = document.querySelector('.hero-cta .btn-primary');
         if (viewWorkBtn) viewWorkBtn.textContent = t.hero.viewWork;
 
-        const getInTouchBtn = document.querySelector('.btn-secondary');
+        // Résumé button: only swap the label span so the icon survives
+        const resumeLabel = document.querySelector('.hero-cta .btn-resume .btn-label');
+        if (resumeLabel && t.hero.resume) resumeLabel.textContent = t.hero.resume;
+
+        const getInTouchBtn = document.querySelector('.hero-cta .btn-ghost');
         if (getInTouchBtn) getInTouchBtn.textContent = t.hero.getInTouch;
 
         // Section Titles

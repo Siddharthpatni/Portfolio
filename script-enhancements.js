@@ -10,14 +10,12 @@ class SkillsRadarChart {
 
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
-        this.width = 400;
-        this.height = 400;
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
 
-        this.centerX = this.width / 2;
-        this.centerY = this.height / 2;
-        this.maxRadius = Math.min(this.width, this.height) / 2 - 40;
+        // Logical (CSS) size — rendered at devicePixelRatio for retina crispness
+        this.size = 380;
+        this.center = this.size / 2;
+        this.maxRadius = this.size / 2 - 58; // leave room for outer labels
+        this.setupHiDPI();
 
         this.skills = [
             { name: 'MLOps', value: 0, target: 90 },
@@ -30,150 +28,171 @@ class SkillsRadarChart {
 
         this.animationProgress = 0;
         this.isAnimating = false;
+        this.hasAnimated = false;
 
         this.setupObserver();
+        this.setupThemeListener();
+        // Paint an initial empty grid so the chart never looks broken pre-scroll
+        this.draw();
+    }
+
+    setupHiDPI() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        this.dpr = dpr;
+        this.canvas.width = this.size * dpr;
+        this.canvas.height = this.size * dpr;
+        this.canvas.style.width = this.size + 'px';
+        this.canvas.style.height = this.size + 'px';
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // Resolve theme-aware colors at draw time so light/dark both read clearly
+    palette() {
+        const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+        return dark ? {
+            grid:   'rgba(255, 255, 255, 0.07)',
+            gridStrong: 'rgba(255, 255, 255, 0.12)',
+            axis:   'rgba(255, 255, 255, 0.10)',
+            fillFrom: 'rgba(139, 92, 246, 0.34)',
+            fillTo:   'rgba(99, 102, 241, 0.10)',
+            stroke: 'rgba(167, 139, 250, 0.95)',
+            dot:    '#A78BFA',
+            dotRing:'rgba(11, 11, 15, 0.9)',
+            label:  '#C9CBD3',
+            value:  '#A78BFA'
+        } : {
+            grid:   'rgba(15, 15, 20, 0.06)',
+            gridStrong: 'rgba(109, 40, 217, 0.14)',
+            axis:   'rgba(15, 15, 20, 0.10)',
+            fillFrom: 'rgba(109, 40, 217, 0.26)',
+            fillTo:   'rgba(79, 70, 229, 0.08)',
+            stroke: 'rgba(109, 40, 217, 0.85)',
+            dot:    '#6D28D9',
+            dotRing:'#FFFFFF',
+            label:  '#3A3A42',
+            value:  '#6D28D9'
+        };
     }
 
     setupObserver() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !this.isAnimating) {
+                if (entry.isIntersecting && !this.hasAnimated) {
+                    this.hasAnimated = true;
                     this.isAnimating = true;
                     this.animate();
                 }
             });
-        }, { threshold: 0.5 });
-
+        }, { threshold: 0.4 });
         observer.observe(this.canvas);
+    }
+
+    // Repaint when the user toggles light/dark so colors always match the theme
+    setupThemeListener() {
+        const mo = new MutationObserver(() => this.draw());
+        mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     }
 
     animate() {
         if (this.animationProgress < 1) {
-            this.animationProgress += 0.02;
-            this.skills.forEach(skill => {
-                skill.value = skill.target * this.animationProgress;
-            });
+            // Ease-out for a refined settle rather than a linear fill
+            this.animationProgress = Math.min(1, this.animationProgress + 0.022);
+            const eased = 1 - Math.pow(1 - this.animationProgress, 3);
+            this.skills.forEach(skill => { skill.value = skill.target * eased; });
             this.draw();
             requestAnimationFrame(() => this.animate());
         } else {
+            this.skills.forEach(skill => { skill.value = skill.target; });
+            this.isAnimating = false;
             this.draw();
         }
     }
 
+    pointAt(angle, radius) {
+        return {
+            x: this.center + Math.cos(angle) * radius,
+            y: this.center + Math.sin(angle) * radius
+        };
+    }
+
     draw() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
+        const ctx = this.ctx;
+        const c = this.palette();
+        const n = this.skills.length;
+        const step = (Math.PI * 2) / n;
+        ctx.clearRect(0, 0, this.size, this.size);
 
-        const numSkills = this.skills.length;
-        const angleStep = (Math.PI * 2) / numSkills;
-
-        // Draw background grid
+        // Concentric grid rings (outermost slightly stronger)
         for (let level = 1; level <= 5; level++) {
-            const radius = (this.maxRadius / 5) * level;
-            this.drawPolygon(radius, numSkills, 'rgba(102, 126, 234, 0.1)', 1);
+            const r = (this.maxRadius / 5) * level;
+            this.drawPolygon(r, n, level === 5 ? c.gridStrong : c.grid, 1);
         }
 
-        // Draw axes
-        this.ctx.strokeStyle = 'rgba(102, 126, 234, 0.2)';
-        this.ctx.lineWidth = 1;
-        for (let i = 0; i < numSkills; i++) {
-            const angle = angleStep * i - Math.PI / 2;
-            const x = this.centerX + Math.cos(angle) * this.maxRadius;
-            const y = this.centerY + Math.sin(angle) * this.maxRadius;
-
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.centerX, this.centerY);
-            this.ctx.lineTo(x, y);
-            this.ctx.stroke();
+        // Axis spokes
+        ctx.strokeStyle = c.axis;
+        ctx.lineWidth = 1;
+        for (let i = 0; i < n; i++) {
+            const angle = step * i - Math.PI / 2;
+            const p = this.pointAt(angle, this.maxRadius);
+            ctx.beginPath();
+            ctx.moveTo(this.center, this.center);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
         }
 
-        // Draw skill data
-        this.ctx.beginPath();
+        // Data polygon
+        ctx.beginPath();
         this.skills.forEach((skill, i) => {
-            const angle = angleStep * i - Math.PI / 2;
-            const radius = (skill.value / 100) * this.maxRadius;
-            const x = this.centerX + Math.cos(angle) * radius;
-            const y = this.centerY + Math.sin(angle) * radius;
-
-            if (i === 0) {
-                this.ctx.moveTo(x, y);
-            } else {
-                this.ctx.lineTo(x, y);
-            }
+            const angle = step * i - Math.PI / 2;
+            const p = this.pointAt(angle, (skill.value / 100) * this.maxRadius);
+            i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
         });
-        this.ctx.closePath();
+        ctx.closePath();
 
-        // Fill
-        const gradient = this.ctx.createRadialGradient(
-            this.centerX, this.centerY, 0,
-            this.centerX, this.centerY, this.maxRadius
-        );
-        gradient.addColorStop(0, 'rgba(102, 126, 234, 0.4)');
-        gradient.addColorStop(1, 'rgba(0, 242, 254, 0.2)');
-        this.ctx.fillStyle = gradient;
-        this.ctx.fill();
+        const grad = ctx.createRadialGradient(this.center, this.center, 0, this.center, this.center, this.maxRadius);
+        grad.addColorStop(0, c.fillFrom);
+        grad.addColorStop(1, c.fillTo);
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.strokeStyle = c.stroke;
+        ctx.lineWidth = 2;
+        ctx.lineJoin = 'round';
+        ctx.stroke();
 
-        // Stroke
-        this.ctx.strokeStyle = 'rgba(0, 242, 254, 0.8)';
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-
-        // Draw points
+        // Vertex dots
         this.skills.forEach((skill, i) => {
-            const angle = angleStep * i - Math.PI / 2;
-            const radius = (skill.value / 100) * this.maxRadius;
-            const x = this.centerX + Math.cos(angle) * radius;
-            const y = this.centerY + Math.sin(angle) * radius;
-
-            this.ctx.beginPath();
-            this.ctx.arc(x, y, 5, 0, Math.PI * 2);
-            this.ctx.fillStyle = '#00f2fe';
-            this.ctx.fill();
-            this.ctx.strokeStyle = '#667eea';
-            this.ctx.lineWidth = 2;
-            this.ctx.stroke();
+            const angle = step * i - Math.PI / 2;
+            const p = this.pointAt(angle, (skill.value / 100) * this.maxRadius);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+            ctx.fillStyle = c.dot;
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = c.dotRing;
+            ctx.stroke();
         });
 
-        // Draw labels
-        this.ctx.fillStyle = '#cbd5e1';
-        this.ctx.font = '14px Inter, sans-serif';
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'middle';
-
+        // Outer axis labels only — no self-rated percentages (we show the SHAPE of
+        // expertise, not unverifiable "95%" claims). Anchored so text never overlaps.
         this.skills.forEach((skill, i) => {
-            const angle = angleStep * i - Math.PI / 2;
-            const labelRadius = this.maxRadius + 25;
-            const x = this.centerX + Math.cos(angle) * labelRadius;
-            const y = this.centerY + Math.sin(angle) * labelRadius;
-
-            this.ctx.fillText(skill.name, x, y);
-
-            // Draw percentage
-            const valueRadius = this.maxRadius + 10;
-            const valueX = this.centerX + Math.cos(angle) * valueRadius;
-            const valueY = this.centerY + Math.sin(angle) * valueRadius;
-
-            this.ctx.fillStyle = '#00f2fe';
-            this.ctx.font = 'bold 11px Inter, sans-serif';
-            this.ctx.fillText(Math.round(skill.value) + '%', valueX, valueY);
-            this.ctx.fillStyle = '#cbd5e1';
-            this.ctx.font = '14px Inter, sans-serif';
+            const angle = step * i - Math.PI / 2;
+            const cos = Math.cos(angle);
+            const lp = this.pointAt(angle, this.maxRadius + 22);
+            ctx.textAlign = cos > 0.25 ? 'left' : cos < -0.25 ? 'right' : 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = c.label;
+            ctx.font = '600 12.5px Inter, system-ui, sans-serif';
+            ctx.fillText(skill.name, lp.x, lp.y);
         });
     }
 
     drawPolygon(radius, sides, strokeStyle, lineWidth) {
-        const angleStep = (Math.PI * 2) / sides;
-
+        const step = (Math.PI * 2) / sides;
         this.ctx.beginPath();
         for (let i = 0; i < sides; i++) {
-            const angle = angleStep * i - Math.PI / 2;
-            const x = this.centerX + Math.cos(angle) * radius;
-            const y = this.centerY + Math.sin(angle) * radius;
-
-            if (i === 0) {
-                this.ctx.moveTo(x, y);
-            } else {
-                this.ctx.lineTo(x, y);
-            }
+            const angle = step * i - Math.PI / 2;
+            const p = this.pointAt(angle, radius);
+            i === 0 ? this.ctx.moveTo(p.x, p.y) : this.ctx.lineTo(p.x, p.y);
         }
         this.ctx.closePath();
         this.ctx.strokeStyle = strokeStyle;
