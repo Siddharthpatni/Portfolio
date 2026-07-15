@@ -42,8 +42,9 @@ AI & Autonomous Systems Engineer specializing in **production-grade LLM infrastr
 
 I build end-to-end intelligent systems: agentic web scrapers with self-learning cascades, LLM observability platforms, multi-robot orchestrators, and visual workflow engines. Python-based ML backends, React/Next.js frontends, containerized deployments, CI/CD automation.
 
-| 📊 | 10+ Projects | 15+ Technologies | 3 Cloud Platforms | 1+ Years Experience |
-|----|-------------|------------------|-------------------|---------------------|
+| 📊 Projects | ⚙️ Technologies | ☁️ Cloud Platforms | 🕐 Experience |
+|:-----------:|:---------------:|:------------------:|:-------------:|
+| **10+**     | **15+**         | **3**              | **1+ years**  |
 
 ---
 
@@ -63,24 +64,17 @@ I build end-to-end intelligent systems: agentic web scrapers with self-learning 
 
 ### ⭐ FLAGSHIP_NODES
 
-<table>
-<tr>
-<td width="50%" valign="top">
+#### 🏛️ Vergabepilot.AI — `PRIVATE_RESEARCH · CORE Research Group / Ciconia Systems`
 
-**🏛️ Vergabepilot.AI** — `PRIVATE_RESEARCH`
 Autonomous agentic AI for public-procurement document extraction across **30+ portal families** globally. 7-strategy cascade (Cached → Deterministic → Adaptive → LLM CodeGen → Learned Route → CUA → Manual), self-learning replayable routes, Redis circuit breakers, **262 tests**, 32-field deep extraction.
-`Python · FastAPI · Celery · Redis · PostgreSQL · MinIO · Playwright · browser-use · Docker`
 
-</td>
-<td width="50%" valign="top">
+`Python` `FastAPI` `Celery` `Redis` `PostgreSQL` `MinIO` `Playwright` `browser-use` `Docker`
 
-**🕷️ [Spidey](https://github.com/Siddharthpatni/Spidey)** — `SELF-HOSTED_AGENT`
+#### 🕷️ [Spidey](https://github.com/Siddharthpatni/Spidey) — `SELF-HOSTED_AGENT`
+
 Autonomous AI agent platform with a **live React Flow reasoning graph**, offline Vosk voice, local Ollama execution, and a two-stage **SFT → DPO** fine-tuning pipeline across 17 modules. Runs fully offline.
-`Python · FastAPI · React · React Flow · Vosk · Ollama · Unsloth · TRL`
 
-</td>
-</tr>
-</table>
+`Python` `FastAPI` `React` `React Flow` `Vosk` `Ollama` `Unsloth` `TRL`
 
 ### ✨ FEATURED_NODES
 
@@ -120,8 +114,8 @@ Autonomous AI agent platform with a **live React Flow reasoning graph**, offline
 ![Prometheus](https://img.shields.io/badge/PROMETHEUS-07090e?style=for-the-badge&logo=prometheus&logoColor=e23636)
 ![GitHub Actions](https://img.shields.io/badge/CI%2FCD-07090e?style=for-the-badge&logo=githubactions&logoColor=00f3ff)
 
-**Agentic AI:** browser-use (CUA) · Playwright automation · cascade orchestration · self-healing scrapers · SFT/DPO fine-tuning
-**Robotics & IoT:** Pepper · Temi · Arduino · OBD-II · M5Stack
+- **Agentic AI:** browser-use (CUA) · Playwright automation · cascade orchestration · self-healing scrapers · SFT/DPO fine-tuning
+- **Robotics & IoT:** Pepper · Temi · Arduino · OBD-II · M5Stack
 
 ---
 
