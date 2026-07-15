@@ -15,7 +15,7 @@ export const EducationSection: React.FC = () => {
           subtitle="Decrypting study profiles, research coursework, and academic credentials."
         />
 
-        <div className="mt-12 max-w-4xl mx-auto">
+        <div className="mt-12 max-w-4xl mx-auto space-y-6">
           {educations.map((edu, idx) => (
             <GlassCard key={idx} glowColor="gold" hoverEffect className="p-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4 mb-4">

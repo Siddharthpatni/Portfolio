@@ -2,6 +2,9 @@ import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { SpiderWebCanvas } from "@/components/SpiderWebCanvas";
 import { SpiderAssistant } from "@/components/SpiderAssistant";
+import { LoadingScreen } from "@/components/effects/LoadingScreen";
+import { WebCursor } from "@/components/effects/WebCursor";
+import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
@@ -14,6 +17,12 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      {/* Spider Sense boot sequence */}
+      <LoadingScreen />
+
+      {/* Desktop web-crosshair cursor trail */}
+      <WebCursor />
+
       {/* Background Interactive Spider Webs */}
       <SpiderWebCanvas />
 
@@ -26,12 +35,24 @@ export default function Home() {
       {/* Main Sections */}
       <main className="relative z-10 w-full">
         <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <EducationSection />
-        <ContactSection />
+        <ScrollReveal>
+          <AboutSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ExperienceSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ProjectsSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <SkillsSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <EducationSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <ContactSection />
+        </ScrollReveal>
       </main>
 
       {/* Footer */}

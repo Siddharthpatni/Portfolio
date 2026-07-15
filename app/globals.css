@@ -91,6 +91,13 @@ body {
   100% { top: 100%; }
 }
 
+/* Loading screen boot bar */
+@keyframes loadbar {
+  0% { width: 0%; }
+  60% { width: 74%; }
+  100% { width: 100%; }
+}
+
 /* Stark Grid Pattern */
 .stark-grid {
   background-image: 

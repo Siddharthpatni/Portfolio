@@ -15,7 +15,6 @@ export const educations: Education[] = [
       "Core Coursework: Artificial Intelligence, Computer Vision, Real-Time Operating Systems, Embedded IoT.",
       "Completed CORE Research internship at Ciconia Systems GmbH building procurement document harvesting agents.",
       "Developed multi-robot grocery assistant using Pepper & Temi platforms as part of advanced lab coursework.",
-      "GPA: 2.80 (German scale, 1.0 = best)",
       "Focus: Distributed Systems, MLOps Pipelines, and Autonomous Agentic Implementations."
     ]
   },

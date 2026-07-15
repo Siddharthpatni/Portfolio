@@ -7,12 +7,16 @@ import { SpiderButton } from "./ui/SpiderButton";
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -82,6 +86,14 @@ export const Navbar: React.FC = () => {
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
+      </div>
+
+      {/* Scroll progress web-line */}
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-transparent">
+        <div
+          className="h-full bg-gradient-to-r from-spidey-red via-spidey-red to-holo-cyan shadow-[0_0_8px_rgba(226,54,54,0.5)] transition-[width] duration-150 ease-out"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
       {/* Mobile Menu Panel */}
