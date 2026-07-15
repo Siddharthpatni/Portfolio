@@ -204,8 +204,8 @@ IMPACT:
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Siddharthpatni&show_icons=true&theme=tokyonight&count_private=true&title_color=B11313&icon_color=00f3ff&text_color=ffffff&bg_color=07090e&border_color=1A237E" alt="GitHub Stats" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Siddharthpatni&layout=compact&theme=tokyonight&title_color=B11313&text_color=ffffff&bg_color=07090e&border_color=1A237E" alt="Top Langs" />
+<img src="https://streak-stats.demolab.com?user=Siddharthpatni&background=07090e&ring=e23636&fire=e23636&currStreakLabel=00f3ff&sideLabels=ffffff&currStreakNum=ffffff&sideNums=ffffff&dates=808BA0&border=283040" alt="GitHub Streak" />
+<img src="https://ghchart.rshah.org/e23636/Siddharthpatni" alt="Contribution Graph" width="90%" />
 
 </div>
 

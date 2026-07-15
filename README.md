@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:e23636,50:B11313,100:1A237E&height=220&section=header&text=SIDDHARTH_PATNI&fontSize=48&fontColor=ffffff&fontAlignY=36&desc=//%20AGENTIC%20AI%20%26%20AUTONOMOUS%20SYSTEMS%20ENGINEER%20//%20SPIDEY_LABS%20v2.0&descSize=14&descAlignY=58&descColor=00f3ff&animation=twinkling" width="100%" alt="Siddharth Patni" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:e23636,50:B11313,100:1A237E&height=220&section=header&text=SIDDHARTH_PATNI&fontSize=48&fontColor=ffffff&fontAlignY=36&desc=//%20AGENTIC%20AI%20//%20AUTONOMOUS%20SYSTEMS%20//%20SPIDEY_LABS%20v2.0&descSize=14&descAlignY=58&descColor=00f3ff&animation=twinkling" width="100%" alt="Siddharth Patni" />
 
 # 🕷️ SPIDEY_LABS // STARK_TECH INTERFACE
 
@@ -157,8 +157,9 @@ npm run build   # production build
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Siddharthpatni&show_icons=true&count_private=true&title_color=e23636&icon_color=00f3ff&text_color=ffffff&bg_color=07090e&border_color=283040" alt="GitHub Stats" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Siddharthpatni&layout=compact&title_color=e23636&text_color=ffffff&bg_color=07090e&border_color=283040" alt="Top Languages" />
+<img src="https://streak-stats.demolab.com?user=Siddharthpatni&background=07090e&ring=e23636&fire=e23636&currStreakLabel=00f3ff&sideLabels=ffffff&currStreakNum=ffffff&sideNums=ffffff&dates=808BA0&border=283040" alt="GitHub Streak" />
+
+<img src="https://ghchart.rshah.org/e23636/Siddharthpatni" alt="Contribution Graph" width="90%" />
 
 *"It's not who I am underneath, but what I build that defines me."*
 
