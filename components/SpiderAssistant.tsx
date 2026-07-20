@@ -1,16 +1,15 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { X, Send, Bot, Shield } from "lucide-react";
+import { X, Send, Bot, Rocket } from "lucide-react";
 import { GlassCard } from "./ui/GlassCard";
 import { personalInfo } from "@/lib/data/personal";
 
 interface Message {
-  sender: "user" | "karen";
+  sender: "user" | "sid";
   text: string;
 }
 
 // Keyword-matched knowledge base. First topic whose keywords hit the query wins.
-// Hook for the future: swap answerFor() with a fetch to an LLM API route.
 const knowledgeBase: { keys: string[]; answer: string }[] = [
   {
     keys: ["vergabepilot", "procurement", "tender", "ciconia", "core research", "flagship"],
@@ -20,7 +19,7 @@ const knowledgeBase: { keys: string[]; answer: string }[] = [
   {
     keys: ["spidey", "voice", "reasoning graph", "offline agent", "dpo", "sft"],
     answer:
-      "Spidey is an autonomous laboratory assistant agent built with a live React Flow reasoning graph, offline Vosk voice controls, and local model execution via Ollama. It has a two-stage SFT/DPO training pipeline and is designed to run completely offline for ultimate privacy.",
+      "Spidey is an autonomous AI agent platform built with a live React Flow reasoning graph, offline Vosk voice controls, and local model execution via Ollama. It has a two-stage SFT/DPO training pipeline and is designed to run completely offline for ultimate privacy.",
   },
   {
     keys: ["sentinel", "observability", "audit", "eu ai act", "proxy"],
@@ -50,7 +49,7 @@ const knowledgeBase: { keys: string[]; answer: string }[] = [
   {
     keys: ["project", "portfolio", "built", "work on", "showcase"],
     answer:
-      "The Spider Lab holds 11 projects. Flagships: Vergabepilot.AI (agentic procurement extraction) and Spidey (self-hostable autonomous agent). Featured: Sentinel, Cereforge, Workflow Engine, and ShopMate-R. Ask me about any of them by name!",
+      "The lab holds 11 projects. Flagships: Vergabepilot.AI (agentic procurement extraction) and Spidey (self-hostable autonomous agent). Featured: Sentinel, Cereforge, Workflow Engine, and ShopMate-R. Ask me about any of them by name!",
   },
   {
     keys: ["stack", "tech", "technolog", "skill", "language", "framework", "tools"],
@@ -60,26 +59,26 @@ const knowledgeBase: { keys: string[]; answer: string }[] = [
   {
     keys: ["experience", "job", "intern", "career", "worked", "employer"],
     answer:
-      "Mission log: AI Software Engineer at Ciconia Systems / CORE Research Group (SoSe 2026, building Vergabepilot.AI), Software Developer Intern at L&T Technology Services (Dec 2023 – Apr 2024), and Data Analyst Intern at Snapfix Ltd. (2023). Plus continuous open-source lab work on Spidey, Sentinel, Cereforge, and Workflow Engine.",
+      "Mission log: AI Software Engineer at Ciconia Systems / CORE Research Group (SoSe 2026, building Vergabepilot.AI), Software Developer Intern at L&T Technology Services (Dec 2023 – Apr 2024), and Data Analyst Intern at Snapfix Ltd. (2023). Plus continuous open-source work on Spidey, Sentinel, Cereforge, and Workflow Engine.",
   },
   {
     keys: ["education", "study", "degree", "master", "university", "msc"],
     answer:
-      "Training academy: M.Sc. Digital Technologies at TU Clausthal & Ostfalia University, Germany (2025–present); B.Tech Computer Engineering at CHARUSAT (CGPA 7.6); Diploma in Computer Engineering at GTU (CGPA 8.92, High Distinction).",
+      "Academic record: M.Sc. Digital Technologies at TU Clausthal & Ostfalia University, Germany (2025–present); B.Tech Computer Engineering at CHARUSAT (CGPA 7.6); Diploma in Computer Engineering at GTU (CGPA 8.92, High Distinction).",
   },
   {
     keys: ["contact", "email", "reach", "hire", "linkedin", "github", "phone", "call"],
-    answer: `You can reach Siddharth at ${personalInfo.email} or ${personalInfo.phone}. He's also on LinkedIn (${personalInfo.linkedin}) and GitHub (${personalInfo.github}). Base of operations: ${personalInfo.location}.`,
+    answer: `You can reach Siddharth at ${personalInfo.email} or ${personalInfo.phone}. He's also on LinkedIn (${personalInfo.linkedin}) and GitHub (${personalInfo.github}). Based in: ${personalInfo.location}.`,
   },
   {
-    keys: ["hello", "hi ", "hey", "who are you", "karen"],
+    keys: ["hello", "hi ", "hey", "who are you", "sid"],
     answer:
-      "Hey there! I'm Karen, the Spider Intelligence assistant for this lab. Ask me about Siddharth's projects (try \"Vergabepilot\" or \"Spidey\"), his tech stack, experience, education, or how to contact him.",
+      "Hey there! I'm Sid, the AI assistant for this portfolio. Ask me about Siddharth's projects (try \"Vergabepilot\" or \"Spidey\"), his tech stack, experience, education, or how to contact him.",
   },
 ];
 
 const fallbackAnswer =
-  "Hmm, my spider-sense isn't tingling on that one. Try asking about a project (Vergabepilot, Spidey, Sentinel, Cereforge...), the tech stack, experience, education, or contact details.";
+  "Hmm, I don't have details on that one. Try asking about a project (Vergabepilot, Spidey, Sentinel, Cereforge...), the tech stack, experience, education, or contact details.";
 
 const answerFor = (query: string): string => {
   const q = query.toLowerCase();
@@ -91,8 +90,8 @@ export const SpiderAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      sender: "karen",
-      text: "System initialized. Welcome to Peter Parker's Lab. I am Karen, your Spider Intelligence assistant. How can I help you audit Siddharth's projects today?",
+      sender: "sid",
+      text: "System initialized. Welcome to Siddharth's Lab. I am Sid, your AI assistant. How can I help you explore the portfolio today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -122,21 +121,21 @@ export const SpiderAssistant: React.FC = () => {
 
     const answer = answerFor(trimmed);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: "karen", text: answer }]);
+      setMessages((prev) => [...prev, { sender: "sid", text: answer }]);
       setTyping(false);
     }, 900);
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-mono">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-mono">
       {/* Trigger Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          aria-label="Open Spider Intelligence assistant"
-          className="w-14 h-14 rounded-full bg-bg-card border border-spidey-red/40 hover:border-holo-cyan/50 text-white flex items-center justify-center shadow-[0_0_20px_rgba(226,54,54,0.2)] hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all duration-300 group cursor-pointer"
+          aria-label="Open AI assistant"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-bg-card border border-spidey-red/40 hover:border-holo-cyan/50 text-white flex items-center justify-center shadow-[0_0_20px_rgba(226,54,54,0.2)] hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all duration-300 group cursor-pointer"
         >
-          <Shield className="w-6 h-6 text-spidey-red group-hover:text-holo-cyan transition-colors duration-300 animate-pulse" />
+          <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-spidey-red group-hover:text-holo-cyan transition-colors duration-300 animate-pulse" />
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-holo-cyan opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-holo-cyan"></span>
@@ -144,26 +143,26 @@ export const SpiderAssistant: React.FC = () => {
         </button>
       )}
 
-      {/* dialogue panel */}
+      {/* Chat panel — full width on mobile */}
       {isOpen && (
         <GlassCard
           glowColor="cyan"
           hoverEffect={false}
-          className="w-[min(380px,calc(100vw-3rem))] h-[520px] max-h-[calc(100dvh-6rem)] flex flex-col p-4 border border-holo-cyan/20 shadow-2xl relative"
+          className="w-[calc(100vw-2rem)] sm:w-[380px] h-[480px] sm:h-[520px] max-h-[calc(100dvh-5rem)] flex flex-col p-3 sm:p-4 border border-holo-cyan/20 shadow-2xl relative fixed bottom-4 right-4 sm:bottom-6 sm:right-6"
         >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/5 pb-3">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-holo-cyan animate-pulse" />
               <div>
-                <div className="text-white font-bold text-xs">SPIDER_INTEL_KAREN</div>
-                <div className="text-[9px] text-holo-cyan">STATUS: LAB_ONLINE</div>
+                <div className="text-white font-bold text-xs">SIDDHARTH_AI_ASSIST</div>
+                <div className="text-[9px] text-holo-cyan">STATUS: ONLINE</div>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close assistant"
-              className="text-gray-500 hover:text-white transition-colors cursor-pointer"
+              className="text-gray-500 hover:text-white transition-colors cursor-pointer p-1"
             >
               <X className="w-4 h-4" />
             </button>
@@ -182,7 +181,7 @@ export const SpiderAssistant: React.FC = () => {
                 }`}
               >
                 <span className="text-[9px] text-gray-500 mb-0.5">
-                  {msg.sender === "user" ? "// YOU" : "// KAREN"}
+                  {msg.sender === "user" ? "YOU" : "SID"}
                 </span>
                 <div
                   className={`p-2.5 rounded-lg max-w-[85%] leading-relaxed break-words ${
@@ -198,7 +197,7 @@ export const SpiderAssistant: React.FC = () => {
 
             {typing && (
               <div className="flex flex-col items-start">
-                <span className="text-[9px] text-gray-500 mb-0.5">// KAREN</span>
+                <span className="text-[9px] text-gray-500 mb-0.5">SID</span>
                 <div className="bg-white/5 border border-white/10 p-2.5 rounded-lg text-holo-cyan flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 bg-holo-cyan rounded-full animate-bounce" />
                   <span className="w-1.5 h-1.5 bg-holo-cyan rounded-full animate-bounce delay-100" />
@@ -210,14 +209,14 @@ export const SpiderAssistant: React.FC = () => {
 
           {/* Preset options */}
           <div className="border-t border-white/5 pt-3">
-            <div className="text-[9px] text-gray-500 mb-2">// QUICK SUGGESTIONS</div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="text-[9px] text-gray-500 mb-2">QUICK SUGGESTIONS</div>
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
               {presetQuestions.map((q) => (
                 <button
                   key={q}
                   disabled={typing}
                   onClick={() => ask(q)}
-                  className="p-2 border border-white/5 bg-white/2.5 text-left rounded-md text-[10px] text-gray-400 hover:text-holo-cyan hover:border-holo-cyan/30 hover:bg-holo-cyan/5 transition-all duration-200 cursor-pointer disabled:opacity-50"
+                  className="p-1.5 sm:p-2 border border-white/5 bg-white/2.5 text-left rounded-md text-[9px] sm:text-[10px] text-gray-400 hover:text-holo-cyan hover:border-holo-cyan/30 hover:bg-holo-cyan/5 transition-all duration-200 cursor-pointer disabled:opacity-50"
                 >
                   {q}
                 </button>
@@ -236,7 +235,7 @@ export const SpiderAssistant: React.FC = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask Karen anything..."
+                placeholder="Ask Sid anything..."
                 aria-label="Ask the assistant a question"
                 className="flex-grow bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[11px] text-white placeholder:text-gray-600 focus:outline-none focus:border-holo-cyan/50 transition-colors"
               />

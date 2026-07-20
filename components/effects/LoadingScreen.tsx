@@ -26,16 +26,16 @@ export const LoadingScreen: React.FC = () => {
         phase === "fading" ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Spider emblem pulse */}
+      {/* Emblem pulse */}
       <div className="relative">
         <div className="absolute inset-0 rounded-full border border-spidey-red/30 animate-ping" />
         <div className="w-20 h-20 rounded-full border-2 border-spidey-red/50 bg-spidey-red/5 flex items-center justify-center text-4xl shadow-[0_0_40px_rgba(226,54,54,0.3)]">
-          🕷️
+          🚀
         </div>
       </div>
 
       <div className="text-xs text-gray-400 tracking-widest uppercase">
-        Initializing Spider Sense<span className="animate-pulse">...</span>
+        Initializing System<span className="animate-pulse">...</span>
       </div>
 
       {/* Boot progress bar */}

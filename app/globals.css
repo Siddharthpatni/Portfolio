@@ -4,7 +4,7 @@
   --font-sans: var(--font-outfit), 'Outfit', sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
 
-  /* Spider-Man Stark-Tech Color Palette */
+  /* Siddharth Pvt Ltd Color Palette */
   --bg-dark: #07090e;
   --bg-card: rgba(13, 18, 30, 0.45);
   --bg-card-hover: rgba(22, 30, 49, 0.6);
@@ -55,11 +55,21 @@
   background: var(--primary-red);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-dark);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lock body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
 }
 
 /* Holo Scanner Effect */

@@ -53,7 +53,7 @@ export const experiences: Experience[] = [
   {
     id: "personal-labs",
     role: "Open Source AI & Systems Creator",
-    company: "Stark-Tech & Spidey Labs (Personal Projects)",
+    company: "Siddharth Pvt Ltd (Personal Projects)",
     location: "Remote",
     period: "2025 - Present",
     description: [

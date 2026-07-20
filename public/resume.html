@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddharth Divyang Patni — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      color: #1a1a2e;
+      background: #fff;
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 10mm 14mm;
+    }
+
+    @media print {
+      body { padding: 0; }
+    }
+
+    a { color: #1a5276; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 14px; border-bottom: 2px solid #c0392b; padding-bottom: 10px; }
+    .header h1 { font-size: 22pt; font-weight: 700; color: #1a1a2e; letter-spacing: 0.5px; margin-bottom: 3px; }
+    .header .title { font-size: 10.5pt; font-weight: 600; color: #c0392b; margin-bottom: 6px; }
+    .header .contact { font-size: 8.5pt; color: #555; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
+    .header .contact a { color: #1a5276; }
+
+    /* Section */
+    .section { margin-bottom: 12px; }
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #c0392b;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 3px;
+      margin-bottom: 7px;
+    }
+
+    /* Summary */
+    .summary { font-size: 9pt; color: #333; line-height: 1.5; }
+
+    /* Experience */
+    .exp-item { margin-bottom: 9px; }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+    .exp-role { font-weight: 700; font-size: 10pt; color: #1a1a2e; }
+    .exp-company { font-weight: 600; color: #2c3e50; font-size: 9pt; }
+    .exp-meta { font-size: 8pt; color: #777; text-align: right; white-space: nowrap; }
+    .exp-bullets { list-style: none; padding-left: 0; margin-top: 3px; }
+    .exp-bullets li { padding-left: 12px; position: relative; font-size: 8.5pt; color: #333; margin-bottom: 2px; line-height: 1.45; }
+    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: #c0392b; font-weight: 700; }
+
+    /* Education */
+    .edu-item { margin-bottom: 7px; }
+    .edu-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+    .edu-degree { font-weight: 700; font-size: 9.5pt; }
+    .edu-school { font-size: 8.5pt; color: #555; }
+    .edu-detail { font-size: 8pt; color: #666; margin-top: 1px; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }
+    .skill-category { font-weight: 600; font-size: 8.5pt; color: #2c3e50; }
+    .skill-items { font-size: 8.5pt; color: #444; }
+
+    /* Projects */
+    .proj-item { margin-bottom: 6px; }
+    .proj-name { font-weight: 700; font-size: 9pt; color: #1a1a2e; }
+    .proj-desc { font-size: 8.5pt; color: #444; margin-top: 1px; }
+    .proj-tech { font-size: 7.5pt; color: #777; margin-top: 1px; }
+
+    /* Certifications */
+    .cert-item { font-size: 8.5pt; color: #333; margin-bottom: 2px; padding-left: 12px; position: relative; }
+    .cert-item::before { content: '◆'; position: absolute; left: 0; color: #c0392b; font-size: 7pt; top: 1px; }
+    .cert-issuer { color: #777; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>SIDDHARTH DIVYANG PATNI</h1>
+    <div class="title">Agentic AI & Systems Engineer</div>
+    <div class="contact">
+      <span>📍 Braunschweig, Germany</span>
+      <span>📧 <a href="mailto:patnisiddharth1311@gmail.com">patnisiddharth1311@gmail.com</a></span>
+      <span>📱 +49 15510835846</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/siddharth-divyang-patni-644857185" target="_blank">LinkedIn</a></span>
+      <span>💻 <a href="https://github.com/Siddharthpatni" target="_blank">GitHub</a></span>
+      <span>🌐 <a href="https://siddharth-portfolio-pi.vercel.app" target="_blank">Portfolio</a></span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary">
+      Full-stack developer and M.Sc. Digital Technologies student specializing in agentic AI, LLM infrastructure, and autonomous systems engineering. Experienced in building production-grade cascade pipelines, computer-use agents, multi-robot coordination systems, and scalable full-stack platforms. Proficient across Python, FastAPI, Next.js, Docker, Playwright, and ML frameworks with a proven track record of delivering end-to-end AI solutions.
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">AI Software Engineer (Research & Dev)</span><br>
+          <span class="exp-company">Ciconia Systems GmbH · CORE Research Group</span>
+        </div>
+        <div class="exp-meta">Düsseldorf, Germany · SoSe 2026</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Designed and implemented Vergabepilot.AI, an autonomous agentic AI platform to scrape and download public-procurement documents globally across 30+ portal families.</li>
+        <li>Developed a 7-strategy cascade pipeline utilizing Playwright, LLM code-generation, and visual Computer Use Agents (browser-use) with self-healing retries.</li>
+        <li>Created a self-learning route system that records agent clicks and replays them, reducing LLM costs by over 95% on repeat visits.</li>
+        <li>Architected fanned-out chunk processing using Celery, Redis, and asyncio to process up to 10,000 URLs per job run. Configured Prometheus + Grafana dashboards.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Software Developer Intern</span><br>
+          <span class="exp-company">L&T Technology Services</span>
+        </div>
+        <div class="exp-meta">India · Dec 2023 – Apr 2024</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Refactored React components and Flask API layers, reducing perceived page load latencies by ~30% through bundle tuning and response caches.</li>
+        <li>Dockerized microservices and integrated them into a Linux-based CI/CD pipeline, reducing environment-specific integration issues.</li>
+        <li>Standardized API-UI interface contracts and added schema validation checks to prevent runtime errors.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Data Analyst Intern</span><br>
+          <span class="exp-company">Snapfix Ltd.</span>
+        </div>
+        <div class="exp-meta">Remote · Jun 2023 – Jul 2023</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Analyzed property maintenance logs and spatial data arrays to support core product performance reviews.</li>
+        <li>Generated SQL queries and automated reports to isolate task workflow delays and bottlenecks.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-degree">M.Sc. Digital Technologies</span>
+        <span class="exp-meta">Mar 2025 – Present</span>
+      </div>
+      <div class="edu-school">Ostfalia University of Applied Sciences & TU Clausthal, Germany</div>
+      <div class="edu-detail">Focus: Autonomous AI Agents, Robotics, Deep Learning, Distributed Systems, MLOps</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-degree">B.Tech. Computer Engineering — CGPA: 7.6/10</span>
+        <span class="exp-meta">Jul 2021 – May 2024</span>
+      </div>
+      <div class="edu-school">Charotar University of Science and Technology (CHARUSAT), India</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-degree">Diploma in Computer Engineering — CGPA: 8.92/10 (High Distinction)</span>
+        <span class="exp-meta">Jun 2018 – Jun 2021</span>
+      </div>
+      <div class="edu-school">Gujarat Technological University (GTU), India</div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div><span class="skill-category">Agentic AI & Automation:</span> <span class="skill-items">browser-use (CUA), Playwright, Cascade Pipelines, Celery, Bull Queues, Self-Healing Scrapers</span></div>
+      <div><span class="skill-category">AI, ML & Computer Vision:</span> <span class="skill-items">PyTorch, TensorFlow, OpenAI/Gemini, SFT & DPO Fine-Tuning, OpenCV, dlib, HuggingFace</span></div>
+      <div><span class="skill-category">Full-Stack Development:</span> <span class="skill-items">TypeScript, JavaScript, FastAPI, Flask, Next.js, React, Node.js, Express, Tailwind CSS</span></div>
+      <div><span class="skill-category">Data & Infrastructure:</span> <span class="skill-items">PostgreSQL, SQLite, Redis, MinIO/S3, Docker, Prometheus, GitHub Actions CI/CD</span></div>
+      <div><span class="skill-category">Robotics & Hardware:</span> <span class="skill-items">Pepper Humanoid, Temi Navigation, Arduino, M5Stack IoT, OBD-II, Serial Comm</span></div>
+      <div><span class="skill-category">Languages:</span> <span class="skill-items">English (C1 Advanced), German (A2–B1 In Progress)</span></div>
+    </div>
+  </div>
+
+  <!-- KEY PROJECTS -->
+  <div class="section">
+    <div class="section-title">Key Projects</div>
+
+    <div class="proj-item">
+      <span class="proj-name">Vergabepilot.AI</span> <span style="font-size:7.5pt;color:#999">[Private — Ciconia Systems / CORE Research]</span>
+      <div class="proj-desc">Autonomous agentic AI for public procurement document extraction. 7-strategy cascade pipeline with self-learning CUA routes, 262 passing tests, 32-field deep extraction.</div>
+      <div class="proj-tech">Python, FastAPI, Next.js, Playwright, browser-use, Celery, Redis, PostgreSQL, MinIO, Docker</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">Spidey</span> · <a href="https://github.com/Siddharthpatni/Spidey" style="font-size:8pt">GitHub</a>
+      <div class="proj-desc">Self-hostable autonomous AI agent with live React Flow reasoning graph, offline Vosk voice, local Ollama execution, and SFT/DPO fine-tuning pipeline.</div>
+      <div class="proj-tech">Python, FastAPI, React, Vite, React Flow, SQLite, Vosk, Ollama, WebSockets</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">Sentinel</span> · <a href="https://github.com/Siddharthpatni/Sentinel" style="font-size:8pt">GitHub</a>
+      <div class="proj-desc">Open-source LLM observability proxy with span-tree waterfalls, judge-model validation, failover routing, and EU AI Act SHA-256 chained audit ledger.</div>
+      <div class="proj-tech">Python, FastAPI, Celery, Redis, PostgreSQL, Next.js, Docker</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">ShopMate-R</span> · <a href="https://github.com/Siddharthpatni/ShopMate-R" style="font-size:8pt">GitHub</a>
+      <div class="proj-desc">Multi-robot grocery assistant: Pepper humanoid (speech + cart) + Temi (navigation + delivery) orchestrated via Flask with M5Stack IoT shelf sensors.</div>
+      <div class="proj-tech">Python, Flask, SSH, HTTP API, OpenAI API, M5Stack IoT, WebSockets</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">Cereforge</span> · <a href="https://github.com/Siddharthpatni/Cereforge" style="font-size:8pt">GitHub</a>
+      <div class="proj-desc">AI/ML learning platform with 24 curated challenges, Gemini-based evaluation engine, XP system, leaderboard, and community forum.</div>
+      <div class="proj-tech">Python, FastAPI, React, Zustand, Gemini API, PostgreSQL, Docker</div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS & ACHIEVEMENTS -->
+  <div class="section">
+    <div class="section-title">Licenses, Certifications & Achievements</div>
+    <div class="cert-item">Fundamentals of Robotics & Industrial Automation · <span class="cert-issuer">L&T EduTech / Coursera (Mar 2026) — <a href="https://www.coursera.org/account/accomplishments/verify/J6H402RZ8R3A">J6H402RZ8R3A</a></span></div>
+    <div class="cert-item">Basics of Robotics · <span class="cert-issuer">Siemens / Coursera (Mar 2026) — <a href="https://www.coursera.org/account/accomplishments/verify/FQ16RTMYPVPD">FQ16RTMYPVPD</a></span></div>
+    <div class="cert-item">Introduction to Digital Transformation · <span class="cert-issuer">Siemens / Coursera (Mar 2026) — <a href="https://www.coursera.org/account/accomplishments/verify/MKLLDBZP29RY">MKLLDBZP29RY</a></span></div>
+    <div class="cert-item">CORE Research Internship — Agentic AI · <span class="cert-issuer">Ciconia Systems GmbH (2026)</span></div>
+    <div class="cert-item">Multi-Robot Grocery Assistant — Pepper & Temi · <span class="cert-issuer">Ostfalia University Lab Project (2025)</span></div>
+    <div class="cert-item">High Distinction — Diploma in Computer Engineering · <span class="cert-issuer">GTU, CGPA 8.92/10 (2021)</span></div>
+  </div>
+
+</body>
+</html>

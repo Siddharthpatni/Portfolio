@@ -56,7 +56,7 @@ export const projects: Project[] = [
     id: "spidey",
     name: "Spidey",
     description: "Self-hostable autonomous AI agent with voice controls, live reasoning graphs, and offline capabilities.",
-    extendedDescription: "Spidey is Peter Parker's ultimate laboratory assistant: a self-hostable autonomous AI agent platform featuring a live execution graph, offline voice integration, local LLM execution, and a two-stage SFT/DPO training pipeline. The platform is modular (17 core modules) and runs entirely locally. It allows users to design, visualize, and debug complex agentic workflows in real-time.",
+    extendedDescription: "Spidey is Siddharth's flagship autonomous AI agent platform: a self-hostable system featuring a live execution graph, offline voice integration, local LLM execution, and a two-stage SFT/DPO training pipeline. The platform is modular (17 core modules) and runs entirely locally. It allows users to design, visualize, and debug complex agentic workflows in real-time.",
     techStack: [
       "Python",
       "FastAPI",
@@ -308,7 +308,7 @@ export const projects: Project[] = [
       "GPU-accelerated local execution using Metal Performance Shaders (MPS).",
       "Lightweight React client talking to PyTorch backend via high-speed REST endpoints.",
       "Self-contained Docker config optimizing ARM64 processor instruction sets.",
-      "Clean UI matching Oscorp futuristic terminal diagnostics."
+      "Clean UI with futuristic terminal-style diagnostics."
     ]
   },
   {

@@ -37,41 +37,41 @@ const StatCounter: React.FC<{ target: number; suffix?: string; label: string }> 
   }, [target]);
 
   return (
-    <div ref={ref} className="bg-white/2.5 border border-white/5 rounded-lg p-4 text-center font-mono">
-      <div className="text-2xl sm:text-3xl font-black text-spidey-red leading-none">
+    <div ref={ref} className="bg-white/2.5 border border-white/5 rounded-lg p-3 sm:p-4 text-center font-mono">
+      <div className="text-xl sm:text-2xl md:text-3xl font-black text-spidey-red leading-none">
         {value}
         {suffix}
       </div>
-      <div className="text-[9px] text-gray-500 mt-2 uppercase tracking-widest">{label}</div>
+      <div className="text-[8px] sm:text-[9px] text-gray-500 mt-2 uppercase tracking-widest">{label}</div>
     </div>
   );
 };
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 px-6 relative">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           number="SEC_01"
-          title="LABORATORY SPECS // PETER PARKER PROFILE"
+          title="ABOUT // SIDDHARTH PROFILE"
           subtitle="Decrypting profile, bio metrics, and core research directives."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-10 sm:mt-12 items-center">
           
           {/* Profile Photo Display Frame */}
           <div className="lg:col-span-4 flex justify-center relative">
-            {/* Circular Hologram Tech Rings */}
-            <div className="absolute inset-0 border border-holo-cyan/15 rounded-full scale-110 animate-spin [animation-duration:20s] pointer-events-none" />
-            <div className="absolute inset-0 border border-dashed border-spidey-red/20 rounded-full scale-105 animate-spin [animation-duration:15s] pointer-events-none" />
+            {/* Circular Tech Rings */}
+            <div className="absolute w-[280px] h-[280px] border border-holo-cyan/15 rounded-full animate-spin [animation-duration:20s] pointer-events-none" />
+            <div className="absolute w-[268px] h-[268px] border border-dashed border-spidey-red/20 rounded-full animate-spin [animation-duration:15s] pointer-events-none" />
             
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-spidey-red/40 shadow-[0_0_30px_rgba(226,54,54,0.3)]">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-2 border-spidey-red/40 shadow-[0_0_30px_rgba(226,54,54,0.3)]">
               {/* Photo component */}
               <Image
                 src="/profile-photo.jpg"
                 alt={personalInfo.name}
                 fill
-                sizes="(max-width: 768px) 100vw, 300px"
+                sizes="(max-width: 768px) 192px, 256px"
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 hover:scale-100"
               />
               <div className="absolute inset-0 bg-spidey-red/10 mix-blend-color pointer-events-none" />
@@ -81,10 +81,10 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Biography and Directives */}
-          <div className="lg:col-span-8 space-y-6">
-            <h3 className="text-xl font-bold text-white font-mono flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-spidey-red" />
-              // CORE_DIRECTIVES: INTEL_AUDIT
+          <div className="lg:col-span-8 space-y-5 sm:space-y-6">
+            <h3 className="text-lg sm:text-xl font-bold text-white font-mono flex items-center gap-2">
+              <Terminal className="w-5 h-5 text-spidey-red shrink-0" />
+              CORE_DIRECTIVES: INTEL_AUDIT
             </h3>
             
             <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
@@ -92,38 +92,38 @@ export const AboutSection: React.FC = () => {
             </p>
 
             {/* Language protocols + base location */}
-            <div className="flex flex-wrap items-center gap-3 font-mono text-[10px]">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[10px]">
               <span className="flex items-center gap-1.5 text-gray-500 uppercase tracking-widest">
                 <Languages className="w-3.5 h-3.5 text-holo-cyan" />
-                LANG_PROTOCOLS:
+                LANG:
               </span>
-              <span className="px-2.5 py-1 border border-holo-cyan/20 bg-holo-cyan/5 rounded text-holo-cyan">
-                ENGLISH — C1 ADVANCED
+              <span className="px-2 py-1 border border-holo-cyan/20 bg-holo-cyan/5 rounded text-holo-cyan">
+                ENGLISH — C1
               </span>
-              <span className="px-2.5 py-1 border border-stark-gold/20 bg-stark-gold/5 rounded text-stark-gold">
-                GERMAN — A2–B1 IN PROGRESS
+              <span className="px-2 py-1 border border-stark-gold/20 bg-stark-gold/5 rounded text-stark-gold">
+                GERMAN — A2–B1
               </span>
-              <span className="flex items-center gap-1 px-2.5 py-1 border border-white/10 bg-white/2.5 rounded text-gray-400">
+              <span className="flex items-center gap-1 px-2 py-1 border border-white/10 bg-white/2.5 rounded text-gray-400">
                 <MapPin className="w-3 h-3 text-spidey-red" />
                 {personalInfo.location}
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-              <GlassCard glowColor="red" hoverEffect={false} className="p-4 flex flex-col gap-2">
-                <ShieldCheck className="w-6 h-6 text-spidey-red" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 sm:pt-4">
+              <GlassCard glowColor="red" hoverEffect={false} className="p-3 sm:p-4 flex flex-col gap-2">
+                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-spidey-red" />
                 <h4 className="font-bold text-white text-xs font-mono">AGENTIC SECURITY</h4>
                 <p className="text-[10px] text-gray-400">Implementing strict sandbox wrappers, circuit breakers, and rate limiters to guarantee runtime safety.</p>
               </GlassCard>
 
-              <GlassCard glowColor="cyan" hoverEffect={false} className="p-4 flex flex-col gap-2">
-                <Database className="w-6 h-6 text-holo-cyan" />
+              <GlassCard glowColor="cyan" hoverEffect={false} className="p-3 sm:p-4 flex flex-col gap-2">
+                <Database className="w-5 h-5 sm:w-6 sm:h-6 text-holo-cyan" />
                 <h4 className="font-bold text-white text-xs font-mono">SCALABLE MLOPS</h4>
                 <p className="text-[10px] text-gray-400">Fanning out massive extraction pipelines with Redis, Celery, and parallel asyncio chunk workers.</p>
               </GlassCard>
 
-              <GlassCard glowColor="gold" hoverEffect={false} className="p-4 flex flex-col gap-2">
-                <Award className="w-6 h-6 text-stark-gold" />
+              <GlassCard glowColor="gold" hoverEffect={false} className="p-3 sm:p-4 flex flex-col gap-2">
+                <Award className="w-5 h-5 sm:w-6 sm:h-6 text-stark-gold" />
                 <h4 className="font-bold text-white text-xs font-mono">ROBOTIC LOGISTICS</h4>
                 <p className="text-[10px] text-gray-400">Coordinating multi-robot networks (Pepper + Temi) with speech capabilities and weight sensor networks.</p>
               </GlassCard>
@@ -133,7 +133,7 @@ export const AboutSection: React.FC = () => {
         </div>
 
         {/* Animated field statistics */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-12 sm:mt-16">
           <StatCounter target={10} suffix="+" label="Projects_Deployed" />
           <StatCounter target={15} suffix="+" label="Technologies" />
           <StatCounter target={3} label="Cloud_Platforms" />

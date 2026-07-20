@@ -10,6 +10,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
+import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { EducationSection } from "@/components/sections/EducationSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -17,16 +18,16 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      {/* Spider Sense boot sequence */}
+      {/* Boot sequence */}
       <LoadingScreen />
 
-      {/* Desktop web-crosshair cursor trail */}
+      {/* Desktop cursor trail */}
       <WebCursor />
 
-      {/* Background Interactive Spider Webs */}
+      {/* Background Interactive Canvas */}
       <SpiderWebCanvas />
 
-      {/* Floating Karen Assistant Widget */}
+      {/* Floating AI Assistant Widget */}
       <SpiderAssistant />
 
       {/* Navigation */}
@@ -46,6 +47,9 @@ export default function Home() {
         </ScrollReveal>
         <ScrollReveal>
           <SkillsSection />
+        </ScrollReveal>
+        <ScrollReveal>
+          <CertificationsSection />
         </ScrollReveal>
         <ScrollReveal>
           <EducationSection />
