@@ -29,7 +29,7 @@ const CaseStudyModal: React.FC<{
   project: Project;
   onClose: () => void;
 }> = ({ project, onClose }) => {
-  // Close on Escape
+  // Close on Escape key
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -50,58 +50,59 @@ const CaseStudyModal: React.FC<{
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-hidden"
       role="dialog"
       aria-modal="true"
       aria-label={`${project.name} case study`}
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        initial={{ opacity: 0, scale: 0.96, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        exit={{ opacity: 0, scale: 0.96, y: 10 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        className="w-full max-w-4xl max-h-[85vh] my-auto overflow-y-auto border border-spidey-red/30 bg-[#0a0e17] shadow-[0_0_50px_rgba(226,54,54,0.15)] p-5 sm:p-8 rounded-xl relative flex flex-col"
+        className="w-full max-w-4xl h-[85vh] max-h-[780px] bg-[#070a12] border border-spidey-red/40 shadow-[0_0_60px_rgba(226,54,54,0.2)] rounded-xl relative flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          aria-label="Close case study"
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors cursor-pointer p-1.5 bg-white/5 hover:bg-white/10 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red z-10"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        {/* Header */}
-        <div className="border-b border-white/10 pb-4 mb-6 pr-10">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 border border-spidey-red/40 bg-spidey-red/10 rounded font-mono text-[10px] text-spidey-red uppercase tracking-widest font-bold">
-              {project.category}
-            </span>
-            {project.tier === "flagship" && (
-              <span className="px-2.5 py-0.5 border border-stark-gold/40 bg-stark-gold/10 rounded font-mono text-[10px] text-stark-gold uppercase tracking-widest font-bold">
-                Flagship Project
+        {/* Fixed Header (Always visible at top) */}
+        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-white/10 shrink-0 bg-[#070a12] z-10">
+          <div>
+            <div className="flex flex-wrap items-center gap-2 mb-1.5">
+              <span className="px-2.5 py-0.5 border border-spidey-red/40 bg-spidey-red/10 rounded font-mono text-[10px] text-spidey-red uppercase tracking-widest font-bold">
+                {project.category}
               </span>
-            )}
-            {project.isPrivate && (
-              <span className="px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 rounded font-mono text-[10px] text-amber-500 uppercase tracking-widest font-bold">
-                Private Research
-              </span>
+              {project.tier === "flagship" && (
+                <span className="px-2.5 py-0.5 border border-stark-gold/40 bg-stark-gold/10 rounded font-mono text-[10px] text-stark-gold uppercase tracking-widest font-bold">
+                  Flagship Project
+                </span>
+              )}
+              {project.isPrivate && (
+                <span className="px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 rounded font-mono text-[10px] text-amber-500 uppercase tracking-widest font-bold">
+                  Private Research
+                </span>
+              )}
+            </div>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+              {project.name}
+            </h3>
+            {project.orgName && (
+              <div className="text-xs text-holo-cyan font-mono mt-1 break-words">
+                ORGANIZATION: {project.orgName}
+              </div>
             )}
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            {project.name}
-          </h3>
-          {project.orgName && (
-            <div className="text-xs text-holo-cyan font-mono mt-1 break-words">
-              ORGANIZATION: {project.orgName}
-            </div>
-          )}
+
+          <button
+            onClick={onClose}
+            aria-label="Close case study"
+            className="text-gray-400 hover:text-white transition-colors cursor-pointer p-2 bg-white/5 hover:bg-white/10 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red shrink-0 ml-4"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Content body */}
-        <div className="space-y-6 sm:space-y-8">
+        {/* Scrollable Content Body (Only middle section scrolls) */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
           {/* Overview */}
           <div>
             <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
@@ -307,8 +308,8 @@ const CaseStudyModal: React.FC<{
           )}
         </div>
 
-        {/* Action buttons */}
-        <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+        {/* Fixed Footer (Always visible at bottom) */}
+        <div className="p-4 border-t border-white/10 shrink-0 bg-[#070a12] flex items-center justify-between z-10">
           <SpiderButton variant="outline" onClick={onClose}>
             CLOSE
           </SpiderButton>
