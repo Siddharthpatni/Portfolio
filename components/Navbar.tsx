@@ -40,6 +40,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
         scrolled
           ? "bg-bg-dark/80 backdrop-blur-md border-spidey-red/10 py-3"
@@ -89,10 +90,10 @@ export const Navbar: React.FC = () => {
             SYS_ONLINE
           </div>
           
-          <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+          <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red rounded">
             <Github className="w-5 h-5 text-gray-400 hover:text-white transition-colors cursor-pointer" />
           </a>
-          <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red rounded">
             <Linkedin className="w-5 h-5 text-gray-400 hover:text-white transition-colors cursor-pointer" />
           </a>
         </div>
@@ -100,8 +101,10 @@ export const Navbar: React.FC = () => {
         {/* Mobile menu trigger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-400 hover:text-white p-2 cursor-pointer"
-          aria-label="Toggle menu"
+          className="md:hidden text-gray-400 hover:text-white p-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red rounded"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -117,6 +120,8 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Panel */}
       <div
+        id="mobile-menu"
+        role="menu"
         className={`md:hidden fixed inset-x-0 top-[56px] bottom-0 bg-bg-dark/98 backdrop-blur-lg transition-all duration-300 ease-out font-mono ${
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"

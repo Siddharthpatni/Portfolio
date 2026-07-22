@@ -1,58 +1,64 @@
 export interface SkillGroup {
   category: string;
-  items: { name: string; level: number }[]; // Level out of 100
+  tier: "primary" | "supporting" | "learning";
+  items: string[];
 }
 
 export const skillGroups: SkillGroup[] = [
   {
     category: "Agentic AI & Automation",
+    tier: "primary",
     items: [
-      { name: "browser-use (CUA)", level: 90 },
-      { name: "Playwright Automation", level: 95 },
-      { name: "Cascade Pipelines", level: 95 },
-      { name: "Self-Healing Scrapers", level: 90 },
-      { name: "Celery & Bull Queues", level: 88 },
-      { name: "Live Reason Graphs", level: 85 }
-    ]
+      "browser-use (CUA)",
+      "Playwright Automation",
+      "Cascade Pipelines",
+      "Self-Healing Scrapers",
+      "Celery & Bull Queues",
+      "Live Reason Graphs",
+    ],
   },
   {
     category: "AI, ML & Computer Vision",
+    tier: "primary",
     items: [
-      { name: "PyTorch & TensorFlow", level: 85 },
-      { name: "OpenAI / Gemini / OpenRouter", level: 92 },
-      { name: "SFT & DPO Fine-tuning", level: 80 },
-      { name: "OpenCV & dlib", level: 85 },
-      { name: "HuggingFace Transformers", level: 82 }
-    ]
+      "PyTorch & TensorFlow",
+      "OpenAI / Gemini / OpenRouter",
+      "SFT & DPO Fine-tuning",
+      "OpenCV & dlib",
+      "HuggingFace Transformers",
+    ],
   },
   {
     category: "Full-Stack Development",
+    tier: "primary",
     items: [
-      { name: "TypeScript & JavaScript", level: 95 },
-      { name: "FastAPI & Flask", level: 92 },
-      { name: "Next.js & React 18/19", level: 90 },
-      { name: "Node.js & Express", level: 88 },
-      { name: "Tailwind CSS & CSS Grid", level: 90 }
-    ]
+      "TypeScript & JavaScript",
+      "FastAPI & Flask",
+      "Next.js & React 18/19",
+      "Node.js & Express",
+      "Tailwind CSS & CSS Grid",
+    ],
   },
   {
     category: "Data & Infrastructure",
+    tier: "supporting",
     items: [
-      { name: "PostgreSQL & SQLite", level: 88 },
-      { name: "Redis Caching/Queues", level: 90 },
-      { name: "MinIO & S3 Storage", level: 85 },
-      { name: "Docker & Compose", level: 92 },
-      { name: "Prometheus Monitoring", level: 80 },
-      { name: "GitHub Actions CI/CD", level: 85 }
-    ]
+      "PostgreSQL & SQLite",
+      "Redis Caching/Queues",
+      "MinIO & S3 Storage",
+      "Docker & Compose",
+      "Prometheus Monitoring",
+      "GitHub Actions CI/CD",
+    ],
   },
   {
     category: "Robotics & Hardware",
+    tier: "supporting",
     items: [
-      { name: "Pepper Humanoid", level: 85 },
-      { name: "Temi Navigation", level: 80 },
-      { name: "Arduino & MQ Sensors", level: 78 },
-      { name: "OBD-II & Serial Comm", level: 75 }
-    ]
-  }
+      "Pepper Humanoid",
+      "Temi Navigation",
+      "Arduino & MQ Sensors",
+      "OBD-II & Serial Comm",
+    ],
+  },
 ];

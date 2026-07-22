@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 relative">
+    <section id="contact" aria-label="Contact information" className="py-16 sm:py-24 px-4 sm:px-6 relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           number="SEC_07"
@@ -104,8 +104,9 @@ export const ContactSection: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
                   <div>
-                    <label className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">NAME</label>
+                    <label htmlFor="contact-name" className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">NAME</label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       value={formState.name}
@@ -116,8 +117,9 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">EMAIL</label>
+                    <label htmlFor="contact-email" className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">EMAIL</label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       value={formState.email}
@@ -128,8 +130,9 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">MESSAGE</label>
+                    <label htmlFor="contact-message" className="block text-gray-500 mb-1.5 uppercase text-[10px] sm:text-xs">MESSAGE</label>
                     <textarea
+                      id="contact-message"
                       required
                       rows={4}
                       value={formState.message}

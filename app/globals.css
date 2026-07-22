@@ -150,3 +150,42 @@ body.menu-open {
   clip: rect(0, 900px, 0, 0); 
   animation: glitch 1s infinite linear alternate;
 }
+
+/* ─── Accessibility: Reduced Motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .holo-scan::after {
+    animation: none;
+  }
+}
+
+/* ─── Accessibility: Focus Visible ──────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Typography Improvements ───────────────────────────────────────── */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Hide scrollbar on filter tabs ─────────────────────────────────── */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
