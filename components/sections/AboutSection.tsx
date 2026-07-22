@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { personalInfo } from "@/lib/data/personal";
 import { GlassCard } from "../ui/GlassCard";
 import { SectionHeader } from "../ui/SectionHeader";
+import { SpiderAvatar3D } from "../ui/SpiderAvatar3D";
 import { Terminal, ShieldCheck, Database, Award, Languages, MapPin } from "lucide-react";
 
 const StatCounter: React.FC<{ target: number; suffix?: string; label: string }> = ({
@@ -59,25 +59,9 @@ export const AboutSection: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-10 sm:mt-12 items-center">
           
-          {/* Profile Photo Display Frame */}
+          {/* 3D Profile Avatar Display Frame */}
           <div className="lg:col-span-4 flex justify-center relative">
-            {/* Circular Tech Rings */}
-            <div className="absolute w-[280px] h-[280px] border border-holo-cyan/15 rounded-full animate-spin [animation-duration:20s] pointer-events-none" aria-hidden="true" />
-            <div className="absolute w-[268px] h-[268px] border border-dashed border-spidey-red/20 rounded-full animate-spin [animation-duration:15s] pointer-events-none" aria-hidden="true" />
-            
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-2 border-spidey-red/40 shadow-[0_0_30px_rgba(226,54,54,0.3)]">
-              {/* Photo component */}
-              <Image
-                src="/profile-photo.jpg"
-                alt={personalInfo.name}
-                fill
-                sizes="(max-width: 768px) 192px, 256px"
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 hover:scale-100"
-              />
-              <div className="absolute inset-0 bg-spidey-red/10 mix-blend-color pointer-events-none" aria-hidden="true" />
-              {/* Scanline layer overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.03] to-transparent animate-[scan_3s_linear_infinite] pointer-events-none" aria-hidden="true" />
-            </div>
+            <SpiderAvatar3D imageSrc="/profile-photo.jpg" alt={personalInfo.name} />
           </div>
 
           {/* Biography and Directives */}

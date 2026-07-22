@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { projects, Project } from "@/lib/data/projects";
 import { SectionHeader } from "../ui/SectionHeader";
 import { GlassCard } from "../ui/GlassCard";
@@ -49,49 +50,51 @@ const CaseStudyModal: React.FC<{
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-bg-dark/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-label={`${project.name} case study`}
       onClick={onClose}
     >
-      <GlassCard
-        glowColor={project.tier === "flagship" ? "red" : "cyan"}
-        hoverEffect={false}
-        className="w-full sm:max-w-4xl max-h-[90dvh] sm:max-h-[85dvh] overflow-y-auto border border-white/10 shadow-2xl p-4 sm:p-8 relative flex flex-col rounded-t-2xl sm:rounded-xl"
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="w-full max-w-4xl max-h-[85vh] my-auto overflow-y-auto border border-spidey-red/30 bg-[#0a0e17] shadow-[0_0_50px_rgba(226,54,54,0.15)] p-5 sm:p-8 rounded-xl relative flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close case study"
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors cursor-pointer p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red rounded"
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors cursor-pointer p-1.5 bg-white/5 hover:bg-white/10 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red z-10"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
-        <div className="border-b border-white/5 pb-3 sm:pb-4 mb-5 sm:mb-6 pr-8">
+        <div className="border-b border-white/10 pb-4 mb-6 pr-10">
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-2 py-0.5 border border-spidey-red/20 bg-spidey-red/5 rounded font-mono text-[9px] text-spidey-red uppercase tracking-widest font-bold">
+            <span className="px-2.5 py-0.5 border border-spidey-red/40 bg-spidey-red/10 rounded font-mono text-[10px] text-spidey-red uppercase tracking-widest font-bold">
               {project.category}
             </span>
             {project.tier === "flagship" && (
-              <span className="px-2 py-0.5 border border-stark-gold/30 bg-stark-gold/5 rounded font-mono text-[9px] text-stark-gold uppercase tracking-widest font-bold">
-                Flagship
+              <span className="px-2.5 py-0.5 border border-stark-gold/40 bg-stark-gold/10 rounded font-mono text-[10px] text-stark-gold uppercase tracking-widest font-bold">
+                Flagship Project
               </span>
             )}
             {project.isPrivate && (
-              <span className="px-2 py-0.5 border border-amber-500/30 bg-amber-500/5 rounded font-mono text-[9px] text-amber-500 uppercase tracking-widest font-bold">
+              <span className="px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 rounded font-mono text-[10px] text-amber-500 uppercase tracking-widest font-bold">
                 Private Research
               </span>
             )}
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             {project.name}
           </h3>
           {project.orgName && (
-            <div className="text-[10px] text-holo-cyan font-mono mt-1 break-words">
+            <div className="text-xs text-holo-cyan font-mono mt-1 break-words">
               ORGANIZATION: {project.orgName}
             </div>
           )}
@@ -101,46 +104,46 @@ const CaseStudyModal: React.FC<{
         <div className="space-y-6 sm:space-y-8">
           {/* Overview */}
           <div>
-            <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-              <AlertCircle className="w-3.5 h-3.5 text-spidey-red" aria-hidden="true" />
+            <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+              <AlertCircle className="w-4 h-4 text-spidey-red" aria-hidden="true" />
               PROJECT_OVERVIEW
             </h4>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-200 text-sm sm:text-base leading-relaxed">
               {project.extendedDescription}
             </p>
           </div>
 
-          {/* Problem & Solution — only for deep case studies */}
+          {/* Problem & Solution */}
           {project.problem && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-spidey-red/5 border border-spidey-red/15 rounded-lg p-4">
-                <h4 className="text-[10px] text-spidey-red font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
-                  <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" />
-                  PROBLEM
+              <div className="bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4">
+                <h4 className="text-[11px] text-spidey-red font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                  <AlertTriangle className="w-4 h-4" aria-hidden="true" />
+                  THE_CHALLENGE
                 </h4>
-                <p className="text-gray-300 text-xs leading-relaxed">{project.problem}</p>
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{project.problem}</p>
               </div>
               {project.solution && (
-                <div className="bg-holo-cyan/5 border border-holo-cyan/15 rounded-lg p-4">
-                  <h4 className="text-[10px] text-holo-cyan font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
-                    <Lightbulb className="w-3.5 h-3.5" aria-hidden="true" />
-                    SOLUTION
+                <div className="bg-holo-cyan/10 border border-holo-cyan/20 rounded-lg p-4">
+                  <h4 className="text-[11px] text-holo-cyan font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                    <Lightbulb className="w-4 h-4" aria-hidden="true" />
+                    THE_SOLUTION
                   </h4>
-                  <p className="text-gray-300 text-xs leading-relaxed">{project.solution}</p>
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{project.solution}</p>
                 </div>
               )}
             </div>
           )}
 
-          {/* Architecture Diagram (Mermaid as styled code block) */}
+          {/* Architecture Diagram */}
           {project.architectureMermaid && (
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                <GitBranch className="w-3.5 h-3.5 text-holo-cyan" aria-hidden="true" />
-                ARCHITECTURE_DIAGRAM
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                <GitBranch className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
+                ARCHITECTURE_FLOW
               </h4>
-              <div className="bg-white/2.5 border border-white/5 rounded-lg p-4 overflow-x-auto">
-                <pre className="font-mono text-[10px] sm:text-xs text-holo-cyan whitespace-pre leading-relaxed">
+              <div className="bg-black/60 border border-holo-cyan/20 rounded-lg p-4 overflow-x-auto">
+                <pre className="font-mono text-xs sm:text-sm text-holo-cyan whitespace-pre leading-relaxed">
                   {project.architectureMermaid.trim()}
                 </pre>
               </div>
@@ -150,18 +153,18 @@ const CaseStudyModal: React.FC<{
           {/* Engineering Decisions */}
           {project.engineeringDecisions && project.engineeringDecisions.length > 0 && (
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                <Brain className="w-3.5 h-3.5 text-stark-gold" aria-hidden="true" />
-                ENGINEERING_DECISIONS
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                <Brain className="w-4 h-4 text-stark-gold" aria-hidden="true" />
+                KEY_ENGINEERING_DECISIONS
               </h4>
               <div className="space-y-3">
                 {project.engineeringDecisions.map((ed, idx) => (
-                  <div key={idx} className="bg-white/2.5 border border-white/5 rounded-lg p-3 sm:p-4">
-                    <div className="text-white text-xs font-semibold flex items-start gap-2">
+                  <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-4">
+                    <div className="text-white text-sm font-semibold flex items-start gap-2">
                       <span className="text-stark-gold font-mono shrink-0">D{idx + 1}.</span>
                       {ed.decision}
                     </div>
-                    <p className="text-gray-400 text-[11px] mt-1.5 leading-relaxed pl-6">
+                    <p className="text-gray-300 text-xs mt-2 leading-relaxed pl-6">
                       {ed.reason}
                     </p>
                   </div>
@@ -175,22 +178,22 @@ const CaseStudyModal: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.challenges && (
                 <div>
-                  <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                    <Wrench className="w-3.5 h-3.5 text-spidey-red" aria-hidden="true" />
-                    CHALLENGES
+                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                    <Wrench className="w-4 h-4 text-spidey-red" aria-hidden="true" />
+                    TECHNICAL_HARDSHIPS
                   </h4>
-                  <p className="text-gray-300 text-xs leading-relaxed bg-white/2.5 border border-white/5 rounded-lg p-3">
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4">
                     {project.challenges}
                   </p>
                 </div>
               )}
               {project.tradeoffs && (
                 <div>
-                  <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                    <AlertTriangle className="w-3.5 h-3.5 text-stark-gold" aria-hidden="true" />
-                    TRADEOFFS
+                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                    <AlertTriangle className="w-4 h-4 text-stark-gold" aria-hidden="true" />
+                    ARCHITECTURAL_TRADEOFFS
                   </h4>
-                  <p className="text-gray-300 text-xs leading-relaxed bg-white/2.5 border border-white/5 rounded-lg p-3">
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4">
                     {project.tradeoffs}
                   </p>
                 </div>
@@ -201,11 +204,11 @@ const CaseStudyModal: React.FC<{
           {/* Failures & Lessons Learned */}
           {project.failures && (
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                <AlertCircle className="w-3.5 h-3.5 text-spidey-red" aria-hidden="true" />
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                <AlertCircle className="w-4 h-4 text-spidey-red" aria-hidden="true" />
                 FAILURES_&_ITERATIONS
               </h4>
-              <p className="text-gray-300 text-xs leading-relaxed bg-spidey-red/5 border border-spidey-red/10 rounded-lg p-3">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4">
                 {project.failures}
               </p>
             </div>
@@ -216,15 +219,15 @@ const CaseStudyModal: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.testing && (
                 <div>
-                  <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                    <TestTube className="w-3.5 h-3.5 text-holo-cyan" aria-hidden="true" />
-                    TESTING
+                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                    <TestTube className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
+                    TESTING_SUITE
                   </h4>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {project.testing.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-1 bg-holo-cyan/5 border border-holo-cyan/15 rounded font-mono text-[10px] text-holo-cyan"
+                        className="px-3 py-1 bg-holo-cyan/10 border border-holo-cyan/30 rounded font-mono text-xs text-holo-cyan"
                       >
                         {t}
                       </span>
@@ -234,15 +237,15 @@ const CaseStudyModal: React.FC<{
               )}
               {project.deployment && (
                 <div>
-                  <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                    <Rocket className="w-3.5 h-3.5 text-stark-gold" aria-hidden="true" />
-                    DEPLOYMENT
+                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                    <Rocket className="w-4 h-4 text-stark-gold" aria-hidden="true" />
+                    DEPLOYMENT_INFRASTRUCTURE
                   </h4>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {project.deployment.map((d) => (
                       <span
                         key={d}
-                        className="px-2 py-1 bg-stark-gold/5 border border-stark-gold/15 rounded font-mono text-[10px] text-stark-gold"
+                        className="px-3 py-1 bg-stark-gold/10 border border-stark-gold/30 rounded font-mono text-xs text-stark-gold"
                       >
                         {d}
                       </span>
@@ -254,12 +257,12 @@ const CaseStudyModal: React.FC<{
           )}
 
           {/* Tech Stack and Metrics Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-3">
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3">
                 DEPLOYED_TECH_STACK
               </h4>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
                   <TechTag key={tech} name={tech} />
                 ))}
@@ -267,16 +270,16 @@ const CaseStudyModal: React.FC<{
             </div>
 
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-3">
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3">
                 DIAGNOSTIC_METRICS
               </h4>
-              <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {project.metrics.map((metric, idx) => (
-                  <div key={idx} className="bg-white/2.5 p-2 sm:p-3 rounded border border-white/5 font-mono text-center">
-                    <div className="text-holo-cyan font-bold text-xs sm:text-sm">
+                  <div key={idx} className="bg-white/5 p-3 rounded border border-white/10 font-mono text-center">
+                    <div className="text-holo-cyan font-bold text-sm sm:text-base">
                       {metric.value}
                     </div>
-                    <div className="text-[8px] text-gray-500 mt-1 uppercase tracking-wider">
+                    <div className="text-[9px] text-gray-400 mt-1 uppercase tracking-wider">
                       {metric.label}
                     </div>
                   </div>
@@ -288,13 +291,13 @@ const CaseStudyModal: React.FC<{
           {/* Highlights (for projects without deep case study content) */}
           {!hasCaseStudy && project.highlights && project.highlights.length > 0 && (
             <div>
-              <h4 className="text-[10px] text-gray-500 font-mono uppercase tracking-widest mb-2 flex items-center gap-1">
-                <CheckSquare className="w-3.5 h-3.5 text-holo-cyan" aria-hidden="true" />
+              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                <CheckSquare className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
                 KEY_HIGHLIGHTS
               </h4>
               <ul className="space-y-2">
                 {project.highlights.map((bullet, idx) => (
-                  <li key={idx} className="text-gray-300 text-xs flex items-start gap-2">
+                  <li key={idx} className="text-gray-300 text-xs sm:text-sm flex items-start gap-2">
                     <span className="text-spidey-red font-mono font-bold shrink-0">→</span>
                     <span>{bullet}</span>
                   </li>
@@ -305,7 +308,7 @@ const CaseStudyModal: React.FC<{
         </div>
 
         {/* Action buttons */}
-        <div className="mt-6 sm:mt-8 pt-3 sm:pt-4 border-t border-white/5 flex items-center justify-between">
+        <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
           <SpiderButton variant="outline" onClick={onClose}>
             CLOSE
           </SpiderButton>
@@ -319,7 +322,7 @@ const CaseStudyModal: React.FC<{
             </a>
           )}
         </div>
-      </GlassCard>
+      </motion.div>
     </div>
   );
 };
@@ -380,7 +383,7 @@ export const ProjectsSection: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Visual Details Overlay */}
-                <div className="absolute top-0 right-0 p-3 sm:p-4 font-mono text-[9px] text-spidey-red/40 flex items-center gap-1">
+                <div className="absolute top-0 right-0 p-3 sm:p-4 font-mono text-[9px] text-spidey-red/60 flex items-center gap-1">
                   <Star className="w-3 h-3 fill-spidey-red text-spidey-red" aria-hidden="true" />
                   FLAGSHIP
                 </div>
@@ -481,7 +484,7 @@ export const ProjectsSection: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Visual Details Overlay */}
-                <div className="absolute top-0 right-0 p-3 sm:p-4 font-mono text-[8px] text-gray-600 flex items-center gap-1">
+                <div className="absolute top-0 right-0 p-3 sm:p-4 font-mono text-[8px] text-gray-400 flex items-center gap-1">
                   {project.tier === "featured" ? (
                     <>
                       <Sparkles className="w-2.5 h-2.5 text-holo-cyan" aria-hidden="true" />
@@ -536,13 +539,15 @@ export const ProjectsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Dynamic Detail Modal */}
-      {selectedProject && (
-        <CaseStudyModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+      {/* Dynamic Detail Modal with AnimatePresence */}
+      <AnimatePresence>
+        {selectedProject && (
+          <CaseStudyModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

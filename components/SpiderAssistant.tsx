@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { X, Send, Bot, Rocket } from "lucide-react";
-import { GlassCard } from "./ui/GlassCard";
 import { personalInfo } from "@/lib/data/personal";
 
 interface Message {
@@ -9,7 +8,7 @@ interface Message {
   text: string;
 }
 
-// Keyword-matched knowledge base. First topic whose keywords hit the query wins.
+// Keyword-matched knowledge base
 const knowledgeBase: { keys: string[]; answer: string }[] = [
   {
     keys: ["vergabepilot", "procurement", "tender", "ciconia", "core research", "flagship"],
@@ -133,7 +132,7 @@ export const SpiderAssistant: React.FC = () => {
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open AI assistant"
-          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-bg-card border border-spidey-red/40 hover:border-holo-cyan/50 text-white flex items-center justify-center shadow-[0_0_20px_rgba(226,54,54,0.2)] hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all duration-300 group cursor-pointer"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0d121e] border border-spidey-red/40 hover:border-holo-cyan/50 text-white flex items-center justify-center shadow-[0_0_20px_rgba(226,54,54,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all duration-300 group cursor-pointer"
         >
           <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-spidey-red group-hover:text-holo-cyan transition-colors duration-300 animate-pulse" />
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
@@ -143,15 +142,11 @@ export const SpiderAssistant: React.FC = () => {
         </button>
       )}
 
-      {/* Chat panel — full width on mobile */}
+      {/* Chat panel — responsive & clear on mobile */}
       {isOpen && (
-        <GlassCard
-          glowColor="cyan"
-          hoverEffect={false}
-          className="w-[calc(100vw-2rem)] sm:w-[380px] h-[480px] sm:h-[520px] max-h-[calc(100dvh-5rem)] flex flex-col p-3 sm:p-4 border border-holo-cyan/20 shadow-2xl relative fixed bottom-4 right-4 sm:bottom-6 sm:right-6"
-        >
+        <div className="w-[calc(100vw-2rem)] max-w-[360px] sm:w-[380px] h-[450px] sm:h-[500px] max-h-[80vh] flex flex-col p-3 sm:p-4 border border-holo-cyan/30 bg-[#07090e]/95 backdrop-blur-md rounded-xl shadow-[0_0_40px_rgba(0,243,255,0.15)] relative">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 shrink-0">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-holo-cyan animate-pulse" />
               <div>
@@ -162,7 +157,7 @@ export const SpiderAssistant: React.FC = () => {
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close assistant"
-              className="text-gray-500 hover:text-white transition-colors cursor-pointer p-1"
+              className="text-gray-400 hover:text-white transition-colors cursor-pointer p-1 bg-white/5 rounded-md"
             >
               <X className="w-4 h-4" />
             </button>
@@ -184,10 +179,10 @@ export const SpiderAssistant: React.FC = () => {
                   {msg.sender === "user" ? "YOU" : "SID"}
                 </span>
                 <div
-                  className={`p-2.5 rounded-lg max-w-[85%] leading-relaxed break-words ${
+                  className={`p-2.5 rounded-lg max-w-[88%] leading-relaxed break-words ${
                     msg.sender === "user"
-                      ? "bg-spidey-red/10 border border-spidey-red/20 text-white"
-                      : "bg-white/5 border border-white/10 text-gray-300"
+                      ? "bg-spidey-red/20 border border-spidey-red/40 text-white"
+                      : "bg-white/5 border border-white/10 text-gray-200"
                   }`}
                 >
                   {msg.text}
@@ -208,15 +203,15 @@ export const SpiderAssistant: React.FC = () => {
           </div>
 
           {/* Preset options */}
-          <div className="border-t border-white/5 pt-3">
-            <div className="text-[9px] text-gray-500 mb-2">QUICK SUGGESTIONS</div>
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+          <div className="border-t border-white/10 pt-3 shrink-0">
+            <div className="text-[9px] text-gray-500 mb-1.5 uppercase tracking-wider">QUICK SUGGESTIONS</div>
+            <div className="grid grid-cols-2 gap-1.5">
               {presetQuestions.map((q) => (
                 <button
                   key={q}
                   disabled={typing}
                   onClick={() => ask(q)}
-                  className="p-1.5 sm:p-2 border border-white/5 bg-white/2.5 text-left rounded-md text-[9px] sm:text-[10px] text-gray-400 hover:text-holo-cyan hover:border-holo-cyan/30 hover:bg-holo-cyan/5 transition-all duration-200 cursor-pointer disabled:opacity-50"
+                  className="p-1.5 border border-white/10 bg-white/5 text-left rounded text-[9px] sm:text-[10px] text-gray-300 hover:text-holo-cyan hover:border-holo-cyan/40 hover:bg-holo-cyan/10 transition-all duration-200 cursor-pointer disabled:opacity-50 truncate"
                 >
                   {q}
                 </button>
@@ -229,7 +224,7 @@ export const SpiderAssistant: React.FC = () => {
                 e.preventDefault();
                 ask(input);
               }}
-              className="mt-3 flex items-center gap-2"
+              className="mt-2.5 flex items-center gap-2"
             >
               <input
                 type="text"
@@ -237,19 +232,19 @@ export const SpiderAssistant: React.FC = () => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Sid anything..."
                 aria-label="Ask the assistant a question"
-                className="flex-grow bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[11px] text-white placeholder:text-gray-600 focus:outline-none focus:border-holo-cyan/50 transition-colors"
+                className="flex-grow bg-white/5 border border-white/10 rounded-md px-3 py-2 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-holo-cyan/50 transition-colors min-w-0"
               />
               <button
                 type="submit"
                 disabled={typing || !input.trim()}
                 aria-label="Send question"
-                className="p-2 rounded-md border border-holo-cyan/30 bg-holo-cyan/10 text-holo-cyan hover:bg-holo-cyan/20 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="p-2 rounded-md border border-holo-cyan/40 bg-holo-cyan/15 text-holo-cyan hover:bg-holo-cyan/30 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
           </div>
-        </GlassCard>
+        </div>
       )}
     </div>
   );
