@@ -25,7 +25,7 @@ import {
   Wrench,
 } from "lucide-react";
 
-/* ─── Case Study Detail Modal (Teleported to document.body) ─────────── */
+/* ─── Case Study Detail Modal (Responsive Screen Overlay) ─────────── */
 const CaseStudyModal: React.FC<{
   project: Project;
   onClose: () => void;
@@ -59,62 +59,61 @@ const CaseStudyModal: React.FC<{
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md overflow-y-auto p-3 sm:p-6 md:p-10 flex justify-center items-start sm:items-center"
       role="dialog"
       aria-modal="true"
       aria-label={`${project.name} case study`}
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        initial={{ opacity: 0, scale: 0.96, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        exit={{ opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        className="w-full max-w-4xl h-[85vh] max-h-[780px] bg-[#070a12] border border-spidey-red/40 shadow-[0_0_60px_rgba(226,54,54,0.3)] rounded-xl relative flex flex-col overflow-hidden"
+        className="w-full max-w-5xl bg-[#070a12] border border-spidey-red/40 shadow-[0_0_60px_rgba(226,54,54,0.3)] rounded-xl relative p-5 sm:p-8 md:p-10 my-auto text-left"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Fixed Header (Always visible at top of viewport) */}
-        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-white/10 shrink-0 bg-[#070a12] z-10">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-1.5">
-              <span className="px-2.5 py-0.5 border border-spidey-red/40 bg-spidey-red/10 rounded font-mono text-[10px] text-spidey-red uppercase tracking-widest font-bold">
-                {project.category}
+        {/* Sticky Close Button in Top Right */}
+        <button
+          onClick={onClose}
+          aria-label="Close case study"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-white transition-colors cursor-pointer p-2 bg-white/5 hover:bg-white/10 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red z-20"
+        >
+          <X className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* Header */}
+        <div className="border-b border-white/10 pb-5 mb-6 sm:mb-8 pr-12">
+          <div className="flex flex-wrap items-center gap-2 mb-2.5">
+            <span className="px-2.5 py-0.5 border border-spidey-red/40 bg-spidey-red/10 rounded font-mono text-[10px] sm:text-xs text-spidey-red uppercase tracking-widest font-bold">
+              {project.category}
+            </span>
+            {project.tier === "flagship" && (
+              <span className="px-2.5 py-0.5 border border-stark-gold/40 bg-stark-gold/10 rounded font-mono text-[10px] sm:text-xs text-stark-gold uppercase tracking-widest font-bold">
+                Flagship Project
               </span>
-              {project.tier === "flagship" && (
-                <span className="px-2.5 py-0.5 border border-stark-gold/40 bg-stark-gold/10 rounded font-mono text-[10px] text-stark-gold uppercase tracking-widest font-bold">
-                  Flagship Project
-                </span>
-              )}
-              {project.isPrivate && (
-                <span className="px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 rounded font-mono text-[10px] text-amber-500 uppercase tracking-widest font-bold">
-                  Private Research
-                </span>
-              )}
-            </div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-              {project.name}
-            </h3>
-            {project.orgName && (
-              <div className="text-xs text-holo-cyan font-mono mt-1 break-words">
-                ORGANIZATION: {project.orgName}
-              </div>
+            )}
+            {project.isPrivate && (
+              <span className="px-2.5 py-0.5 border border-amber-500/40 bg-amber-500/10 rounded font-mono text-[10px] sm:text-xs text-amber-500 uppercase tracking-widest font-bold">
+                Private Research
+              </span>
             )}
           </div>
-
-          <button
-            onClick={onClose}
-            aria-label="Close case study"
-            className="text-gray-400 hover:text-white transition-colors cursor-pointer p-2 bg-white/5 hover:bg-white/10 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-spidey-red shrink-0 ml-4"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            {project.name}
+          </h3>
+          {project.orgName && (
+            <div className="text-xs sm:text-sm text-holo-cyan font-mono mt-1.5 break-words">
+              ORGANIZATION: {project.orgName}
+            </div>
+          )}
         </div>
 
-        {/* Scrollable Content Body (Only middle section scrolls) */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
+        {/* Content body */}
+        <div className="space-y-6 sm:space-y-8">
           {/* Overview */}
           <div>
-            <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+            <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
               <AlertCircle className="w-4 h-4 text-spidey-red" aria-hidden="true" />
               PROJECT_OVERVIEW
             </h4>
@@ -126,16 +125,16 @@ const CaseStudyModal: React.FC<{
           {/* Problem & Solution */}
           {project.problem && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4">
-                <h4 className="text-[11px] text-spidey-red font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+              <div className="bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4 sm:p-5">
+                <h4 className="text-[11px] sm:text-xs text-spidey-red font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
                   <AlertTriangle className="w-4 h-4" aria-hidden="true" />
                   THE_CHALLENGE
                 </h4>
                 <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{project.problem}</p>
               </div>
               {project.solution && (
-                <div className="bg-holo-cyan/10 border border-holo-cyan/20 rounded-lg p-4">
-                  <h4 className="text-[11px] text-holo-cyan font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
+                <div className="bg-holo-cyan/10 border border-holo-cyan/20 rounded-lg p-4 sm:p-5">
+                  <h4 className="text-[11px] sm:text-xs text-holo-cyan font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5 font-bold">
                     <Lightbulb className="w-4 h-4" aria-hidden="true" />
                     THE_SOLUTION
                   </h4>
@@ -148,11 +147,11 @@ const CaseStudyModal: React.FC<{
           {/* Architecture Diagram */}
           {project.architectureMermaid && (
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
                 <GitBranch className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
                 ARCHITECTURE_FLOW
               </h4>
-              <div className="bg-black/60 border border-holo-cyan/20 rounded-lg p-4 overflow-x-auto">
+              <div className="bg-black/60 border border-holo-cyan/20 rounded-lg p-4 sm:p-5 overflow-x-auto">
                 <pre className="font-mono text-xs sm:text-sm text-holo-cyan whitespace-pre leading-relaxed">
                   {project.architectureMermaid.trim()}
                 </pre>
@@ -163,18 +162,18 @@ const CaseStudyModal: React.FC<{
           {/* Engineering Decisions */}
           {project.engineeringDecisions && project.engineeringDecisions.length > 0 && (
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-3 flex items-center gap-1.5">
                 <Brain className="w-4 h-4 text-stark-gold" aria-hidden="true" />
                 KEY_ENGINEERING_DECISIONS
               </h4>
               <div className="space-y-3">
                 {project.engineeringDecisions.map((ed, idx) => (
-                  <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-4">
+                  <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5">
                     <div className="text-white text-sm font-semibold flex items-start gap-2">
                       <span className="text-stark-gold font-mono shrink-0">D{idx + 1}.</span>
                       {ed.decision}
                     </div>
-                    <p className="text-gray-300 text-xs mt-2 leading-relaxed pl-6">
+                    <p className="text-gray-300 text-xs sm:text-sm mt-2 leading-relaxed pl-6">
                       {ed.reason}
                     </p>
                   </div>
@@ -188,22 +187,22 @@ const CaseStudyModal: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.challenges && (
                 <div>
-                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                  <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                     <Wrench className="w-4 h-4 text-spidey-red" aria-hidden="true" />
                     TECHNICAL_HARDSHIPS
                   </h4>
-                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4">
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5">
                     {project.challenges}
                   </p>
                 </div>
               )}
               {project.tradeoffs && (
                 <div>
-                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                  <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                     <AlertTriangle className="w-4 h-4 text-stark-gold" aria-hidden="true" />
                     ARCHITECTURAL_TRADEOFFS
                   </h4>
-                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4">
+                  <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5">
                     {project.tradeoffs}
                   </p>
                 </div>
@@ -214,11 +213,11 @@ const CaseStudyModal: React.FC<{
           {/* Failures & Lessons Learned */}
           {project.failures && (
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                 <AlertCircle className="w-4 h-4 text-spidey-red" aria-hidden="true" />
                 FAILURES_&_ITERATIONS
               </h4>
-              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed bg-spidey-red/10 border border-spidey-red/20 rounded-lg p-4 sm:p-5">
                 {project.failures}
               </p>
             </div>
@@ -229,7 +228,7 @@ const CaseStudyModal: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.testing && (
                 <div>
-                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                  <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                     <TestTube className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
                     TESTING_SUITE
                   </h4>
@@ -247,7 +246,7 @@ const CaseStudyModal: React.FC<{
               )}
               {project.deployment && (
                 <div>
-                  <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                  <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                     <Rocket className="w-4 h-4 text-stark-gold" aria-hidden="true" />
                     DEPLOYMENT_INFRASTRUCTURE
                   </h4>
@@ -269,7 +268,7 @@ const CaseStudyModal: React.FC<{
           {/* Tech Stack and Metrics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-3">
                 DEPLOYED_TECH_STACK
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -280,7 +279,7 @@ const CaseStudyModal: React.FC<{
             </div>
 
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-3">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-3">
                 DIAGNOSTIC_METRICS
               </h4>
               <div className="grid grid-cols-2 gap-3">
@@ -301,7 +300,7 @@ const CaseStudyModal: React.FC<{
           {/* Highlights (for projects without deep case study content) */}
           {!hasCaseStudy && project.highlights && project.highlights.length > 0 && (
             <div>
-              <h4 className="text-[11px] text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
+              <h4 className="text-[11px] sm:text-xs text-gray-400 font-mono uppercase tracking-widest mb-2 flex items-center gap-1.5">
                 <CheckSquare className="w-4 h-4 text-holo-cyan" aria-hidden="true" />
                 KEY_HIGHLIGHTS
               </h4>
@@ -317,17 +316,17 @@ const CaseStudyModal: React.FC<{
           )}
         </div>
 
-        {/* Fixed Footer (Always visible at bottom of viewport) */}
-        <div className="p-4 border-t border-white/10 shrink-0 bg-[#070a12] flex items-center justify-between z-10">
+        {/* Footer */}
+        <div className="mt-8 sm:mt-10 pt-5 border-t border-white/10 flex items-center justify-between flex-wrap gap-4">
           <SpiderButton variant="outline" onClick={onClose}>
-            CLOSE
+            CLOSE_CASE_STUDY
           </SpiderButton>
 
           {!project.isPrivate && project.githubUrl && (
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
               <SpiderButton variant="primary" className="flex items-center gap-2">
                 <Github className="w-4 h-4" aria-hidden="true" />
-                VIEW_CODE
+                VIEW_SOURCE_CODE
               </SpiderButton>
             </a>
           )}
