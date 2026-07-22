@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, Project } from "@/lib/data/projects";
 import { SectionHeader } from "../ui/SectionHeader";
@@ -24,11 +25,17 @@ import {
   Wrench,
 } from "lucide-react";
 
-/* ─── Case Study Detail Modal ────────────────────────────────────────── */
+/* ─── Case Study Detail Modal (Teleported to document.body) ─────────── */
 const CaseStudyModal: React.FC<{
   project: Project;
   onClose: () => void;
 }> = ({ project, onClose }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Close on Escape key
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -46,25 +53,27 @@ const CaseStudyModal: React.FC<{
     };
   }, [handleKeyDown]);
 
+  if (!mounted) return null;
+
   const hasCaseStudy = project.problem || project.solution || project.architectureMermaid;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-hidden"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-hidden"
       role="dialog"
       aria-modal="true"
       aria-label={`${project.name} case study`}
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 10 }}
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 10 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        className="w-full max-w-4xl h-[85vh] max-h-[780px] bg-[#070a12] border border-spidey-red/40 shadow-[0_0_60px_rgba(226,54,54,0.2)] rounded-xl relative flex flex-col overflow-hidden"
+        className="w-full max-w-4xl h-[85vh] max-h-[780px] bg-[#070a12] border border-spidey-red/40 shadow-[0_0_60px_rgba(226,54,54,0.3)] rounded-xl relative flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Fixed Header (Always visible at top) */}
+        {/* Fixed Header (Always visible at top of viewport) */}
         <div className="flex items-start justify-between p-4 sm:p-6 border-b border-white/10 shrink-0 bg-[#070a12] z-10">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -308,7 +317,7 @@ const CaseStudyModal: React.FC<{
           )}
         </div>
 
-        {/* Fixed Footer (Always visible at bottom) */}
+        {/* Fixed Footer (Always visible at bottom of viewport) */}
         <div className="p-4 border-t border-white/10 shrink-0 bg-[#070a12] flex items-center justify-between z-10">
           <SpiderButton variant="outline" onClick={onClose}>
             CLOSE
@@ -324,7 +333,8 @@ const CaseStudyModal: React.FC<{
           )}
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -457,11 +467,11 @@ export const ProjectsSection: React.FC = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {project.metrics.map((metric, idx) => (
-                        <div key={idx} className="bg-white/2.5 p-2 sm:p-3 rounded border border-white/5 font-mono text-center">
+                        <div key={idx} className="bg-[#070a12] p-2 sm:p-3 rounded border border-white/10 font-mono text-center">
                           <div className="text-holo-cyan font-bold text-sm leading-none">
                             {metric.value}
                           </div>
-                          <div className="text-[8px] sm:text-[9px] text-gray-500 mt-1 uppercase tracking-wider">
+                          <div className="text-[8px] sm:text-[9px] text-gray-400 mt-1 uppercase tracking-wider">
                             {metric.label}
                           </div>
                         </div>
